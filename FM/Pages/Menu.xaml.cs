@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FM.Pages
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for Menu.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class Menu : Page
     {
-        public Page1()
+        public Menu()
         {
             InitializeComponent();
         }

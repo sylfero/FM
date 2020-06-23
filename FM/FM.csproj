@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Resources\Menu.Designer.cs">
       <DependentUpon>Menu.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -132,9 +135,6 @@
     </Compile>
     <Compile Include="Pages\Matches.xaml.cs">
       <DependentUpon>Matches.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Menu.xaml.cs">
-      <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Messages.xaml.cs">
       <DependentUpon>Messages.xaml</DependentUpon>
