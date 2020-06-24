@@ -4,11 +4,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:resx ="clr-namespace:FM.Pages.Resources"
+      xmlns:vm="clr-namespace:FM.ViewModel"
       xmlns:local="clr-namespace:FM.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Menu">
 
+    <Page.DataContext>
+        <vm:MenuViewModel/>
+    </Page.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -36,7 +41,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Button Grid.Row="0" Content="{Binding Source ={x:Static resx:Menu.Play}}"/>
+                <Button Grid.Row="0" Content="{Binding Source ={x:Static resx:Menu.Play}}" Command="{Binding Open}"/>
 
                 <Button Grid.Row="2" Content="{Binding Source ={x:Static resx:Menu.Options}}"/>
 
