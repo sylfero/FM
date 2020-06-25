@@ -11,7 +11,7 @@ namespace FM.ViewModel
 {
     class MenuViewModel : ViewModelBase
     {
-        MainViewModel m = new MainViewModel();
+        MainViewModel mainViewModel = new MainViewModel();
         private ICommand open;
         public ICommand Open
         {
@@ -19,7 +19,7 @@ namespace FM.ViewModel
             {
                 if (open == null)
                 {
-                    open = new RelayCommand(x => m.SwapPage(new Pages.Save()));
+                    open = new RelayCommand(x => mainViewModel.SwapPage("game"));
                 }
                 return open;
             }
