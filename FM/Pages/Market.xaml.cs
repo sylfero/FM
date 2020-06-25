@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FM.Pages
 {
     /// <summary>
-    /// Interaction logic for TransferMarkt.xaml
+    /// Interaction logic for Market.xaml
     /// </summary>
-    public partial class TransferMarkt : Page
+    public partial class Market : Page
     {
-        public TransferMarkt()
+        public Market()
         {
             InitializeComponent();
         }

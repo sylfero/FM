@@ -4,11 +4,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:resx ="clr-namespace:FM.Pages.Resources"
+      xmlns:vm="clr-namespace:FM.ViewModel"
       xmlns:local="clr-namespace:FM.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainGame">
 
+    <Page.DataContext>
+        <vm:MainGameViewModel/>
+    </Page.DataContext>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -43,9 +48,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0" Content="{Binding Source ={x:Static resx:MainGame.Team}}"/>
+                    <Button Grid.Column="0" Content="{Binding Source ={x:Static resx:MainGame.Team}}" Command="{Binding Team}"/>
 
-                    <Button Grid.Column="2" Content="{Binding Source ={x:Static resx:MainGame.Messages}}"/>
+                    <Button Grid.Column="2" Content="{Binding Source ={x:Static resx:MainGame.Messages}}" Command="{Binding Messages}"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -55,9 +60,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0" Content="{Binding Source ={x:Static resx:MainGame.Transfers}}"/>
+                    <Button Grid.Column="0" Content="{Binding Source ={x:Static resx:MainGame.Transfers}}" Command="{Binding Transfers}"/>
 
-                    <Button Grid.Column="2" Content="{Binding Source ={x:Static resx:MainGame.Juniors}}"/>
+                    <Button Grid.Column="2" Content="{Binding Source ={x:Static resx:MainGame.Juniors}}" Command="{Binding Juniors}"/>
                 </Grid>
 
                 <Grid Grid.Row="4">
@@ -67,9 +72,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0" Content="{Binding Source ={x:Static resx:MainGame.Tables}}"/>
+                    <Button Grid.Column="0" Content="{Binding Source ={x:Static resx:MainGame.Tables}}" Command="{Binding Tables}"/>
 
-                    <Button Grid.Column="2" Content="{Binding Source ={x:Static resx:MainGame.Schedule}}"/>
+                    <Button Grid.Column="2" Content="{Binding Source ={x:Static resx:MainGame.Schedule}}" Command="{Binding Schedule}"/>
                 </Grid>
             </Grid>
         </Grid>

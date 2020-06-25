@@ -43,9 +43,9 @@
 
                 <Button Grid.Row="0" Content="{Binding Source ={x:Static resx:Menu.Play}}" Command="{Binding Open}"/>
 
-                <Button Grid.Row="2" Content="{Binding Source ={x:Static resx:Menu.Options}}"/>
+                <Button Grid.Row="2" Content="{Binding Source ={x:Static resx:Menu.Options}}" Command="{Binding Options}"/>
 
-                <Button Grid.Row="4" Content="{Binding Source ={x:Static resx:Menu.Exit}}"/>
+                <Button Grid.Row="4" Content="{Binding Source ={x:Static resx:Menu.Exit}}" Command="{Binding Exit}"/>
             </Grid>
         </Grid>
     </Grid>
