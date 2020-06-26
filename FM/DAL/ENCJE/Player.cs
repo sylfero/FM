@@ -1,5 +1,5 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
+using System.Data.SQLite;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +22,7 @@ namespace FM.DAL.ENCJE
         public int Overall { get; set; }
         public int Potential { get; set; }
 
-        public Player(MySqlDataReader reader)
+        public Player(SQLiteDataReader reader)
         {
             Id = Convert.ToInt32(reader["id"].ToString());
             Name = reader["name"].ToString();

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+using System.Data.SQLite;
 
 namespace FM.DAL
 {
     class DBConnection
     {
-        private MySqlConnectionStringBuilder stringBuilder = new MySqlConnectionStringBuilder();
+        private SQLiteConnectionStringBuilder stringBuilder = new SQLiteConnectionStringBuilder();
 
         private static DBConnection instance = null;
 
@@ -24,15 +24,11 @@ namespace FM.DAL
             }
         }
 
-        public MySqlConnection connection => new MySqlConnection(stringBuilder.ToString());
+        public SQLiteConnection connection => new SQLiteConnection(stringBuilder.ToString());
 
         private DBConnection()
         {
-            stringBuilder.UserID = Properties.Settings.Default.userID;
-            stringBuilder.Password = Properties.Settings.Default.paswd;
-            stringBuilder.Server = Properties.Settings.Default.server;
-            stringBuilder.Database = Properties.Settings.Default.database;
-            stringBuilder.Port = Properties.Settings.Default.port;
+            stringBuilder.DataSource = Properties.Settings.Default.path;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Org.BouncyCastle.Crypto.Paddings;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,15 @@ namespace FM.DAL.ENCJE
             Iso = iso;
             Iso3 = iso3;
             NumCode = numCode;
+        }
+
+        public Country(SQLiteDataReader reader)
+        {
+            Id = Convert.ToInt32(reader["id"].ToString());
+            Land = reader["name"].ToString();
+            Iso = reader["iso"].ToString();
+            Iso3 = reader["iso3"].ToString();
+            NumCode = Convert.ToInt32(reader["numcode"].ToString());
         }
     }
 }
