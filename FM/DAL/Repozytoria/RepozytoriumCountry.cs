@@ -8,9 +8,9 @@ namespace FM.DAL.Repozytoria
 {
     using ENCJE;
     using System.Data.SQLite;
-    class RepozytoriumCountry
+    static class RepozytoriumCountry
     {
-        public List<Country> GetAllCountries()
+        public static List<Country> GetAllCountries()
         {
             List<Country> countries = new List<Country>();
             using(var connection = DBConnection.Instance.connection)

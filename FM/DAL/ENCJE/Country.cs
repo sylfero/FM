@@ -33,5 +33,12 @@ namespace FM.DAL.ENCJE
             Iso3 = reader["iso3"].ToString();
             NumCode = Convert.ToInt32(reader["numcode"].ToString());
         }
+
+        public override string ToString()
+        {
+            var c = new StringBuilder();
+            c.Append(Land);
+            return c.ToString();
+        }
     }
 }

@@ -8,9 +8,9 @@ namespace FM.DAL.Repozytoria
 {
     using ENCJE;
     using System.Data.SQLite;
-    class RepozytoriumSchedule
+    static class RepozytoriumSchedule
     {
-        public List<Schedule> GetBundesligaSchedule()
+        public static List<Schedule> GetBundesligaSchedule()
         {
             List<Schedule> schedule = new List<Schedule>();
             using(var connection = DBConnection.Instance.connection)
@@ -28,7 +28,7 @@ namespace FM.DAL.Repozytoria
             return schedule;
         }
 
-        public List<Schedule> GetPremierLeagueSchedule()
+        public static List<Schedule> GetPremierLeagueSchedule()
         {
             List<Schedule> schedule = new List<Schedule>();
             using (var connection = DBConnection.Instance.connection)
@@ -46,7 +46,7 @@ namespace FM.DAL.Repozytoria
             return schedule;
         }
 
-        public List<Schedule> GetBundesligaMatchday(int matchday)
+        public static List<Schedule> GetBundesligaMatchday(int matchday)
         {
             List<Schedule> schedule = new List<Schedule>();
             using (var connection = DBConnection.Instance.connection)
@@ -64,7 +64,7 @@ namespace FM.DAL.Repozytoria
             return schedule;
         }
 
-        public List<Schedule> GetPremierLeagueMatchday(int matchday)
+        public static List<Schedule> GetPremierLeagueMatchday(int matchday)
         {
             List<Schedule> schedule = new List<Schedule>();
             using (var connection = DBConnection.Instance.connection)
@@ -82,7 +82,7 @@ namespace FM.DAL.Repozytoria
             return schedule;
         }
 
-        public void AddGameScore(string hostName, string visitorName, int hostGoals, int visitorGoals)
+        public static void AddGameScore(string hostName, string visitorName, int hostGoals, int visitorGoals)
         {
             using (var connection = DBConnection.Instance.connection)
             {

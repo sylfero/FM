@@ -8,7 +8,7 @@ namespace FM.DAL.Repozytoria
 {
     using System.Data.SQLite;
     using ENCJE;
-    class RepozytoriumLeagueTable
+    static class RepozytoriumLeagueTable
     {
         public static List<LeagueTable> GetBundesligaTable()
         {
@@ -68,7 +68,7 @@ namespace FM.DAL.Repozytoria
             return clubs;
         }
 
-        public void ClubWins(int id, int scoredGoals, int lostGoals)
+        public static void ClubWins(int id, int scoredGoals, int lostGoals)
         {
             string update = $"UPDATE club set played = played + 1, points = points + 3, scored_goals = scored_goals + {scoredGoals}, lost_goals = lost_goals + {lostGoals}, wins = wins + 1 where id = {id}";
             using (var connection = DBConnection.Instance.connection)
@@ -80,7 +80,7 @@ namespace FM.DAL.Repozytoria
             }
         }
 
-        public void ClubLoses(int id, int scoredGoals, int lostGoals)
+        public static void ClubLoses(int id, int scoredGoals, int lostGoals)
         {
             string update = $"UPDATE club set played = played + 1, scored_goals = scored_goals + {scoredGoals}, lost_goals = lost_goals + {lostGoals}, lost = lost + 1 where id = {id}";
             using (var connection = DBConnection.Instance.connection)
@@ -92,7 +92,7 @@ namespace FM.DAL.Repozytoria
             }
         }
 
-        public void ClubsDraws(int hostId, int visitorId, int scoredGoals, int lostGoals)
+        public static void ClubsDraws(int hostId, int visitorId, int scoredGoals, int lostGoals)
         {
             string update = $"UPDATE club set played = played + 1, points = points + 1, scored_goals = scored_goals + {scoredGoals}, lost_goals = lost_goals + {lostGoals}, draws = draws + 1 where id = {hostId} or id = {visitorId}";
             using (var connection = DBConnection.Instance.connection)

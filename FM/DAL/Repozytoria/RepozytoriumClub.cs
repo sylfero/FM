@@ -9,7 +9,7 @@ namespace FM.DAL.Repozytoria
     using ENCJE;
     using System.Data.SQLite;
 
-    class RepozytoriumClub
+    static class RepozytoriumClub
     {
         public static List<Club> GetAllClubs()
         {
@@ -65,7 +65,7 @@ namespace FM.DAL.Repozytoria
             return clubs;
         }
 
-        public void TransferToClub(int clubId, int transferCost, int playerSalary)
+        public static void TransferToClub(int clubId, int transferCost, int playerSalary)
         {
             using (var connection = DBConnection.Instance.connection)
             {
@@ -84,7 +84,7 @@ namespace FM.DAL.Repozytoria
             }
         }
 
-        public void TransferFromClub(int clubId, int transferCost, int playerSalary)
+        public static void TransferFromClub(int clubId, int transferCost, int playerSalary)
         {
             using (var connection = DBConnection.Instance.connection)
             {

@@ -8,7 +8,7 @@ namespace FM.DAL.Repozytoria
 {
     using ENCJE;
     using System.Data.SQLite;
-    class RepozytoriumPlayer
+    static class RepozytoriumPlayer
     {
         public static List<Player> GetAllPlayers()
         {
@@ -64,7 +64,7 @@ namespace FM.DAL.Repozytoria
             return players;
         }
 
-        public List<Player> GetPlayersFromClub(string clubName)
+        public static List<Player> GetPlayersFromClub(string clubName)
         {
             List<Player> players = new List<Player>();
             using (var connection = DBConnection.Instance.connection)
@@ -82,7 +82,7 @@ namespace FM.DAL.Repozytoria
             return players;
         }
 
-        public List<Player> GetPlayersFromNationality(string nationality)
+        public static List<Player> GetPlayersFromNationality(string nationality)
         {
             List<Player> players = new List<Player>();
             using (var connection = DBConnection.Instance.connection)
@@ -100,7 +100,7 @@ namespace FM.DAL.Repozytoria
             return players;
         }
 
-        public void PlayerTransfer(int playerId, int newSalary, string newClub, DateTime contractLength)
+        public static void PlayerTransfer(int playerId, int newSalary, string newClub, DateTime contractLength)
         {
             using (var connection = DBConnection.Instance.connection)
             {
@@ -111,7 +111,7 @@ namespace FM.DAL.Repozytoria
             }
         }
 
-        public void PlayerNewContract(int playerId, int newSalary, DateTime contractLength)
+        public static void PlayerNewContract(int playerId, int newSalary, DateTime contractLength)
         {
             using (var connection = DBConnection.Instance.connection)
             {

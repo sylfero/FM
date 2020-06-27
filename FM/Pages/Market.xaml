@@ -4,9 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FM.Pages"
+      xmlns:mvm="clr-namespace:FM.ViewModel"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Market">
+
+    <Page.Resources>
+        <mvm:MarketViewModel x:Key="marketViewModel"/>
+    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -28,9 +34,6 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
@@ -39,9 +42,13 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0"/>
+                    <Label Grid.Row="0"
+                           Content="Name"
+                           />
 
-                    <TextBox Grid.Row="1"/>
+                    <TextBox Grid.Row="1"
+                        Text="{Binding Source={StaticResource marketViewModel}, Path=Name}"         
+                    />
                 </Grid>
 
                 <Grid Grid.Column="1">
@@ -50,9 +57,13 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0"/>
+                    <Label Grid.Row="0"
+                           Content="Surname"
+                           />
 
-                    <TextBox Grid.Row="1"/>
+                    <TextBox Grid.Row="1"
+                             Text="{Binding Source={StaticResource marketViewModel}, Path=Surname}"
+                             />
                 </Grid>
 
                 <Grid Grid.Column="2">
@@ -61,9 +72,14 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0"/>
+                    <Label Grid.Row="0"
+                           Content="Position"
+                           />
 
-                    <ComboBox Grid.Row="1"/>
+                    <ComboBox Grid.Row="1"
+                              ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=Positions}"
+                              SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=Position}"
+                    />
                 </Grid>
 
                 <Grid Grid.Column="3">
@@ -72,9 +88,13 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0"/>
+                    <Label Grid.Row="0"
+                           Content="League"/>
 
-                    <TextBox Grid.Row="1"/>
+                    <ComboBox Grid.Row="1"
+                              ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=Leagues}"
+                              SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=League}"
+                              />
                 </Grid>
 
                 <Grid Grid.Column="4">
@@ -83,9 +103,13 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0"/>
+                    <Label Grid.Row="0"
+                           Content="Club"/>
 
-                    <ComboBox Grid.Row="1"/>
+                    <ComboBox Grid.Row="1"
+                              ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=Clubs}"
+                              SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=Club}"
+                              />
                 </Grid>
 
                 <Grid Grid.Column="5">
@@ -94,42 +118,13 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0"/>
+                    <Label Grid.Row="0"
+                           Content="Nationality"/>
 
-                    <ComboBox Grid.Row="1"/>
-                </Grid>
-
-                <Grid Grid.Column="6">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <Label Grid.Row="0"/>
-
-                    <ComboBox Grid.Row="1"/>
-                </Grid>
-
-                <Grid Grid.Column="7">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <Label Grid.Row="0"/>
-
-                    <ComboBox Grid.Row="1"/>
-                </Grid>
-
-                <Grid Grid.Column="8">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <Label Grid.Row="0"/>
-
-                    <ComboBox Grid.Row="1"/>
+                    <ComboBox Grid.Row="1" 
+                              ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=Countries}"
+                              SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=Nationality}"
+                              />
                 </Grid>
 
             </Grid>
