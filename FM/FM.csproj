@@ -134,6 +134,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Pages\Resources\Save.Designer.cs">
+      <DependentUpon>Save.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Pages\Resources\Menu.Designer.cs">
       <DependentUpon>Menu.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -144,6 +149,7 @@
     <Compile Include="ViewModel\MainGameViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
+    <Compile Include="ViewModel\SaveViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -238,6 +244,10 @@
     <EmbeddedResource Include="Pages\Resources\MainGame.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MainGame.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Resources\Save.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Save.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Resources\Menu.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

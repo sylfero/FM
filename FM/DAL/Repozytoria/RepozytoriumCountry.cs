@@ -13,7 +13,7 @@ namespace FM.DAL.Repozytoria
         public List<Country> GetAllCountries()
         {
             List<Country> countries = new List<Country>();
-            using(var connection = DBConnection.Instance.connection)
+            using(var connection = DBConnection.Instance.Connection)
             {
                 SQLiteCommand command = new SQLiteCommand("select * from country", connection);
                 connection.Open();

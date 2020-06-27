@@ -15,18 +15,8 @@ namespace FM.ViewModel
     class MainViewModel : ViewModelBase
     {
         private static Page previousPage;
-        private static Page menu = new Pages.Menu();
-        private static Page options = new Pages.Options();
-        private static Page save = new Pages.Save();
-        private static Page mainGame = new Pages.MainGame();
-        private static Page matches = new Pages.Matches();
-        private static Page market = new Pages.Market();
-        private static Page messages = new Pages.Messages();
-        private static Page juniors = new Pages.Juniors();
-        private static Page table = new Pages.Table();
-        private static Page team = new Pages.Team();
 
-        private static Page page = menu;
+        private static Page page = new Pages.Menu();
         public static Page Page
         {
             get => page;
@@ -67,43 +57,43 @@ namespace FM.ViewModel
             switch (page)
             {
                 case "menu":
-                    Page = menu;
+                    Page = new Pages.Menu();
                     CanGoBack = false;
                     break;
                 case "game":
-                    Page = mainGame;
+                    Page = new Pages.MainGame();
                     CanGoBack = false;
                     break;
                 case "team":
-                    Page = team;
+                    Page = new Pages.Team();
                     CanGoBack = true;
                     break;
                 case "messages":
-                    Page = messages;
+                    Page = new Pages.Messages();
                     CanGoBack = true;
                     break;
                 case "transfers":
-                    Page = market;
+                    Page = new Pages.Market();
                     CanGoBack = true;
                     break;
                 case "juniors":
-                    Page = juniors;
+                    Page = new Pages.Juniors();
                     CanGoBack = true;
                     break;
                 case "tables":
-                    Page = table;
+                    Page = new Pages.Table();
                     CanGoBack = true;
                     break;
                 case "schedule":
-                    Page = matches;
+                    Page = new Pages.Matches();
                     CanGoBack = true;
                     break;
                 case "save":
-                    Page = save;
+                    Page = new Pages.Save();
                     CanGoBack = true;
                     break;
                 case "options":
-                    Page = options;
+                    Page = new Pages.Options();
                     CanGoBack = true;
                     break;
                 default:

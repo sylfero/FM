@@ -21,7 +21,7 @@ namespace FM.ViewModel
             {
                 if (open == null)
                 {
-                    open = new RelayCommand(x => mainViewModel.SwapPage("game"));
+                    open = new RelayCommand(x => mainViewModel.SwapPage("save"));
                 }
                 return open;
             }

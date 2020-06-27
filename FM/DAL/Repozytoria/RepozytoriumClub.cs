@@ -14,7 +14,7 @@ namespace FM.DAL.Repozytoria
         public static List<Club> GetAllClubs()
         {
             List<Club> clubs = new List<Club>();
-            using (var connection = DBConnection.Instance.connection)
+            using (var connection = DBConnection.Instance.Connection)
             {
                 SQLiteCommand command = new SQLiteCommand("select * from club", connection);
                 connection.Open();
@@ -32,7 +32,7 @@ namespace FM.DAL.Repozytoria
         public static List<Club> GetBundesligaClubs()
         {
             List<Club> clubs = new List<Club>();
-            using (var connection = DBConnection.Instance.connection)
+            using (var connection = DBConnection.Instance.Connection)
             {
                 SQLiteCommand command = new SQLiteCommand("select * from club where league = \"Bundesliga\" ", connection);
                 connection.Open();
@@ -50,7 +50,7 @@ namespace FM.DAL.Repozytoria
         public static List<Club> GetPremierLeagueClubs()
         {
             List<Club> clubs = new List<Club>();
-            using (var connection = DBConnection.Instance.connection)
+            using (var connection = DBConnection.Instance.Connection)
             {
                 SQLiteCommand command = new SQLiteCommand("select * from club where league = \"Premier League\" ", connection);
                 connection.Open();
@@ -67,7 +67,7 @@ namespace FM.DAL.Repozytoria
 
         public void TransferToClub(int clubId, int transferCost, int playerSalary)
         {
-            using (var connection = DBConnection.Instance.connection)
+            using (var connection = DBConnection.Instance.Connection)
             {
                 SQLiteCommand command = new SQLiteCommand($"select budget, salaryBudget from club where id = {clubId}", connection);
                 connection.Open();
@@ -86,7 +86,7 @@ namespace FM.DAL.Repozytoria
 
         public void TransferFromClub(int clubId, int transferCost, int playerSalary)
         {
-            using (var connection = DBConnection.Instance.connection)
+            using (var connection = DBConnection.Instance.Connection)
             {
                 SQLiteCommand command = new SQLiteCommand($"UPDATE club set budget = budget + {transferCost}, salaryBudget = salaryBudget + {playerSalary} where id = {clubId}", connection);
                 connection.Open();
