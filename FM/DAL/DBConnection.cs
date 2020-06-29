@@ -23,7 +23,10 @@ namespace FM.DAL
             }
         }
 
-        private DBConnection() { }
+        private DBConnection() 
+        {
+            stringBuilder.DataSource = Properties.Settings.Default.path;
+        }
 
         public SQLiteConnection Connection => new SQLiteConnection(stringBuilder.ToString());
 

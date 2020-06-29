@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FM.DAL.Repozytoria
+namespace FM.DAL.Repositories
 {
-    using ENCJE;
+    using Entity;
     using System.Data.SQLite;
 
-    class RepozytoriumClub
+    class ClubRepo
     {
         public static List<Club> GetAllClubs()
         {
@@ -19,7 +19,25 @@ namespace FM.DAL.Repozytoria
                 SQLiteCommand command = new SQLiteCommand("select * from club", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
-                while(reader.HasRows)
+                while(reader.Read())
+                {
+                    clubs.Add(new Club(reader));
+                }
+                connection.Close();
+            }
+
+            return clubs;
+        }
+
+        public static List<Club> GetAllClubsIn(int id)
+        {
+            List<Club> clubs = new List<Club>();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"select * from club where league = {id}", connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
                 {
                     clubs.Add(new Club(reader));
                 }
@@ -34,7 +52,7 @@ namespace FM.DAL.Repozytoria
             List<Club> clubs = new List<Club>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand("select * from club where league = \"Bundesliga\" ", connection);
+                SQLiteCommand command = new SQLiteCommand("select * from club where league = 2 ", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.HasRows)
@@ -52,7 +70,7 @@ namespace FM.DAL.Repozytoria
             List<Club> clubs = new List<Club>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand("select * from club where league = \"Premier League\" ", connection);
+                SQLiteCommand command = new SQLiteCommand("select * from club where league = 1 ", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.HasRows)

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FM.DAL.ENCJE
+namespace FM.DAL.Entity
 {
     class Schedule
     {
@@ -15,9 +15,9 @@ namespace FM.DAL.ENCJE
         public int? HostGoals { get; set; }
         public int? VisitorGoals { get; set; }
         public int Matchday { get; set; }
-        public string League { get; set; }
+        public int League { get; set; }
 
-        public Schedule(int id, string host, string visitor, int? hostGoals, int? visitorGoals, int matchday, string league)
+        public Schedule(int id, string host, string visitor, int? hostGoals, int? visitorGoals, int matchday, int league)
         {
             Id = id;
             Host = host;
@@ -36,7 +36,7 @@ namespace FM.DAL.ENCJE
             HostGoals = Convert.ToInt32(reader["host_goals"].ToString());
             VisitorGoals = Convert.ToInt32(reader["visitor_goals"].ToString());
             Matchday = Convert.ToInt32(reader["matchday"].ToString());
-            League = reader["league"].ToString();
+            League = Convert.ToInt32(reader["league"].ToString());
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using FM.Pages;
+﻿using FM.DAL.Entity;
+using FM.DAL.Repositories;
+using FM.Model;
+using FM.Pages;
 using FM.ViewModel.BaseClasses;
 using System;
 using System.Collections.Generic;
@@ -7,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace FM.ViewModel
@@ -58,6 +62,41 @@ namespace FM.ViewModel
             set => SetProperty(ref newSave, value);
         }
 
+        public List<League> Leagues => LeagueRepo.GetAllLeagues();
+
+        private League currentLeague;
+        public League CurrentLeague
+        {
+            get => currentLeague;
+            set
+            {
+                SetProperty(ref currentLeague, value);
+                Clubs = currentLeague != null ? ClubRepo.GetAllClubsIn(currentLeague.Id) : null;
+                CurrentClub = null;
+            }
+        }
+
+        private List<Club> clubs;
+        public List<Club> Clubs
+        {
+            get => clubs;
+            set => SetProperty(ref clubs, value);
+        }
+
+        private Club currentClub;
+        public Club CurrentClub
+        {
+            get => currentClub;
+            set => SetProperty(ref currentClub, value);
+        }
+
+        private string manager;
+        public string Manager
+        {
+            get => manager;
+            set => SetProperty(ref manager, value);
+        }
+
         private ICommand load;
         public ICommand Load
         {
@@ -65,7 +104,11 @@ namespace FM.ViewModel
             {
                 if (load == null)
                 {
-                    load = new RelayCommand(x => { DAL.DBConnection.Instance.SetDatabase(currentSave + "\\Database.db");  mainViewModel.SwapPage("game"); }, x => !string.IsNullOrEmpty(CurrentSave));
+                    load = new RelayCommand(x => {
+                        DAL.DBConnection.Instance.SetDatabase($@"Saves\{currentSave}\Database.db");  
+                        mainViewModel.SwapPage("game");
+                        ClubStatus.LoadSave($@"Saves\{currentSave}\Properties.txt");
+                    }, x => !string.IsNullOrEmpty(CurrentSave));
                 }
                 return load;
             }
@@ -143,8 +186,16 @@ namespace FM.ViewModel
                         File.Copy("BaseDB.db", $@"Saves\{NewSave}\FMDataBase.db");
                         Saves.Add(NewSave);
                         File.WriteAllLines("SavesConfig.txt", Saves);
+                        using(StreamWriter writer = new StreamWriter($@"Saves\{NewSave}\Properties.txt"))
+                        {
+                            writer.WriteLine(Manager);
+                            writer.WriteLine(CurrentLeague.Id);
+                            writer.WriteLine(CurrentClub.Id);
+                        }
                         NewSave = null;
-                    }, x => !string.IsNullOrEmpty(NewSave) && !Saves.Any(y => y == NewSave));
+                        CurrentLeague = null;
+                        Manager = null;
+                    }, x => !string.IsNullOrEmpty(NewSave) && !Saves.Any(y => y == NewSave) && !string.IsNullOrEmpty(Manager) && CurrentClub != null);
                 }
                 return confirmAdd;
             }

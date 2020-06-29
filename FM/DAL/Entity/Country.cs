@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FM.DAL.ENCJE
+namespace FM.DAL.Entity
 {
     class Country
     {
@@ -14,7 +14,7 @@ namespace FM.DAL.ENCJE
         public string Land { get; set; }
         public string Iso { get; set; }
         public string Iso3 { get; set; }
-        public int NumCode { get; set; }
+        public int? NumCode { get; set; }
 
         public Country(int id, string land, string iso, string iso3, int numCode)
         {

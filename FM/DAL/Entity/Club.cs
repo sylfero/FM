@@ -6,31 +6,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FM.DAL.ENCJE
+namespace FM.DAL.Entity
 {
     class Club
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string League { get; set; }
-        public int Overall { get; set; }
+        public int League { get; set; }
+        public int? Overall { get; set; }
         public double Budget { get; set; }
-        public double SalaryBudget { get; set; }
+        public double? SalaryBudget { get; set; }
         public string Coach { get; set; }
 
         public Club(SQLiteDataReader reader)
         {
             Id = Convert.ToInt32(reader["id"].ToString());
             Name = reader["name"].ToString();
-            League = reader["league"].ToString();
-            Overall = Convert.ToInt32(reader["overall"].ToString());
+            League = Convert.ToInt32(reader["league"].ToString());
+            Overall = Convert.ToInt32(reader["overall"] != DBNull.Value ? reader["overall"].ToString() : null);
             Budget = Convert.ToDouble(reader["budget"].ToString());
-            SalaryBudget = Convert.ToDouble(reader["salarybudget"].ToString());
+            SalaryBudget = Convert.ToDouble(reader["salarybudget"] != DBNull.Value ? reader["salarybudget"].ToString() : null);
             Coach = reader["coach"].ToString();
             
         }
 
-        public Club(int id, string name, string league, int overall, double budget, double salaryBudget, string coach)
+        public Club(int id, string name, int league, int? overall, double budget, double salaryBudget, string coach)
         {
             Id = id;
             Name = name;

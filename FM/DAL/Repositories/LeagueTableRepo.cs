@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FM.DAL.Repozytoria
+namespace FM.DAL.Repositories
 {
     using System.Data.SQLite;
-    using ENCJE;
-    class RepozytoriumLeagueTable
+    using Entity;
+    class LeagueTableRepo
     {
         public static List<LeagueTable> GetBundesligaTable()
         {
             List<LeagueTable> clubs = new List<LeagueTable>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand("select name, points, played, scored_goals, lost_goals, wins, lost, draws from club where league = \"Bundesliga\" order by points desc, scored_goals desc, lost_goals asc", connection);
+                SQLiteCommand command = new SQLiteCommand("select name, points, played, scored_goals, lost_goals, wins, lost, draws from club where league = 2 order by points desc, scored_goals desc, lost_goals asc", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.HasRows)
@@ -44,7 +44,7 @@ namespace FM.DAL.Repozytoria
             List<LeagueTable> clubs = new List<LeagueTable>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand("select name, points, played, scored_goals, lost_goals, wins, lost, draws from club where league = \"Premier League\" order by points desc, scored_goals desc, lost_goals asc", connection);
+                SQLiteCommand command = new SQLiteCommand("select name, points, played, scored_goals, lost_goals, wins, lost, draws from club where league = 1 order by points desc, scored_goals desc, lost_goals asc", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.HasRows)

@@ -113,16 +113,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DAL\DBConnection.cs" />
-    <Compile Include="DAL\ENCJE\Club.cs" />
-    <Compile Include="DAL\ENCJE\Country.cs" />
-    <Compile Include="DAL\ENCJE\LeagueTable.cs" />
-    <Compile Include="DAL\ENCJE\Player.cs" />
-    <Compile Include="DAL\ENCJE\Schedule.cs" />
-    <Compile Include="DAL\Repozytoria\RepozytoriumClub.cs" />
-    <Compile Include="DAL\Repozytoria\RepozytoriumCountry.cs" />
-    <Compile Include="DAL\Repozytoria\RepozytoriumLeagueTable.cs" />
-    <Compile Include="DAL\Repozytoria\RepozytoriumPlayer.cs" />
-    <Compile Include="DAL\Repozytoria\RepozytoriumSchedule.cs" />
+    <Compile Include="DAL\Entity\Club.cs" />
+    <Compile Include="DAL\Entity\Country.cs" />
+    <Compile Include="DAL\Entity\League.cs" />
+    <Compile Include="DAL\Entity\LeagueTable.cs" />
+    <Compile Include="DAL\Entity\Player.cs" />
+    <Compile Include="DAL\Entity\Schedule.cs" />
+    <Compile Include="DAL\Repositories\ClubRepo.cs" />
+    <Compile Include="DAL\Repositories\CountryRepo.cs" />
+    <Compile Include="DAL\Repositories\LeagueRepo.cs" />
+    <Compile Include="DAL\Repositories\LeagueTableRepo.cs" />
+    <Compile Include="DAL\Repositories\PlayerRepo.cs" />
+    <Compile Include="DAL\Repositories\ScheduleRepo.cs" />
+    <Compile Include="Model\ClubStatus.cs" />
     <Compile Include="Pages\Market.xaml.cs">
       <DependentUpon>Market.xaml</DependentUpon>
     </Compile>

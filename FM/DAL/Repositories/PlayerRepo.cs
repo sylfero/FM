@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FM.DAL.Repozytoria
+namespace FM.DAL.Repositories
 {
-    using ENCJE;
+    using Entity;
     using System.Data.SQLite;
-    class RepozytoriumPlayer
+    class PlayerRepo
     {
         public static List<Player> GetAllPlayers()
         {

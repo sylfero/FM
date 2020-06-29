@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FM.DAL.ENCJE
+namespace FM.DAL.Entity
 {
     class LeagueTable
     {
         public int Id { get; set; }
+        public string Name { get; set; }
         public int Points { get; set; }
         public int Played { get; set; }
         public int ScoredGoals { get; set; }
@@ -21,6 +22,7 @@ namespace FM.DAL.ENCJE
         public LeagueTable(SQLiteDataReader reader)
         {
             Points = Convert.ToInt32(reader["points"].ToString());
+            Name = reader["name"].ToString();
             Played = Convert.ToInt32(reader["played"].ToString());
             ScoredGoals = Convert.ToInt32(reader["scored_goals"].ToString());
             LostGoals = Convert.ToInt32(reader["lost_goals"].ToString());
@@ -32,6 +34,7 @@ namespace FM.DAL.ENCJE
         public LeagueTable(int id, string name, int points, int played, int scoredGoals, int lostGoals, int wins, int lost, int draws)
         {
             Id = id;
+            Name = name;
             Points = points;
             Played = played;
             ScoredGoals = scoredGoals;
