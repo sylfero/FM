@@ -121,14 +121,17 @@
     <Compile Include="DAL\DBConnection.cs" />
     <Compile Include="DAL\Entity\Club.cs" />
     <Compile Include="DAL\Entity\Country.cs" />
+    <Compile Include="DAL\Entity\League.cs" />
     <Compile Include="DAL\Entity\LeagueTable.cs" />
     <Compile Include="DAL\Entity\Player.cs" />
     <Compile Include="DAL\Entity\Schedule.cs" />
     <Compile Include="DAL\Repositories\ClubRepo.cs" />
     <Compile Include="DAL\Repositories\CountryRepo.cs" />
+    <Compile Include="DAL\Repositories\LeagueRepo.cs" />
     <Compile Include="DAL\Repositories\LeagueTableRepo.cs" />
     <Compile Include="DAL\Repositories\PlayerRepo.cs" />
     <Compile Include="DAL\Repositories\ScheduleRepo.cs" />
+    <Compile Include="Model\ClubStatus.cs" />
     <Compile Include="Pages\Market.xaml.cs">
       <DependentUpon>Market.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,11 @@
     </Compile>
     <Compile Include="Pages\Resources\MainGame.Designer.cs">
       <DependentUpon>MainGame.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Pages\Resources\Save.Designer.cs">
+      <DependentUpon>Save.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -151,6 +159,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MarketViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
+    <Compile Include="ViewModel\SaveViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -245,6 +254,10 @@
     <EmbeddedResource Include="Pages\Resources\MainGame.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MainGame.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Resources\Save.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Save.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Resources\Menu.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

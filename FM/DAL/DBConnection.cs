@@ -13,7 +13,6 @@ namespace FM.DAL
         private SQLiteConnectionStringBuilder stringBuilder = new SQLiteConnectionStringBuilder();
 
         private static DBConnection instance = null;
-
         public static DBConnection Instance
         {
             get
@@ -25,13 +24,16 @@ namespace FM.DAL
             }
         }
 
-        
-        
-        public SQLiteConnection connection => new SQLiteConnection(stringBuilder.ToString());
-
-        private DBConnection()
+        private DBConnection() 
         {
             stringBuilder.DataSource = Properties.Settings.Default.path;
+        }
+
+        public SQLiteConnection Connection => new SQLiteConnection(stringBuilder.ToString());
+
+        public void SetDatabase(string path)
+        {
+            stringBuilder.DataSource = path;
         }
     }
 }

@@ -40,7 +40,24 @@ namespace FM.DAL.Repositories
                 SQLiteCommand command = new SQLiteCommand("select club.id as id, club.name as name, l.name as league, overall, budget, salaryBudget, coach from club, league l where club.league = l.id and l.name = \"Bundesliga\" ", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    clubs.Add(new Club(reader));
+                }
+                connection.Close();
+            }
+
+            return clubs;
+        }
                 
+        public static List<Club> GetAllClubsIn(int id)
+        {
+            List<Club> clubs = new List<Club>();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"select * from club where league = {id}", connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
                     clubs.Add(new Club(reader));
