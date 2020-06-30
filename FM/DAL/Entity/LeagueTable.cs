@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FM.DAL.ENCJE
+namespace FM.DAL.Entity
 {
     class LeagueTable
     {

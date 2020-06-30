@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FM.DAL.ENCJE
+namespace FM.DAL.Entity
 {
     class Player
     {
@@ -21,6 +21,8 @@ namespace FM.DAL.ENCJE
         public int Defence { get; set; }
         public int Overall { get; set; }
         public int Potential { get; set; }
+        public int Value { get; set; }
+        public int Salary { get; set; }
 
         public Player(SQLiteDataReader reader)
         {
@@ -33,8 +35,11 @@ namespace FM.DAL.ENCJE
             ContractTerminates = Convert.ToDateTime(reader["contract_terminates"].ToString());
             Offense = Convert.ToInt32(reader["offense"].ToString());
             Defence = Convert.ToInt32(reader["defence"].ToString());
-            Overall = Convert.ToInt32(reader["potential"].ToString());
+            Overall = Convert.ToInt32(reader["overall"].ToString());
+            Potential = Convert.ToInt32(reader["potential"].ToString());
             Position = reader["position"].ToString();
+            Value = Convert.ToInt32(reader["value"].ToString());
+            Salary = Convert.ToInt32(reader["salary"].ToString());
         }
 
         public Player(string name, string surname, string club, DateTime dateofbirth, string nationality, string position, DateTime contractTerminates, int offense, int defence, int overall, int potential)
@@ -65,6 +70,24 @@ namespace FM.DAL.ENCJE
             Overall = player.Overall;
             Potential = player.Potential;
             Position = player.Position;
+        }
+
+        public override string ToString()
+        {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(Name);
+            stringBuilder.Append(" ");
+            stringBuilder.Append(Surname);
+            stringBuilder.Append(" ");
+            stringBuilder.Append(Club);
+            stringBuilder.Append(" ");
+            stringBuilder.Append(Nationality);
+            stringBuilder.Append(" ");
+            stringBuilder.Append(Position);
+            stringBuilder.Append(" ");
+            stringBuilder.Append(Overall);
+
+            return stringBuilder.ToString();
         }
     }
 }

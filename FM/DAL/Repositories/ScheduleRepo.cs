@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FM.DAL.Repozytoria
+namespace FM.DAL.Repositories
 {
-    using ENCJE;
+    using Entity;
     using System.Data.SQLite;
-    static class RepozytoriumSchedule
+    static class ScheduleRepo
     {
         public static List<Schedule> GetBundesligaSchedule()
         {
@@ -18,7 +18,7 @@ namespace FM.DAL.Repozytoria
                 SQLiteCommand command = new SQLiteCommand("select s.id, c.name as host, c1.name as visitor, host_goals, visitor_goals, matchday, s.league from schedule s, club c, club c1 where s.host = c.id and s.visitor = c1.id and s.league = \"Bundesliga\" order by matchday", connection);
                 connection.Close();
                 var reader = command.ExecuteReader();
-                while(reader.HasRows)
+                while(reader.Read())
                 {
                     schedule.Add(new Schedule(reader));
                 }
@@ -36,7 +36,7 @@ namespace FM.DAL.Repozytoria
                 SQLiteCommand command = new SQLiteCommand("select s.id, c.name as host, c1.name as visitor, host_goals, visitor_goals, matchday, s.league from schedule s, club c, club c1 where s.host = c.id and s.visitor = c1.id and s.league = \"Premier League\" order by matchday", connection);
                 connection.Close();
                 var reader = command.ExecuteReader();
-                while (reader.HasRows)
+                while (reader.Read())
                 {
                     schedule.Add(new Schedule(reader));
                 }
@@ -54,7 +54,7 @@ namespace FM.DAL.Repozytoria
                 SQLiteCommand command = new SQLiteCommand($"select s.id, c.name as host, c1.name as visitor, host_goals, visitor_goals, matchday, s.league from schedule s, club c, club c1 where s.host = c.id and s.visitor = c1.id and s.league = \"Bundesliga\" and matchday = {matchday}", connection);
                 connection.Close();
                 var reader = command.ExecuteReader();
-                while (reader.HasRows)
+                while (reader.Read())
                 {
                     schedule.Add(new Schedule(reader));
                 }
@@ -72,7 +72,7 @@ namespace FM.DAL.Repozytoria
                 SQLiteCommand command = new SQLiteCommand($"select s.id, c.name as host, c1.name as visitor, host_goals, visitor_goals, matchday, s.league from schedule s, club c, club c1 where s.host = c.id and s.visitor = c1.id and s.league = \"Premier League\" and matchday = {matchday}", connection);
                 connection.Close();
                 var reader = command.ExecuteReader();
-                while (reader.HasRows)
+                while (reader.Read())
                 {
                     schedule.Add(new Schedule(reader));
                 }

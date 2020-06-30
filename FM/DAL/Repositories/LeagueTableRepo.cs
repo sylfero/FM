@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FM.DAL.Repozytoria
+namespace FM.DAL.Repositories
 {
     using System.Data.SQLite;
-    using ENCJE;
-    static class RepozytoriumLeagueTable
+    using Entity;
+    static class LeagueTableRepo
     {
         public static List<LeagueTable> GetBundesligaTable()
         {
@@ -18,7 +18,7 @@ namespace FM.DAL.Repozytoria
                 SQLiteCommand command = new SQLiteCommand("select name, points, played, scored_goals, lost_goals, wins, lost, draws from club where league = \"Bundesliga\" order by points desc, scored_goals desc, lost_goals asc", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
-                while (reader.HasRows)
+                while (reader.Read())
                 {
                     clubs.Add(
                         new LeagueTable(
@@ -47,7 +47,7 @@ namespace FM.DAL.Repozytoria
                 SQLiteCommand command = new SQLiteCommand("select name, points, played, scored_goals, lost_goals, wins, lost, draws from club where league = \"Premier League\" order by points desc, scored_goals desc, lost_goals asc", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
-                while (reader.HasRows)
+                while (reader.Read())
                 {
                     clubs.Add(
                         new LeagueTable(

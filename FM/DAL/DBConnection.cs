@@ -9,6 +9,7 @@ namespace FM.DAL
 {
     class DBConnection
     {
+        
         private SQLiteConnectionStringBuilder stringBuilder = new SQLiteConnectionStringBuilder();
 
         private static DBConnection instance = null;
@@ -24,6 +25,8 @@ namespace FM.DAL
             }
         }
 
+        
+        
         public SQLiteConnection connection => new SQLiteConnection(stringBuilder.ToString());
 
         private DBConnection()
