@@ -8,7 +8,10 @@ namespace FM.DAL.Repositories
 {
     using Entity;
     using System.Data.SQLite;
-    class PlayerRepo
+    using Renci.SshNet.Messages;
+    using System.Windows;
+
+    static class PlayerRepo
     {
         public static List<Player> GetAllPlayers()
         {
@@ -18,7 +21,7 @@ namespace FM.DAL.Repositories
                 SQLiteCommand command = new SQLiteCommand("select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential from players p, country n, club c where p.club = c.id and p.nationality = n.iso3", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
-                while (reader.HasRows)
+                while (reader.Read())
                 {
                     players.Add(new Player(reader));
                 }
@@ -36,7 +39,7 @@ namespace FM.DAL.Repositories
                 SQLiteCommand command = new SQLiteCommand("select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential from players p, country n, club c where p.club = c.id and p.nationality = n.iso3 and c.league = \"Bundesliga\" ", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
-                while (reader.HasRows)
+                while (reader.Read())
                 {
                     players.Add(new Player(reader));
                 }
@@ -54,7 +57,7 @@ namespace FM.DAL.Repositories
                 SQLiteCommand command = new SQLiteCommand("select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential from players p, country n, club c where p.club = c.id and p.nationality = n.iso3 and c.league = \"Premier League\" ", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
-                while (reader.HasRows)
+                while (reader.Read())
                 {
                     players.Add(new Player(reader));
                 }
@@ -64,7 +67,7 @@ namespace FM.DAL.Repositories
             return players;
         }
 
-        public List<Player> GetPlayersFromClub(string clubName)
+        public static List<Player> GetPlayersFromClub(string clubName)
         {
             List<Player> players = new List<Player>();
             using (var connection = DBConnection.Instance.Connection)
@@ -72,7 +75,7 @@ namespace FM.DAL.Repositories
                 SQLiteCommand command = new SQLiteCommand($"select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential from players p, country n, club c where p.club = c.id and p.nationality = n.iso3 and c.name = \"{clubName}\" ", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
-                while (reader.HasRows)
+                while (reader.Read())
                 {
                     players.Add(new Player(reader));
                 }
@@ -82,7 +85,7 @@ namespace FM.DAL.Repositories
             return players;
         }
 
-        public List<Player> GetPlayersFromNationality(string nationality)
+        public static List<Player> GetPlayersFromNationality(string nationality)
         {
             List<Player> players = new List<Player>();
             using (var connection = DBConnection.Instance.Connection)
@@ -90,8 +93,7 @@ namespace FM.DAL.Repositories
                 SQLiteCommand command = new SQLiteCommand($"select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential from players p, country n, club c where p.club = c.id and p.nationality = n.iso3 and n.name = \"{nationality}\" ", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
-                while (reader.HasRows)
-                {
+                while (reader.Read())                {
                     players.Add(new Player(reader));
                 }
                 connection.Close();
@@ -100,18 +102,18 @@ namespace FM.DAL.Repositories
             return players;
         }
 
-        public void PlayerTransfer(int playerId, int newSalary, string newClub, DateTime contractLength)
+        public static void PlayerTransfer(int playerId, int newSalary, string newClub, string contractLength)
         {
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand($"UPDATE players set salary = {newSalary}, contract_terminates = {contractLength}, club = (select c.id from club c where c.name = \"{newClub}\") where p.id = {playerId}", connection);
+                SQLiteCommand command = new SQLiteCommand($"UPDATE players p set salary = {newSalary}, contract_terminates = \"{contractLength}\", club = (select c.id from club c where c.name = \"{newClub}\") where p.id = {playerId}", connection);
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
             }
         }
 
-        public void PlayerNewContract(int playerId, int newSalary, DateTime contractLength)
+        public static void PlayerNewContract(int playerId, int newSalary, string contractLength)
         {
             using (var connection = DBConnection.Instance.Connection)
             {
@@ -132,6 +134,5 @@ namespace FM.DAL.Repositories
                 connection.Close();
             }
         }
-
     }
 }

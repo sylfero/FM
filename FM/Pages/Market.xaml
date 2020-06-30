@@ -4,9 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FM.Pages"
+      xmlns:mvm="clr-namespace:FM.ViewModel"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Market">
+
+    <Page.Resources>
+        <mvm:MarketViewModel x:Key="marketViewModel"/>
+    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -21,154 +27,454 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
-                <Grid Grid.Column="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0"/>
+                    <Label Grid.Column="0"
+                           Content="Name"
+                           />
 
-                    <TextBox Grid.Row="1"/>
+                    <TextBox Grid.Column="1"
+                        Text="{Binding Source={StaticResource marketViewModel}, Path=Name}"         
+                    />
                 </Grid>
 
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0"/>
+                    <Label Grid.Column="0"
+                           Content="Surname"
+                           />
 
-                    <TextBox Grid.Row="1"/>
+                    <TextBox Grid.Column="1"
+                             Text="{Binding Source={StaticResource marketViewModel}, Path=Surname}"
+                             />
                 </Grid>
 
-                <Grid Grid.Column="2">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0"/>
+                    <Label Grid.Column="0"
+                           Content="Position"
+                           />
 
-                    <ComboBox Grid.Row="1"/>
+                    <ComboBox Grid.Column="1"
+                              ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=Positions}"
+                              SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=Position}"
+                    />
                 </Grid>
 
-                <Grid Grid.Column="3">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0"/>
+                    <Label Grid.Column="0"
+                           Content="League"/>
 
-                    <TextBox Grid.Row="1"/>
+                    <ComboBox Grid.Column="1"
+                              ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=Leagues}"
+                              SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=League}"
+                    >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding Source={StaticResource marketViewModel}, Path=LeagueChanged}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
                 </Grid>
 
-                <Grid Grid.Column="4">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0"/>
+                    <Label Grid.Column="0"
+                           Content="Club"/>
 
-                    <ComboBox Grid.Row="1"/>
+                    <ComboBox Grid.Column="1"
+                              ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=Clubs}"
+                              SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=Club}"
+                              />
                 </Grid>
 
-                <Grid Grid.Column="5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                <Grid Grid.Row="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0"/>
+                    <Label Grid.Column="0"
+                           Content="Nationality"/>
 
-                    <ComboBox Grid.Row="1"/>
+                    <ComboBox Grid.Column="1" 
+                              ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=Countries}"
+                              SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=Nationality}"
+                              />
                 </Grid>
 
-                <Grid Grid.Column="6">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                <Grid Grid.Row="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0"/>
+                    <Label Grid.Column="0"
+                           Content="Max Value"/>
 
-                    <ComboBox Grid.Row="1"/>
+                    <TextBox Grid.Column="1"
+                             Text="{Binding Source={StaticResource marketViewModel}, Path=MaxValue}"
+                             />
+
                 </Grid>
 
-                <Grid Grid.Column="7">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+                <Grid Grid.Row="7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                    <Label Grid.Row="0"/>
+                    <Label Grid.Column="0"
+                           Content="Max age"/>
 
-                    <ComboBox Grid.Row="1"/>
-                </Grid>
+                    <ComboBox Grid.Column="1"
+                              ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=AgeList}"
+                              SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=Age}"
+                        />
 
-                <Grid Grid.Column="8">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <Label Grid.Row="0"/>
-
-                    <ComboBox Grid.Row="1"/>
                 </Grid>
 
             </Grid>
 
-            <ListBox Grid.Row="1"/>
+            <ListBox Grid.Row="1"
+                     ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=SearchedPlayers}"
+                     SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=SelectedPlayer}"
+            >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding Source={StaticResource marketViewModel}, Path=PlayerSelectionChanged}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListBox>
         </Grid>
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1"
+                  Visibility="{Binding Source={StaticResource marketViewModel}, Path=Visibility}"
+                  
+                  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="7*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="7*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label 
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="40"
+                        Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerOverall}"
+                        Background="{Binding Source={StaticResource marketViewModel}, Path=BkgColor}"
+                        />
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="POTENTIAL" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerPotential}" />
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="DEFENCE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerDefence}" />
+                        </Grid>
+
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="OFFENCE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerOffence}" />
+                        </Grid>
+
+                    </Grid>
+
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Name" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                        <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerName}" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Surname" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                        <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerSurname}" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Club" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                        <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerClub}" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                    </Grid>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Nationality" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                        <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerNationality}" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                    </Grid>
+
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="16*" />
+                            <ColumnDefinition Width="9*"/>
+                            <ColumnDefinition Width="25*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Date of birth" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center" Grid.ColumnSpan="2"
+                               />
+                        <Label Grid.Column="2" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerAge}" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                    </Grid>
+
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Contract Terminates" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                        <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerContract}" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                    </Grid>
+
+                    <Grid Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Value" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                        <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerValue}" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                    </Grid>
+
+                    <Grid Grid.Row="7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Salary" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                        <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerSalary}" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               />
+                    </Grid>
+
+                    <Grid Grid.Row="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Content="Transfer Value"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                />
+                            <TextBox
+                                Grid.Row="1"
+                                Text="{Binding Source={StaticResource marketViewModel}, Path=TransferValue}"
+                                />
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                Content="Salary"
+                                />
+                            <TextBox
+                                Grid.Row="1"
+                                Text="{Binding Source={StaticResource marketViewModel}, Path=TransferSalary}"
+                                />
+                        </Grid>
+
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   FontSize="8"
+                                Content="Contract Length YYYY-MM-DD"
+                                />
+                            <TextBox Grid.Row="1"
+                                Text="{Binding Source={StaticResource marketViewModel}, Path=TransferContract}"
+                                />
+                        </Grid>
+
+                        <Button Grid.Column="3"
+                            Content="BUY PLAYER"
+                            Command="{Binding Source={StaticResource marketViewModel}, Path=PlayerTransfer}"
+                            />
+                    </Grid>
+                    
+                    
+
+                </Grid>
+
+            </Grid>
 
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="8*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0"/>
-                <TextBox Grid.Column="1"/>
+                <Button Grid.Column="0" 
+                        Content="CLEAR"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Command="{Binding Source={StaticResource marketViewModel}, Path=ClearFiltres}"
+                    />
+
+                <Button Grid.Column="1"
+                    
+                    Content="SEARCH"
+                    FontSize="25"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Command="{Binding Source={StaticResource marketViewModel}, Path=Search}"
+                    />
+
             </Grid>
 
-            <Grid Grid.Row="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="20*"/>
-                    <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="17*"/>
-                </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0"/>
-                <TextBox Grid.Column="1" Grid.ColumnSpan="2"/>
-            </Grid>
 
-            <Button Grid.Row="5"/>
         </Grid>
     </Grid>
 </Page>

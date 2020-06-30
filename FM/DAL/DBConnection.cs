@@ -9,6 +9,7 @@ namespace FM.DAL
 {
     class DBConnection
     {
+        
         private SQLiteConnectionStringBuilder stringBuilder = new SQLiteConnectionStringBuilder();
 
         private static DBConnection instance = null;

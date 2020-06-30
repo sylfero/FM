@@ -13,8 +13,8 @@ namespace FM.DAL.Entity
         public int Id { get; set; }
         public string Name { get; set; }
         public int League { get; set; }
-        public int? Overall { get; set; }
-        public double Budget { get; set; }
+        public double? Overall { get; set; }
+        public double? Budget { get; set; }
         public double? SalaryBudget { get; set; }
         public string Coach { get; set; }
 
@@ -23,14 +23,14 @@ namespace FM.DAL.Entity
             Id = Convert.ToInt32(reader["id"].ToString());
             Name = reader["name"].ToString();
             League = Convert.ToInt32(reader["league"].ToString());
-            Overall = Convert.ToInt32(reader["overall"] != DBNull.Value ? reader["overall"].ToString() : null);
+            Overall = Convert.ToDouble(reader["overall"] != DBNull.Value ? reader["overall"].ToString() : null);
             Budget = Convert.ToDouble(reader["budget"].ToString());
             SalaryBudget = Convert.ToDouble(reader["salarybudget"] != DBNull.Value ? reader["salarybudget"].ToString() : null);
             Coach = reader["coach"].ToString();
             
         }
 
-        public Club(int id, string name, int league, int? overall, double budget, double salaryBudget, string coach)
+        public Club(int id, string name, int league, double? overall, double? budget, double? salaryBudget, string coach)
         {
             Id = id;
             Name = name;
@@ -42,5 +42,9 @@ namespace FM.DAL.Entity
             
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

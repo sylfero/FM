@@ -8,17 +8,17 @@ namespace FM.DAL.Repositories
 {
     using Entity;
     using System.Data.SQLite;
-    class ScheduleRepo
+    static class ScheduleRepo
     {
-        public List<Schedule> GetBundesligaSchedule()
+        public static List<Schedule> GetBundesligaSchedule()
         {
             List<Schedule> schedule = new List<Schedule>();
             using(var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand("select s.id, c.name as host, c1.name as visitor, host_goals, visitor_goals, matchday, s.league from schedule s, club c, club c1 where s.host = c.id and s.visitor = c1.id and s.league = 2 order by matchday", connection);
+                SQLiteCommand command = new SQLiteCommand("select s.id, c.name as host, c1.name as visitor, host_goals, visitor_goals, matchday, s.league from schedule s, club c, club c1 where s.host = c.id and s.visitor = c1.id and s.league = \"Bundesliga\" order by matchday", connection);
                 connection.Close();
                 var reader = command.ExecuteReader();
-                while(reader.HasRows)
+                while(reader.Read())
                 {
                     schedule.Add(new Schedule(reader));
                 }
@@ -28,15 +28,15 @@ namespace FM.DAL.Repositories
             return schedule;
         }
 
-        public List<Schedule> GetPremierLeagueSchedule()
+        public static List<Schedule> GetPremierLeagueSchedule()
         {
             List<Schedule> schedule = new List<Schedule>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand("select s.id, c.name as host, c1.name as visitor, host_goals, visitor_goals, matchday, s.league from schedule s, club c, club c1 where s.host = c.id and s.visitor = c1.id and s.league = 1 order by matchday", connection);
+                SQLiteCommand command = new SQLiteCommand("select s.id, c.name as host, c1.name as visitor, host_goals, visitor_goals, matchday, s.league from schedule s, club c, club c1 where s.host = c.id and s.visitor = c1.id and s.league = \"Premier League\" order by matchday", connection);
                 connection.Close();
                 var reader = command.ExecuteReader();
-                while (reader.HasRows)
+                while (reader.Read())
                 {
                     schedule.Add(new Schedule(reader));
                 }
@@ -46,15 +46,15 @@ namespace FM.DAL.Repositories
             return schedule;
         }
 
-        public List<Schedule> GetBundesligaMatchday(int matchday)
+        public static List<Schedule> GetBundesligaMatchday(int matchday)
         {
             List<Schedule> schedule = new List<Schedule>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand($"select s.id, c.name as host, c1.name as visitor, host_goals, visitor_goals, matchday, s.league from schedule s, club c, club c1 where s.host = c.id and s.visitor = c1.id and s.league = 2 and matchday = {matchday}", connection);
+                SQLiteCommand command = new SQLiteCommand($"select s.id, c.name as host, c1.name as visitor, host_goals, visitor_goals, matchday, s.league from schedule s, club c, club c1 where s.host = c.id and s.visitor = c1.id and s.league = \"Bundesliga\" and matchday = {matchday}", connection);
                 connection.Close();
                 var reader = command.ExecuteReader();
-                while (reader.HasRows)
+                while (reader.Read())
                 {
                     schedule.Add(new Schedule(reader));
                 }
@@ -64,15 +64,15 @@ namespace FM.DAL.Repositories
             return schedule;
         }
 
-        public List<Schedule> GetPremierLeagueMatchday(int matchday)
+        public static List<Schedule> GetPremierLeagueMatchday(int matchday)
         {
             List<Schedule> schedule = new List<Schedule>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand($"select s.id, c.name as host, c1.name as visitor, host_goals, visitor_goals, matchday, s.league from schedule s, club c, club c1 where s.host = c.id and s.visitor = c1.id and s.league = 1 and matchday = {matchday}", connection);
+                SQLiteCommand command = new SQLiteCommand($"select s.id, c.name as host, c1.name as visitor, host_goals, visitor_goals, matchday, s.league from schedule s, club c, club c1 where s.host = c.id and s.visitor = c1.id and s.league = \"Premier League\" and matchday = {matchday}", connection);
                 connection.Close();
                 var reader = command.ExecuteReader();
-                while (reader.HasRows)
+                while (reader.Read())
                 {
                     schedule.Add(new Schedule(reader));
                 }
@@ -82,7 +82,7 @@ namespace FM.DAL.Repositories
             return schedule;
         }
 
-        public void AddGameScore(string hostName, string visitorName, int hostGoals, int visitorGoals)
+        public static void AddGameScore(string hostName, string visitorName, int hostGoals, int visitorGoals)
         {
             using (var connection = DBConnection.Instance.Connection)
             {

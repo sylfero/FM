@@ -14,9 +14,9 @@ namespace FM.DAL.Entity
         public string Land { get; set; }
         public string Iso { get; set; }
         public string Iso3 { get; set; }
-        public int? NumCode { get; set; }
+        public string NumCode { get; set; }
 
-        public Country(int id, string land, string iso, string iso3, int numCode)
+        public Country(int id, string land, string iso, string iso3, string numCode)
         {
             Id = id;
             Land = land;
@@ -31,7 +31,14 @@ namespace FM.DAL.Entity
             Land = reader["name"].ToString();
             Iso = reader["iso"].ToString();
             Iso3 = reader["iso3"].ToString();
-            NumCode = Convert.ToInt32(reader["numcode"].ToString());
+            NumCode = reader["numcode"].ToString();
+        }
+
+        public override string ToString()
+        {
+            var c = new StringBuilder();
+            c.Append(Land);
+            return c.ToString();
         }
     }
 }

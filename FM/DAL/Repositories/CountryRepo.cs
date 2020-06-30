@@ -8,17 +8,17 @@ namespace FM.DAL.Repositories
 {
     using Entity;
     using System.Data.SQLite;
-    class CountryRepo
+    static class CountryRepo
     {
-        public List<Country> GetAllCountries()
+        public static List<Country> GetAllCountries()
         {
             List<Country> countries = new List<Country>();
-            using(var connection = DBConnection.Instance.Connection)
+            using(var connection = DBConnection.Instance.connection)
             {
-                SQLiteCommand command = new SQLiteCommand("select * from country", connection);
+                SQLiteCommand command = new SQLiteCommand("select * from country order by name", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
-                while(reader.HasRows)
+                while(reader.Read())
                 {
                     countries.Add(new Country(reader));
                 }
