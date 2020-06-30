@@ -16,7 +16,7 @@ namespace FM.DAL.Repositories
         public static List<Club> GetAllClubs()
         {
             List<Club> clubs = new List<Club>();
-            using (var connection = DBConnection.Instance.connection)
+            using (var connection = DBConnection.Instance.Connection)
             {
 
                 SQLiteCommand command = new SQLiteCommand("select club.id as id, club.name as name, l.name as league, overall, budget, salaryBudget, coach from club, league l where club.league = l.id", connection);
@@ -35,9 +35,9 @@ namespace FM.DAL.Repositories
         public static List<Club> GetBundesligaClubs()
         {
             List<Club> clubs = new List<Club>();
-            using (var connection = DBConnection.Instance.connection)
+            using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand("select club.id as id, club.name as name, l.name as league, overall, budget, salaryBudget, coach from club, league l where club.league = l.id and l.name = \"Bundesliga\" ", connection);
+                SQLiteCommand command = new SQLiteCommand("select club.id as id, club.name as name, club.league as leagueId, l.name as league, overall, budget, salaryBudget, coach from club, league l where club.league = l.id and l.name = \"Bundesliga\" ", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -60,7 +60,7 @@ namespace FM.DAL.Repositories
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    clubs.Add(new Club(reader));
+                    clubs.Add(new Club(Convert.ToInt32(reader["id"].ToString()), reader["name"].ToString(), leagueId: int.Parse(reader["league"].ToString())));
                 }
                 connection.Close();
             }
@@ -71,9 +71,9 @@ namespace FM.DAL.Repositories
         public static List<Club> GetPremierLeagueClubs()
         {
             List<Club> clubs = new List<Club>();
-            using (var connection = DBConnection.Instance.connection)
+            using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand("select club.id as id, club.name as name, l.name as league, overall, budget, salaryBudget, coach from club, league l where club.league = l.id and l.name = \"Premier League\" ", connection);
+                SQLiteCommand command = new SQLiteCommand("select club.id as id, club.name as name, club.league as leagueId, l.name as league, overall, budget, salaryBudget, coach from club, league l where club.league = l.id and l.name = \"Premier League\" ", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -88,7 +88,7 @@ namespace FM.DAL.Repositories
 
         public static void TransferToClub(int playerId, string oldClub, string newClubName, int transferCost, int playerSalary, string playerContract, int playerValue, int playerActuallSalary)
         {
-            using (var connection = DBConnection.Instance.connection)
+            using (var connection = DBConnection.Instance.Connection)
             {
                 SQLiteCommand command = new SQLiteCommand($"select budget, salaryBudget from club where name = \"{newClubName}\"", connection);
                 connection.Open();
@@ -136,7 +136,7 @@ namespace FM.DAL.Repositories
 
         public static void TransferFromClub(string clubName, int transferCost, int playerSalary)
         {
-            using (var connection = DBConnection.Instance.connection)
+            using (var connection = DBConnection.Instance.Connection)
             {
                 SQLiteCommand command = new SQLiteCommand($"UPDATE club set budget = budget + {transferCost}, salaryBudget = salaryBudget + {playerSalary} where name = \"{clubName}\"", connection);
                 connection.Open();
