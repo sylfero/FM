@@ -18,6 +18,7 @@ namespace FM.DAL.Entity
         public int Wins { get; set; }
         public int Lost { get; set; }
         public int Draws { get; set; }
+        public int Balance { get; set; }
 
         public LeagueTable(SQLiteDataReader reader)
         {
@@ -27,8 +28,9 @@ namespace FM.DAL.Entity
             ScoredGoals = Convert.ToInt32(reader["scored_goals"].ToString());
             LostGoals = Convert.ToInt32(reader["lost_goals"].ToString());
             Wins = Convert.ToInt32(reader["wins"].ToString());
-            Lost = Convert.ToInt32(reader["lost"].ToString());
+            Lost = Convert.ToInt32(reader["loses"].ToString());
             Draws = Convert.ToInt32(reader["draws"].ToString());
+            Balance = ScoredGoals - LostGoals;
         }
 
         public LeagueTable(int id, string name, int points, int played, int scoredGoals, int lostGoals, int wins, int lost, int draws)
@@ -42,6 +44,7 @@ namespace FM.DAL.Entity
             Wins = wins;
             Lost = lost;
             Draws = draws;
+            Balance = ScoredGoals - LostGoals;
         }
 
     }

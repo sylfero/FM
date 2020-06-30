@@ -3,30 +3,77 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:resx ="clr-namespace:FM.Pages.Resources"
+      xmlns:vm="clr-namespace:FM.ViewModel"
       xmlns:local="clr-namespace:FM.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Table">
 
+    <Page.DataContext>
+        <vm:TableViewModel/>
+    </Page.DataContext>
+    
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="25*"/>
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="65*"/>
+                <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
 
-            <ComboBox Grid.Row="1"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
 
-            <ListBox Grid.Row="3"/>
+                <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Table.League}}" VerticalAlignment="Center"/>
+                
+                <ComboBox Grid.Column="1" ItemsSource="{Binding Leagues}" SelectedItem="{Binding CurrentLeague}" VerticalContentAlignment="Center">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+
+            <DataGrid 
+                        Grid.Row="3"
+                        AutoGenerateColumns="False"
+                        AlternatingRowBackground="Lavender"
+                        GridLinesVisibility="None"
+                        IsReadOnly="True"
+                BorderBrush="Transparent"
+                Background="Transparent"
+                IsHitTestVisible="False"
+                HorizontalScrollBarVisibility="Hidden"
+                VerticalScrollBarVisibility="Hidden"
+                RowHeaderWidth="0"
+                ItemsSource="{Binding Clubs}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Club}}" Binding="{Binding Name}" Width="4*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Played}}" Binding="{Binding Played}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Won}}" Binding="{Binding Wins}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Drawn}}" Binding="{Binding Draws}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Lost}}" Binding="{Binding Lost}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.GoalS}}" Binding="{Binding ScoredGoals}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.GoalL}}" Binding="{Binding LostGoals}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Balance}}" Binding="{Binding Balance}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Points}}" Binding="{Binding Points}" Width="1*"/>
+                </DataGrid.Columns>
+
+            </DataGrid>
         </Grid>
     </Grid>
 </Page>

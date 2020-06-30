@@ -12,6 +12,8 @@ namespace FM.Model
         public static string Manager { get; set; }
         public static int LeagueId { get; set; }
         public static int ClubId { get; set; }
+        public static string LeagueName { get; set; }
+        public static string ClubName { get; set; }
         
         public static void LoadSave(string path)
         {
@@ -19,6 +21,8 @@ namespace FM.Model
             Manager = lines[0];
             LeagueId = int.Parse(lines[1]);
             ClubId = int.Parse(lines[2]);
+            LeagueName = lines[3];
+            ClubName = lines[4];
         }
     }
 }
