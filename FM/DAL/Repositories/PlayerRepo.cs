@@ -106,7 +106,7 @@ namespace FM.DAL.Repositories
         {
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand($"UPDATE players p set salary = {newSalary}, contract_terminates = \"{contractLength}\", club = (select c.id from club c where c.name = \"{newClub}\") where p.id = {playerId}", connection);
+                SQLiteCommand command = new SQLiteCommand($"UPDATE players as p set salary = {newSalary}, contract_terminates = \"{contractLength}\", club = (select c.id from club c where c.name = \"{newClub}\") where p.id = {playerId}", connection);
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
