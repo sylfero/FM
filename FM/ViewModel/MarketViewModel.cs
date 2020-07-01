@@ -18,6 +18,7 @@ using Google.Protobuf.WellKnownTypes;
 using System.Drawing;
 using System.Windows.Media;
 using System.Data.SQLite;
+using FM.Model;
 
 namespace FM.ViewModel
 {
@@ -261,7 +262,7 @@ namespace FM.ViewModel
 
         private List<Player> GetPlayersFiltres()
         {
-            string command1 = "select p.id as id, p.name as name, surname, dateofbirth, n.name as nationality, position, c.name as club, value, salary, contract_terminates, p.overall, offense, defence, potential from players p, country n, club c, league l where p.club = c.id and p.nationality = n.iso3 and c.league = l.id";
+            string command1 = $"select p.id as id, p.name as name, surname, dateofbirth, n.name as nationality, position, c.name as club, value, salary, contract_terminates, p.overall as overall, offense, defence, potential from players p, country n, club c, league l where p.club = c.id and p.nationality = n.iso3 and c.league = l.id and p.club != {ClubStatus.ClubId}";
             if (name != null)
                 command1 += $" and p.name like \"%{name}%\"";
             if (surname != null)
@@ -561,7 +562,7 @@ namespace FM.ViewModel
                 {
                     playerTransfer = new RelayCommand(
                         arg => {
-                            ClubRepo.TransferToClub(SelectedPlayer.Id, SelectedPlayer.Club, "Bayern Munich", Convert.ToInt32(transferValue), Convert.ToInt32(transferSalary), transferContract, selectedPlayer.Value, selectedPlayer.Salary);
+                            ClubRepo.TransferToClub(SelectedPlayer.Id, SelectedPlayer.Club, Convert.ToInt32(transferValue), Convert.ToInt32(transferSalary), transferContract, selectedPlayer.Value, selectedPlayer.Salary);
                             SearchedPlayers = GetPlayersFiltres();
                             Visibility = System.Windows.Visibility.Hidden;
                             SelectedPlayer = null;
