@@ -10,6 +10,7 @@ namespace FM.DAL.Repositories
     using System.Data.SQLite;
     using Renci.SshNet.Messages;
     using System.Windows;
+    using FM.Model;
 
     static class PlayerRepo
     {
@@ -102,11 +103,11 @@ namespace FM.DAL.Repositories
             return players;
         }
 
-        public static void PlayerTransfer(int playerId, int newSalary, string newClub, string contractLength)
+        public static void PlayerTransfer(int playerId, int newSalary, string contractLength)
         {
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand($"UPDATE players p set salary = {newSalary}, contract_terminates = \"{contractLength}\", club = (select c.id from club c where c.name = \"{newClub}\") where p.id = {playerId}", connection);
+                SQLiteCommand command = new SQLiteCommand($"UPDATE players set salary = {newSalary}, contract_terminates = \"{contractLength}\", club = {ClubStatus.ClubId} where id = {playerId}", connection);
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
