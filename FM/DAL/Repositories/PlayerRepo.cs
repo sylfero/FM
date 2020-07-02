@@ -11,6 +11,7 @@ namespace FM.DAL.Repositories
     using Renci.SshNet.Messages;
     using System.Windows;
     using FM.Model;
+    using Google.Protobuf.WellKnownTypes;
 
     static class PlayerRepo
     {
@@ -73,7 +74,7 @@ namespace FM.DAL.Repositories
             List<Player> players = new List<Player>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand($"select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential from players p, country n, club c where p.club = c.id and p.nationality = n.iso3 and c.name = \"{clubName}\" ", connection);
+                SQLiteCommand command = new SQLiteCommand($"select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential, value, salary from players p, country n, club c where p.club = c.id and p.nationality = n.iso3 and c.name = \"{clubName}\" order by position asc, overall desc", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -121,16 +122,35 @@ namespace FM.DAL.Repositories
                 SQLiteCommand command = new SQLiteCommand($"select salaryBudget from club where id = (select p.club from players p where p.id = {playerId})", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
-                double teamSalaryBudget = Convert.ToDouble(reader["salaryBudget"].ToString());
+                double teamSalaryBudget = 0;
+                while(reader.Read())
+                {
+                    teamSalaryBudget = Convert.ToDouble(reader["salaryBudget"].ToString());
+                }
+                reader.Close();
                 command = new SQLiteCommand($"select salary from players where id = {playerId}", connection);
                 reader = command.ExecuteReader();
-                double playerSalary = Convert.ToDouble(reader["salary"].ToString());
+                double playerSalary = 0;
+                while(reader.Read())
+                    playerSalary = Convert.ToDouble(reader["salary"].ToString());
                 if (teamSalaryBudget >= (newSalary - playerSalary))
                 {
-                    command = new SQLiteCommand($"update players set salary = {newSalary}, contract_terminates = {contractLength} where id = {playerId}", connection);
-                    command.ExecuteNonQuery();
-                    command = new SQLiteCommand($"update club set salaryBudget = salaryBudget - {newSalary - playerSalary} where id = (select p.club from players p where p.id = {playerId})", connection);
-                    command.ExecuteNonQuery();
+                    var r = new Random();
+                    int szansa = r.Next(1, 100);
+                    if ((szansa < 90 && newSalary >= 1.5 * playerSalary) || (szansa < 55 && newSalary > 1.1 * playerSalary) || (szansa < 20 && newSalary < 1.1 * playerSalary))
+                    {
+                        command = new SQLiteCommand($"update players set salary = {newSalary}, contract_terminates = \"{contractLength}\" where id = {playerId}", connection);
+                        command.ExecuteNonQuery();
+                        command = new SQLiteCommand($"update club set salaryBudget = salaryBudget - {newSalary - playerSalary} where id = (select p.club from players p where p.id = {playerId})", connection);
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Congratulations. You extended contract with this player");
+                    }
+                    else
+                        MessageBox.Show("This player doesnt want to extend his player");
+                }
+                else
+                {
+                    MessageBox.Show("You can't afford extend this player contract");
                 }
                 connection.Close();
             }
