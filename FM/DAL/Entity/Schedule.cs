@@ -16,8 +16,9 @@ namespace FM.DAL.Entity
         public int? VisitorGoals { get; set; }
         public int Matchday { get; set; }
         public string League { get; set; }
+        public DateTime Date { get; set; }
 
-        public Schedule(int id, string host, string visitor, int? hostGoals, int? visitorGoals, int matchday, string league)
+        public Schedule(int id, string host, string visitor, int? hostGoals, int? visitorGoals, int matchday, string league, DateTime date)
         {
             Id = id;
             Host = host;
@@ -26,6 +27,7 @@ namespace FM.DAL.Entity
             VisitorGoals = visitorGoals;
             Matchday = matchday;
             League = league;
+            Date = date;
         }
 
         public Schedule(SQLiteDataReader reader)
@@ -37,6 +39,7 @@ namespace FM.DAL.Entity
             VisitorGoals = Convert.ToInt32(reader["visitor_goals"].ToString());
             Matchday = Convert.ToInt32(reader["matchday"].ToString());
             League = reader["league"].ToString();
+            Date = Convert.ToDateTime(reader["date"].ToString());
         }
     }
 }
