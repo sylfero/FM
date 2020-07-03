@@ -191,6 +191,8 @@ namespace FM.ViewModel
                             writer.WriteLine(Manager);
                             writer.WriteLine(CurrentLeague.Id);
                             writer.WriteLine(CurrentClub.Id);
+                            writer.WriteLine(CurrentLeague.Name);
+                            writer.WriteLine(CurrentClub.Name);
                         }
                         NewSave = null;
                         CurrentLeague = null;

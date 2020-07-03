@@ -68,6 +68,24 @@ namespace FM.DAL.Repositories
             return clubs;
         }
 
+        public static List<LeagueTable> GetTableFor(int id)
+        {
+            List<LeagueTable> clubs = new List<LeagueTable>();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"select name, points, played, scored_goals, lost_goals, wins, loses, draws from club where league = {id} order by points desc, scored_goals desc, lost_goals asc", connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    clubs.Add(
+                        new LeagueTable(reader));
+                }
+                connection.Close();
+            }
+            return clubs;
+        }
+
         public static void ClubWins(int id, int scoredGoals, int lostGoals)
         {
             string update = $"UPDATE club set played = played + 1, points = points + 3, scored_goals = scored_goals + {scoredGoals}, lost_goals = lost_goals + {lostGoals}, wins = wins + 1 where id = {id}";

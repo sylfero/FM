@@ -280,7 +280,7 @@ namespace FM.ViewModel
             if (maxValue != null)
                 command1 += $" and p.value <= {maxValue}";
 
-            command1 += " order by overall desc";
+            command1 += " order by p.overall desc";
             List<Player> players = new List<Player>();
             using (var connection = DBConnection.Instance.Connection)
             {
