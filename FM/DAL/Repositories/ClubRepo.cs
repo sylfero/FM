@@ -88,6 +88,26 @@ namespace FM.DAL.Repositories
             return clubs;
         }
 
+        public static Club GetYourClub(string clubName)
+        {
+            Club club = new Club();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"select club.id as id, club.name as name, league, overall, budget, salaryBudget, coach from club where name = \"{clubName}\"", connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    club = new Club(reader);
+                }
+                connection.Close();
+            }
+
+            return club;
+
+
+        }
+
         public static void TransferToClub(int playerId, string oldClub, int transferCost, int playerSalary, string playerContract, int playerValue, int playerActuallSalary)
         {
             using (var connection = DBConnection.Instance.Connection)

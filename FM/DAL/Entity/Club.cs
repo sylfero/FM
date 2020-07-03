@@ -19,6 +19,8 @@ namespace FM.DAL.Entity
         public double? SalaryBudget { get; set; }
         public string Coach { get; set; }
 
+        public Club() { }
+
         public Club(SQLiteDataReader reader)
         {
             Id = Convert.ToInt32(reader["id"].ToString());
