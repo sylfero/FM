@@ -23,11 +23,106 @@
 
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3* "/>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
 
-            <ComboBox Grid.Row="0"/>
+            <ComboBox Grid.Row="0" 
+                      SelectedIndex="{Binding Source={StaticResource teamViewModel}, Path=SelectedTeam}"
+            >
+                <ComboBoxItem Content="First squad" />
+                <ComboBoxItem Content="All players" />
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding Source={StaticResource teamViewModel}, Path=TeamChanged}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+
+            <Grid Grid.Row="1">
+                <Label 
+                       Content="{Binding Source={StaticResource teamViewModel}, Path=CurrentClub.Name}"
+                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       />
+
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Content="Manager"
+                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       />
+
+                <Label Grid.Column="1"
+                       Content="{Binding Source={StaticResource teamViewModel}, Path=CurrentClub.Coach}"
+                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       />
+
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Content="Overall"
+                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       />
+                <Label Grid.Column="1"
+                       Content="{Binding Source={StaticResource teamViewModel}, Path=CurrentClub.Overall}"
+                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       />
+
+            </Grid>
+
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Content="Club Budget"
+                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       />
+
+                <Label Grid.Column="1"
+                       Content="{Binding Source={StaticResource teamViewModel}, Path=CurrentClub.Budget}"
+                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       />
+
+            </Grid>
+
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Content="Club Salary Budget"
+                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       />
+
+                <Label Grid.Column="1"
+                       Content="{Binding Source={StaticResource teamViewModel}, Path=CurrentClub.SalaryBudget}"
+                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       />
+
+            </Grid>
+
+            
         </Grid>
 
         <Grid Grid.Column="1">
@@ -301,6 +396,7 @@
                 
                 <Button Grid.Column="1" 
                         Content="CLEAR"
+                        Command="{Binding Source={StaticResource teamViewModel}, Path=Clear}"
                         />
             </Grid>
         </Grid>
@@ -308,11 +404,23 @@
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="9*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+
+            <Button 
+                Grid.Row="0"
+                Content="SAVE SQUAD"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Width="100"
+                Command="{Binding Source={StaticResource teamViewModel}, Path=SaveSquad}"
+                />
+
             <ListBox Grid.Row="1"
                  ItemsSource="{Binding Source={StaticResource teamViewModel}, Path=Players}"
                  SelectedValue="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayer}"
+                 SelectedIndex="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayerIndex}"
             >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
@@ -320,6 +428,22 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ListBox>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                    Content="ADD TO FIRST 11"
+                    Command="{Binding Source={StaticResource teamViewModel}, Path=AddToSquad}"
+                    />
+                <Button Grid.Column="1"
+                        Content="REMOVE FROM FIRST 11" 
+                        Command="{Binding Source={StaticResource teamViewModel}, Path=RemoveFromSquad}"
+                        />
+            </Grid>
         </Grid>
         
     </Grid>

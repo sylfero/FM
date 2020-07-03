@@ -12,6 +12,7 @@ namespace FM.DAL.Repositories
     using System.Windows;
     using FM.Model;
     using Google.Protobuf.WellKnownTypes;
+    using System.Collections.ObjectModel;
 
     static class PlayerRepo
     {
@@ -69,9 +70,9 @@ namespace FM.DAL.Repositories
             return players;
         }
 
-        public static List<Player> GetPlayersFromClub(string clubName)
+        public static ObservableCollection<Player> GetPlayersFromClub(string clubName)
         {
-            List<Player> players = new List<Player>();
+            ObservableCollection<Player> players = new ObservableCollection<Player>();
             using (var connection = DBConnection.Instance.Connection)
             {
                 SQLiteCommand command = new SQLiteCommand($"select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential, value, salary from players p, country n, club c where p.club = c.id and p.nationality = n.iso3 and c.name = \"{clubName}\" order by position asc, overall desc", connection);

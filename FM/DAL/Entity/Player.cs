@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FM.DAL.Entity
 {
-    class Player
+    public class Player
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -23,6 +23,8 @@ namespace FM.DAL.Entity
         public int Potential { get; set; }
         public int Value { get; set; }
         public int Salary { get; set; }
+
+        public Player() { }
 
         public Player(SQLiteDataReader reader)
         {
