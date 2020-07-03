@@ -165,7 +165,9 @@
     <Compile Include="ViewModel\MarketViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\SaveViewModel.cs" />
+	<Compile Include="ViewModel\ScheduleViewModel.cs" />
     <Compile Include="ViewModel\TableViewModel.cs" />
+	<Compile Include="ViewModel\TeamViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

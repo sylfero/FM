@@ -10,9 +10,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Market">
 
-    <Page.Resources>
-        <mvm:MarketViewModel x:Key="marketViewModel"/>
-    </Page.Resources>
+    <Page.DataContext>
+        <mvm:MarketViewModel/>
+    </Page.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -49,7 +49,7 @@
                            />
 
                     <TextBox Grid.Column="1"
-                        Text="{Binding Source={StaticResource marketViewModel}, Path=Name}"         
+                        Text="{Binding Path=Name}"         
                     />
                 </Grid>
 
@@ -64,7 +64,7 @@
                            />
 
                     <TextBox Grid.Column="1"
-                             Text="{Binding Source={StaticResource marketViewModel}, Path=Surname}"
+                             Text="{Binding Path=Surname}"
                              />
                 </Grid>
 
@@ -79,8 +79,8 @@
                            />
 
                     <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=Positions}"
-                              SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=Position}"
+                              ItemsSource="{Binding Path=Positions}"
+                              SelectedItem="{Binding Path=Position}"
                     />
                 </Grid>
 
@@ -94,12 +94,12 @@
                            Content="League"/>
 
                     <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=Leagues}"
-                              SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=League}"
+                              ItemsSource="{Binding Path=Leagues}"
+                              SelectedItem="{Binding Path=League}"
                     >
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding Source={StaticResource marketViewModel}, Path=LeagueChanged}"/>
+                                <i:InvokeCommandAction Command="{Binding Path=LeagueChanged}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </ComboBox>
@@ -115,8 +115,8 @@
                            Content="Club"/>
 
                     <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=Clubs}"
-                              SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=Club}"
+                              ItemsSource="{Binding Path=Clubs}"
+                              SelectedItem="{Binding Path=Club}"
                               />
                 </Grid>
 
@@ -130,8 +130,8 @@
                            Content="Nationality"/>
 
                     <ComboBox Grid.Column="1" 
-                              ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=Countries}"
-                              SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=Nationality}"
+                              ItemsSource="{Binding Path=Countries}"
+                              SelectedItem="{Binding Path=Nationality}"
                               />
                 </Grid>
 
@@ -145,7 +145,7 @@
                            Content="Max Value"/>
 
                     <TextBox Grid.Column="1"
-                             Text="{Binding Source={StaticResource marketViewModel}, Path=MaxValue}"
+                             Text="{Binding Path=MaxValue}"
                              />
 
                 </Grid>
@@ -160,8 +160,8 @@
                            Content="Max age"/>
 
                     <ComboBox Grid.Column="1"
-                              ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=AgeList}"
-                              SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=Age}"
+                              ItemsSource="{Binding Path=AgeList}"
+                              SelectedItem="{Binding Path=Age}"
                         />
 
                 </Grid>
@@ -169,12 +169,12 @@
             </Grid>
 
             <ListBox Grid.Row="1"
-                     ItemsSource="{Binding Source={StaticResource marketViewModel}, Path=SearchedPlayers}"
-                     SelectedItem="{Binding Source={StaticResource marketViewModel}, Path=SelectedPlayer}"
+                     ItemsSource="{Binding Path=SearchedPlayers}"
+                     SelectedItem="{Binding Path=SelectedPlayer}"
             >
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding Source={StaticResource marketViewModel}, Path=PlayerSelectionChanged}"/>
+                        <i:InvokeCommandAction Command="{Binding Path=PlayerSelectionChanged}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ListBox>
@@ -188,7 +188,7 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="1"
-                  Visibility="{Binding Source={StaticResource marketViewModel}, Path=Visibility}"
+                  Visibility="{Binding Path=Visibility}"
                   
                   >
                 <Grid.RowDefinitions>
@@ -206,8 +206,8 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontSize="40"
-                        Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerOverall}"
-                        Background="{Binding Source={StaticResource marketViewModel}, Path=BkgColor}"
+                        Content="{Binding Path=PlayerOverall}"
+                        Background="{Binding Path=BkgColor}"
                         />
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
@@ -222,7 +222,7 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Label Content="POTENTIAL" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerPotential}" />
+                            <Label Grid.Column="1" Content="{Binding Path=PlayerPotential}" />
                         </Grid>
 
                         <Grid Grid.Row="1">
@@ -231,7 +231,7 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Label Content="DEFENCE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerDefence}" />
+                            <Label Grid.Column="1" Content="{Binding Path=PlayerDefence}" />
                         </Grid>
 
                         <Grid Grid.Row="2">
@@ -240,7 +240,7 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Label Content="OFFENCE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerOffence}" />
+                            <Label Grid.Column="1" Content="{Binding Path=PlayerOffence}" />
                         </Grid>
 
                     </Grid>
@@ -269,7 +269,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
-                        <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerName}" 
+                        <Label Grid.Column="1" Content="{Binding Path=PlayerName}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -284,7 +284,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
-                        <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerSurname}" 
+                        <Label Grid.Column="1" Content="{Binding Path=PlayerSurname}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -299,7 +299,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
-                        <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerClub}" 
+                        <Label Grid.Column="1" Content="{Binding Path=PlayerClub}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -314,7 +314,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
-                        <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerNationality}" 
+                        <Label Grid.Column="1" Content="{Binding Path=PlayerNationality}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -330,7 +330,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center" Grid.ColumnSpan="2"
                                />
-                        <Label Grid.Column="2" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerAge}" 
+                        <Label Grid.Column="2" Content="{Binding Path=PlayerAge}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -345,7 +345,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
-                        <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerContract}" 
+                        <Label Grid.Column="1" Content="{Binding Path=PlayerContract}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -360,7 +360,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
-                        <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerValue}" 
+                        <Label Grid.Column="1" Content="{Binding Path=PlayerValue}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -375,7 +375,7 @@
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
-                        <Label Grid.Column="1" Content="{Binding Source={StaticResource marketViewModel}, Path=PlayerSalary}" 
+                        <Label Grid.Column="1" Content="{Binding Path=PlayerSalary}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -402,7 +402,7 @@
                                 />
                             <TextBox
                                 Grid.Row="1"
-                                Text="{Binding Source={StaticResource marketViewModel}, Path=TransferValue}"
+                                Text="{Binding Path=TransferValue}"
                                 />
                         </Grid>
 
@@ -419,7 +419,7 @@
                                 />
                             <TextBox
                                 Grid.Row="1"
-                                Text="{Binding Source={StaticResource marketViewModel}, Path=TransferSalary}"
+                                Text="{Binding Path=TransferSalary}"
                                 />
                         </Grid>
 
@@ -433,13 +433,13 @@
                                 Content="Contract Length YYYY-MM-DD"
                                 />
                             <TextBox Grid.Row="1"
-                                Text="{Binding Source={StaticResource marketViewModel}, Path=TransferContract}"
+                                Text="{Binding Path=TransferContract}"
                                 />
                         </Grid>
 
                         <Button Grid.Column="3"
                             Content="BUY PLAYER"
-                            Command="{Binding Source={StaticResource marketViewModel}, Path=PlayerTransfer}"
+                            Command="{Binding Path=PlayerTransfer}"
                             />
                     </Grid>
                     
@@ -459,7 +459,7 @@
                         Content="CLEAR"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
-                        Command="{Binding Source={StaticResource marketViewModel}, Path=ClearFiltres}"
+                        Command="{Binding Path=ClearFiltres}"
                     />
 
                 <Button Grid.Column="1"
@@ -468,7 +468,7 @@
                     FontSize="25"
                     HorizontalContentAlignment="Center"
                     VerticalContentAlignment="Center"
-                    Command="{Binding Source={StaticResource marketViewModel}, Path=Search}"
+                    Command="{Binding Path=Search}"
                     />
 
             </Grid>
