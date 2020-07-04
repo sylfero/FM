@@ -13,28 +13,28 @@ namespace FM.Model
             Dictionary<string, int> stats = new Dictionary<string, int>();
             Random rnd = new Random();
 
-            if (position == "Defender")
+            if (position.Equals("Defender"))
             {
                 stats.Add("atk", (int)(0.3 * overall + rnd.Next(0, 10)));
                 stats.Add("def", (int)(0.9 * overall + rnd.Next(0, 10)));
                 stats.Add("pas", (int)(0.5 * overall + rnd.Next(0, 10)));
                 stats.Add("kep", rnd.Next(3, 10));
             }
-            else if (position == "Midfielder")
+            else if (position.Equals("Midfielder"))
             {
                 stats.Add("atk", (int)(0.7 * overall + rnd.Next(0, 10)));
                 stats.Add("def", (int)(0.7 * overall + rnd.Next(0, 10)));
                 stats.Add("pas", (int)(0.9 * overall + rnd.Next(0, 10)));
                 stats.Add("kep", rnd.Next(3, 10));
             }
-            else if (position == "Striker")
+            else if (position.Equals("Striker"))
             {
                 stats.Add("atk", (int)(0.9 * overall + rnd.Next(0, 10)));
                 stats.Add("def", (int)(0.3 * overall + rnd.Next(0, 10)));
                 stats.Add("pas", (int)(0.5 * overall + rnd.Next(0, 10)));
                 stats.Add("kep", rnd.Next(3, 10));
             }
-            else if (position == "Goalkeeper")
+            else if (position.Equals("Goalkeeper"))
             {
                 stats.Add("atk", rnd.Next(3, 10));
                 stats.Add("def", rnd.Next(3, 10));
@@ -51,7 +51,10 @@ namespace FM.Model
 
             if ((birth.Month > ClubStatus.CurrentDate.Month) || (birth.Month == ClubStatus.CurrentDate.Month && birth.Day > DateTime.Now.Day))
                 age--;
-            return (int)((overall - 50) * 100_000 * (overall - 50) / (age * 0.1) * (potential - overall) * (position == "Striker" ? 1.1 : position == "Goalkeeper" ? 0.8 : 0.9));
+            int potDif = potential - overall + 1;
+            double val = ((overall - 50) * 100_000 * (overall - 50) / (age * 0.1) * (potDif > 5 && potDif < 11 ? 2 : potDif > 10 && potDif < 21 ? 3 : potDif > 20 ? 5 : 1) * (position.Equals("Striker") ? 1.1 : position.Equals("Goalkeeper") ? 0.8 : 0.9));
+            val = val < 1_000_000 ? Math.Round(val / 10_000) * 10_000 : val < 10_000_000 ? Math.Round(val / 100_000) * 100_000 : Math.Round(val / 1_000_000) * 1_000_000;
+            return (int)val;
         }
     }
 }

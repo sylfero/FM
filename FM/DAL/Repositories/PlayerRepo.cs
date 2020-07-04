@@ -21,7 +21,7 @@ namespace FM.DAL.Repositories
             List<Player> players = new List<Player>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand("select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential from players p, country n, club c where p.club = c.id and p.nationality = n.iso3", connection);
+                SQLiteCommand command = new SQLiteCommand("select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential, pass, gk, isJunior, isRetiring from players p, country n, club c where p.club = c.id and p.nationality = n.id", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -39,7 +39,7 @@ namespace FM.DAL.Repositories
             List<Player> players = new List<Player>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand("select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential from players p, country n, club c where p.club = c.id and p.nationality = n.iso3 and c.league = \"Bundesliga\" ", connection);
+                SQLiteCommand command = new SQLiteCommand("select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential, pass, gk, isJunior, isRetiring from players p, country n, club c where p.club = c.id and p.nationality = n.id and c.league = \"Bundesliga\" ", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -57,7 +57,7 @@ namespace FM.DAL.Repositories
             List<Player> players = new List<Player>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand("select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential from players p, country n, club c where p.club = c.id and p.nationality = n.iso3 and c.league = \"Premier League\" ", connection);
+                SQLiteCommand command = new SQLiteCommand("select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential, pass, gk, isJunior, isRetiring from players p, country n, club c where p.club = c.id and p.nationality = n.id and c.league = \"Premier League\" ", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -75,7 +75,7 @@ namespace FM.DAL.Repositories
             ObservableCollection<Player> players = new ObservableCollection<Player>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand($"select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential, value, salary from players p, country n, club c where p.club = c.id and p.nationality = n.iso3 and c.id = {clubId} order by position asc, overall desc", connection);
+                SQLiteCommand command = new SQLiteCommand($"select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential, value, salary, pass, gk, isJunior, isRetiring from players p, country n, club c where p.club = c.id and p.nationality = n.id and c.id = {clubId} order by position asc, overall desc", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -93,7 +93,7 @@ namespace FM.DAL.Repositories
             List<Player> players = new List<Player>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand($"select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential from players p, country n, club c where p.club = c.id and p.nationality = n.iso3 and n.name = \"{nationality}\" ", connection);
+                SQLiteCommand command = new SQLiteCommand($"select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential, pass, gk, isJunior, isRetiring from players p, country n, club c where p.club = c.id and p.nationality = n.id and n.name = \"{nationality}\" ", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read()) {
@@ -205,7 +205,7 @@ namespace FM.DAL.Repositories
             Dictionary<string, int> stats = Calculation.GetStats(overall, position);
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand($"INSERT INTO players (name, surname, dateofbirth, nationality, position, club, value, salary, contract_terminates, offense, defence, overall, potential) VALUES (\"{name}\", \"{surname}\", \"{date}\", {nationality}, \"{position}\", {club}, {Calculation.GetValue(date, overall, potential, position)}, 500, \"{ClubStatus.SeasonEnd.Year + 2}-{ClubStatus.SeasonEnd.ToString("MM-dd")}\", {stats["atk"]}, {stats["def"]}, {overall}, {potential}", connection);
+                SQLiteCommand command = new SQLiteCommand($"INSERT INTO players (name, surname, dateofbirth, nationality, position, club, value, salary, contract_terminates, offense, defence, overall, potential, pass, gk, isJunior, isRetiring) VALUES (\"{name}\", \"{surname}\", \"{date}\", {nationality}, \"{position}\", {club}, {Calculation.GetValue(date, overall, potential, position)}, 500, \"{ClubStatus.SeasonEnd.Year + 2}-{ClubStatus.SeasonEnd.ToString("MM-dd")}\", {stats["atk"]}, {stats["def"]}, {overall}, {potential}, {stats["pas"]}, {stats["kep"]}, {Convert.ToInt32(isJunior)}, 0", connection);
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();

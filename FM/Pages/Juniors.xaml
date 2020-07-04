@@ -103,11 +103,13 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontSize="40"
-                        Content="{Binding Path=CurrentPlayer.Overall}"
+                        Content="{Binding CurrentPlayer.Overall}"
                         Background="{Binding Path=BkgColor}"
                         />
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
@@ -119,7 +121,7 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Label Content="POTENTIAL" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Path=CurrentPlayer.Potential}" />
+                            <Label Grid.Column="1" Content="{Binding CurrentPlayer.Potential}" />
                         </Grid>
 
                         <Grid Grid.Row="1">
@@ -128,7 +130,7 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Label Content="DEFENCE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Path=CurrentPlayer.Defence}" />
+                            <Label Grid.Column="1" Content="{Binding CurrentPlayer.Defence}" />
                         </Grid>
 
                         <Grid Grid.Row="2">
@@ -137,7 +139,25 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Label Content="OFFENCE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Path=CurrentPlayer.Offense}" />
+                            <Label Grid.Column="1" Content="{Binding CurrentPlayer.Offense}" />
+                        </Grid>
+
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="PASSING" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding CurrentPlayer.Passing}" />
+                        </Grid>
+
+                        <Grid Grid.Row="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="GOALKEEPING" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding CurrentPlayer.Offense}" />
                         </Grid>
 
                     </Grid>

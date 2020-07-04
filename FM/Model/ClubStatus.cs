@@ -33,6 +33,9 @@ namespace FM.Model
             ClubId = int.Parse(lines[2]);
             LeagueName = lines[3];
             ClubName = lines[4];
+            CurrentDate = Convert.ToDateTime(lines[5]);
+            SeasonStart = Convert.ToDateTime(lines[6]);
+            SeasonEnd = Convert.ToDateTime(lines[7]);
             ClubFirstSquad = new ObservableCollection<Player>();
             ClubPath = Path.GetDirectoryName(path) + $@"\firstsquad.xml";
             if (File.Exists(Path.GetDirectoryName(path)+$@"\firstsquad.xml") == true)

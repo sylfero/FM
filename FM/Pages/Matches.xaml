@@ -47,6 +47,11 @@
                             <i:InvokeCommandAction Command="{Binding Path=LeagueChanged}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
                 <ComboBox Grid.Column="1" 
                           Margin="10 0 10 0"

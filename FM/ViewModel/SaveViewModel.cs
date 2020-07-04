@@ -193,8 +193,8 @@ namespace FM.ViewModel
                             writer.WriteLine(CurrentClub.Id);
                             writer.WriteLine(CurrentLeague.Name);
                             writer.WriteLine(CurrentClub.Name);
+                            writer.WriteLine("2019-07-19");
                             writer.WriteLine("2019-07-01");
-                            writer.WriteLine();
                             writer.WriteLine("2020-06-30");
                             writer.WriteLine(1);
                         }
