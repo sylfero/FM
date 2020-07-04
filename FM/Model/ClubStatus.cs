@@ -18,6 +18,10 @@ namespace FM.Model
         public static string LeagueName { get; set; }
         public static string ClubName { get; set; }
         public static string ClubPath { get; set; }
+        public static DateTime CurrentDate { get; set; }
+        public static DateTime SeasonStart { get; set; }
+        public static DateTime SeasonEnd { get; set; }
+        public static int Round { get; set; }
 
         public static ObservableCollection<Player> ClubFirstSquad {get; set;}
         

@@ -247,7 +247,7 @@ namespace FM.ViewModel
                             if (SelectedTeam == 0)
                                 Players = ClubStatus.ClubFirstSquad;
                             else if (SelectedTeam == 1)
-                                Players = PlayerRepo.GetPlayersFromClub(ClubStatus.ClubName);
+                                Players = PlayerRepo.GetPlayersFromClub(ClubStatus.ClubId);
                             Visibility = Visibility.Hidden;
                             SelectedPlayer = null;
                         },

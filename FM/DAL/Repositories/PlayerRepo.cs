@@ -70,12 +70,12 @@ namespace FM.DAL.Repositories
             return players;
         }
 
-        public static ObservableCollection<Player> GetPlayersFromClub(string clubName)
+        public static ObservableCollection<Player> GetPlayersFromClub(int clubId)
         {
             ObservableCollection<Player> players = new ObservableCollection<Player>();
             using (var connection = DBConnection.Instance.Connection)
             {
-                SQLiteCommand command = new SQLiteCommand($"select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential, value, salary from players p, country n, club c where p.club = c.id and p.nationality = n.iso3 and c.name = \"{clubName}\" order by position asc, overall desc", connection);
+                SQLiteCommand command = new SQLiteCommand($"select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential, value, salary from players p, country n, club c where p.club = c.id and p.nationality = n.iso3 and c.id = {clubId} order by position asc, overall desc", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -96,7 +96,7 @@ namespace FM.DAL.Repositories
                 SQLiteCommand command = new SQLiteCommand($"select p.id as id, p.name as name, surname, c.name as club, dateofbirth, n.name as nationality, position, contract_terminates, offense, defence, p.overall as overall, potential from players p, country n, club c where p.club = c.id and p.nationality = n.iso3 and n.name = \"{nationality}\" ", connection);
                 connection.Open();
                 var reader = command.ExecuteReader();
-                while (reader.Read())                {
+                while (reader.Read()) {
                     players.Add(new Player(reader));
                 }
                 connection.Close();
@@ -124,7 +124,7 @@ namespace FM.DAL.Repositories
                 connection.Open();
                 var reader = command.ExecuteReader();
                 double teamSalaryBudget = 0;
-                while(reader.Read())
+                while (reader.Read())
                 {
                     teamSalaryBudget = Convert.ToDouble(reader["salaryBudget"].ToString());
                 }
@@ -132,7 +132,7 @@ namespace FM.DAL.Repositories
                 command = new SQLiteCommand($"select salary from players where id = {playerId}", connection);
                 reader = command.ExecuteReader();
                 double playerSalary = 0;
-                while(reader.Read())
+                while (reader.Read())
                     playerSalary = Convert.ToDouble(reader["salary"].ToString());
                 if (teamSalaryBudget >= (newSalary - playerSalary))
                 {
@@ -153,6 +153,61 @@ namespace FM.DAL.Repositories
                 {
                     MessageBox.Show("You can't afford extend this player contract");
                 }
+                connection.Close();
+            }
+        }
+
+        public static List<Player> GetJuniors()
+        {
+            List<Player> players = new List<Player>();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"select * from players where isJunior = 1 and club = {ClubStatus.ClubId}", connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    players.Add(new Player(reader));
+                }
+                connection.Close();
+            }
+
+            return players;
+        }
+
+        public static void SignJunior(int playerId)
+        {
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"UPDATE players set salary = 500, contract_terminates = \"{ClubStatus.SeasonEnd.Year + 1}-{ClubStatus.SeasonEnd.ToString("MM-dd")}\" where id = {playerId}", connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
+        public static void SignFreePlayer(int playerId, int salary, int contractLength)
+        {
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"UPDATE players set salary = {salary}, contract_terminates = \"{contractLength}\", club = {ClubStatus.ClubId} where id = {playerId}", connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
+        public static void GeneratePlayer(int club, bool isJunior, int nationality, string name, string surname, string position, int overall, int potential)
+        {
+            DateTime date = new DateTime(ClubStatus.SeasonEnd.Year - 16, 1, 1);
+            Random rnd = new Random();
+            date.AddDays(rnd.Next(365));
+            Dictionary<string, int> stats = Calculation.GetStats(overall, position);
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"INSERT INTO players (name, surname, dateofbirth, nationality, position, club, value, salary, contract_terminates, offense, defence, overall, potential) VALUES (\"{name}\", \"{surname}\", \"{date}\", {nationality}, \"{position}\", {club}, {Calculation.GetValue(date, overall, potential, position)}, 500, \"{ClubStatus.SeasonEnd.Year + 2}-{ClubStatus.SeasonEnd.ToString("MM-dd")}\", {stats["atk"]}, {stats["def"]}, {overall}, {potential}", connection);
+                connection.Open();
+                command.ExecuteNonQuery();
                 connection.Close();
             }
         }

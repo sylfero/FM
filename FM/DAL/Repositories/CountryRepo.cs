@@ -27,5 +27,23 @@ namespace FM.DAL.Repositories
 
             return countries;
         }
+
+        public static List<Country> GetLeagueCountries()
+        {
+            List<Country> countries = new List<Country>();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand("SELECT * FROM country as c inner join league as l on c.id = l.country", connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    countries.Add(new Country(reader));
+                }
+                connection.Close();
+            }
+
+            return countries;
+        }
     }
 }
