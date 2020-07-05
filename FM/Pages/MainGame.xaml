@@ -50,7 +50,7 @@
 
                     <Button Grid.Column="0" Content="{Binding Source ={x:Static resx:MainGame.Team}}" Command="{Binding Team}"/>
 
-                    <Button Grid.Column="2" Content="{Binding Source ={x:Static resx:MainGame.Messages}}" Command="{Binding Messages}"/>
+                    <Button Grid.Column="2" Content="{Binding Source ={x:Static resx:MainGame.Juniors}}" Command="{Binding Juniors}"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -62,7 +62,7 @@
 
                     <Button Grid.Column="0" Content="{Binding Source ={x:Static resx:MainGame.Transfers}}" Command="{Binding Transfers}"/>
 
-                    <Button Grid.Column="2" Content="{Binding Source ={x:Static resx:MainGame.Juniors}}" Command="{Binding Juniors}"/>
+                    <Button Grid.Column="2" Content="{Binding Source ={x:Static resx:MainGame.Schedule}}" Command="{Binding Schedule}"/>
                 </Grid>
 
                 <Grid Grid.Row="4">
@@ -74,7 +74,7 @@
 
                     <Button Grid.Column="0" Content="{Binding Source ={x:Static resx:MainGame.Tables}}" Command="{Binding Tables}"/>
 
-                    <Button Grid.Column="2" Content="{Binding Source ={x:Static resx:MainGame.Schedule}}" Command="{Binding Schedule}"/>
+                    <Button Grid.Column="2" Content="{Binding Source ={x:Static resx:MainGame.Exit}}" Command="{Binding Exit}"/>
                 </Grid>
             </Grid>
         </Grid>

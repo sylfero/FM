@@ -61,20 +61,20 @@ namespace FM.Pages.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string Exit {
+            get {
+                return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Juniors.
         /// </summary>
         public static string Juniors {
             get {
                 return ResourceManager.GetString("Juniors", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Messages.
-        /// </summary>
-        public static string Messages {
-            get {
-                return ResourceManager.GetString("Messages", resourceCulture);
             }
         }
         
