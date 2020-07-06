@@ -21,7 +21,7 @@ namespace FM.DAL.Entity
         public int Offense { get; set; }
         public int Defence { get; set; }
         public int Overall { get; set; }
-        public int Potential { get; set; }
+        public string Potential { get; set; }
         public int Value { get; set; }
         public int Salary { get; set; }
         public int Passing { get; set; }
@@ -29,6 +29,7 @@ namespace FM.DAL.Entity
         public bool IsJunior { get; set; }
         public bool IsRetiring { get; set; }
         public int Age { get; set; }
+        public string CurrPosition { get; set; }
 
 
         public Player() { }
@@ -47,7 +48,6 @@ namespace FM.DAL.Entity
             Gk = Convert.ToInt32(reader["gk"].ToString());
             Passing = Convert.ToInt32(reader["pass"].ToString());
             Overall = Convert.ToInt32(reader["overall"].ToString());
-            Potential = Convert.ToInt32(reader["potential"].ToString());
             Position = reader["position"].ToString();
             Value = Convert.ToInt32(reader["value"].ToString());
             Salary = Convert.ToInt32(reader["salary"].ToString());
@@ -56,9 +56,12 @@ namespace FM.DAL.Entity
             Age = ClubStatus.CurrentDate.Year - DateOfBirth.Year;
             if ((DateOfBirth.Month > ClubStatus.CurrentDate.Month) || (DateOfBirth.Month == ClubStatus.CurrentDate.Month && DateOfBirth.Day > DateTime.Now.Day))
                 Age--;
+            int potential = Convert.ToInt32(reader["potential"].ToString());
+            Potential = potential - Overall < 5 ? "LOW" : potential - Overall < 15 ? "GOOD" : potential - Overall < 30 ? "VERY GOOD" : "FUTURE STAR";
+            CurrPosition = reader["currPosition"] == DBNull.Value ? null : reader["currPosition"].ToString();
         }
 
-        public Player(string name, string surname, string club, DateTime dateofbirth, string nationality, string position, DateTime contractTerminates, int offense, int defence, int overall, int potential, int passing, int gk, bool isJunior, bool isRetiring)
+        public Player(string name, string surname, string club, DateTime dateofbirth, string nationality, string position, DateTime contractTerminates, int offense, int defence, int overall, int potential, int passing, int gk, bool isJunior, bool isRetiring, string currPosition)
         {
             Name = name;
             Surname = surname;
@@ -69,7 +72,6 @@ namespace FM.DAL.Entity
             Offense = offense;
             Defence = defence;
             Overall = overall;
-            Potential = potential;
             Position = position;
             Passing = passing;
             Gk = gk;
@@ -78,6 +80,8 @@ namespace FM.DAL.Entity
             Age = ClubStatus.CurrentDate.Year - DateOfBirth.Year;
             if ((DateOfBirth.Month > ClubStatus.CurrentDate.Month) || (DateOfBirth.Month == ClubStatus.CurrentDate.Month && DateOfBirth.Day > DateTime.Now.Day))
                 Age--;
+            Potential = potential - Overall < 5 ? "LOW" : potential - Overall < 11 ? "GOOD" : "VERY GOOD";
+            CurrPosition = currPosition;
         }
 
         public Player(Player player)
@@ -98,6 +102,7 @@ namespace FM.DAL.Entity
             IsJunior = player.IsJunior;
             IsRetiring = player.IsRetiring;
             Age = player.Age;
+            CurrPosition = player.CurrPosition;
         }
 
         public override string ToString()

@@ -22,6 +22,7 @@ namespace FM.Model
         public static DateTime SeasonStart { get; set; }
         public static DateTime SeasonEnd { get; set; }
         public static int Round { get; set; }
+        private static string Path;
 
         public static ObservableCollection<Player> ClubFirstSquad {get; set;}
         
@@ -36,17 +37,22 @@ namespace FM.Model
             CurrentDate = Convert.ToDateTime(lines[5]);
             SeasonStart = Convert.ToDateTime(lines[6]);
             SeasonEnd = Convert.ToDateTime(lines[7]);
-            ClubFirstSquad = new ObservableCollection<Player>();
-            ClubPath = Path.GetDirectoryName(path) + $@"\firstsquad.xml";
-            if (File.Exists(Path.GetDirectoryName(path)+$@"\firstsquad.xml") == true)
-            {
-                XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<Player>));
+            Path = path;
+        }
 
-                using (Stream reader = new FileStream(Path.GetDirectoryName(path) + $@"\firstsquad.xml", FileMode.Open))
-                {
-                    ClubFirstSquad = (ObservableCollection<Player>)serializer.Deserialize(reader);
-                }
-            } 
+        public static void SerializeSave()
+        {
+            using(StreamWriter writer = new StreamWriter(Path))
+            {
+                writer.WriteLine(Manager);
+                writer.WriteLine(LeagueId);
+                writer.WriteLine(ClubId);
+                writer.WriteLine(LeagueName);
+                writer.WriteLine(ClubName);
+                writer.WriteLine(CurrentDate);
+                writer.WriteLine(SeasonStart);
+                writer.WriteLine(SeasonEnd);
+            }
         }
     }
 }

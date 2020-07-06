@@ -168,16 +168,33 @@
 
             </Grid>
 
-            <ListBox Grid.Row="1"
-                     ItemsSource="{Binding Path=SearchedPlayers}"
-                     SelectedItem="{Binding Path=SelectedPlayer}"
-            >
+            <DataGrid 
+                Grid.Row="1"
+                AutoGenerateColumns="False"
+                AlternatingRowBackground="Lavender"
+                GridLinesVisibility="None"
+                IsReadOnly="True"
+                BorderBrush="Transparent"
+                Background="Transparent"
+                HorizontalScrollBarVisibility="Hidden"
+                RowHeaderWidth="0"
+                CanUserSortColumns="False"
+                CanUserResizeColumns="False"
+                CanUserResizeRows="False"
+                ItemsSource="{Binding SearchedPlayers}"
+                SelectedItem="{Binding SelectedPlayer}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1*"/>
+                    <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="1*"/>
+                    <DataGridTextColumn Header="Position" Binding="{Binding Position}" Width="1*"/>
+                    <DataGridTextColumn Header="Overall" Binding="{Binding Overall}" Width="1*"/>
+                </DataGrid.Columns>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding Path=PlayerSelectionChanged}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-            </ListBox>
+            </DataGrid>
         </Grid>
 
         <Grid Grid.Column="1">

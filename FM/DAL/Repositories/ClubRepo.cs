@@ -167,5 +167,16 @@ namespace FM.DAL.Repositories
             }
         }
 
+
+        public static void SetManager(int id, string name)
+        {
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"UPDATE club set coach = \"{name}\" where id = {id}", connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
     }
 }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FM.DAL;
+using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,6 +57,23 @@ namespace FM.Model
             double val = ((overall - 50) * 100_000 * (overall - 50) / (age * 0.1) * (potDif > 5 && potDif < 11 ? 2 : potDif > 10 && potDif < 21 ? 3 : potDif > 20 ? 5 : 1) * (position.Equals("Striker") ? 1.1 : position.Equals("Goalkeeper") ? 0.8 : 0.9));
             val = val < 1_000_000 ? Math.Round(val / 10_000) * 10_000 : val < 10_000_000 ? Math.Round(val / 100_000) * 100_000 : Math.Round(val / 1_000_000) * 1_000_000;
             return (int)val;
+        }
+
+        public static void SetSquad(int id)
+        {
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand($"update players set currPosition = \"Defender\" where id in (select id from players where position = \"Defender\" and club = {id} order by overall desc limit 4)", connection);
+                command.ExecuteNonQuery();
+                command = new SQLiteCommand($"update players set currPosition = \"Midfielder\" where id in (select id from players where position = \"Midfielder\" and club = {id} order by overall desc limit 3)", connection);
+                command.ExecuteNonQuery();
+                command = new SQLiteCommand($"update players set currPosition = \"Striker\" where id in (select id from players where position = \"Striker\" and club = {id} order by overall desc limit 3)", connection);
+                command.ExecuteNonQuery();
+                command = new SQLiteCommand($"update players set currPosition = \"Goalkeeper\" where id in (select id from players where position = \"Goalkeeper\" and club = {id} order by overall desc limit 1)", connection);
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
     }
 }
