@@ -14,7 +14,11 @@
     <Page.DataContext>
         <vm:MainGameViewModel/>
     </Page.DataContext>
-    
+
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Page.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -24,6 +28,8 @@
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -91,7 +97,13 @@
                             Style="{StaticResource ButtonStyle2}"
                             />
                 </Grid>
+
             </Grid>
+
+            <Button Grid.Row="5" Visibility="{Binding SeasonEnd, Converter={StaticResource BoolToVis}}" Content="{Binding Source ={x:Static resx:MainGame.Next}}" Command="{Binding NextSeason}"
+                    Style="{StaticResource ButtonStyle}"
+                    />
+
         </Grid>
 
         <Popup IsOpen="{Binding ScorePop}" Width="600" Height="600" PopupAnimation="Fade" Placement="Center">

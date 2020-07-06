@@ -246,5 +246,16 @@ namespace FM.DAL.Repositories
             else
                 return false;
         }
+
+        public static void Reset()
+        {
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"UPDATE club set points = 0, played = 0, scored_goals = 0, lost_goals = 0, wins = 0, loses = 0, draws = 0, budget = budget + 50000000, salaryBudget = salaryBudget + 70000", connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
     }
 }

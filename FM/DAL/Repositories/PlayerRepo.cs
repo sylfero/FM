@@ -224,5 +224,120 @@ namespace FM.DAL.Repositories
                 connection.Close();
             }
         }
+
+        public static List<int> GetRet()
+        {
+            List<int> players = new List<int>();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"select id from players where isRetiring = 1", connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    players.Add(int.Parse(reader["id"].ToString()));
+                }
+                connection.Close();
+            }
+
+            return players;
+        }
+
+        public static void UpdatePot()
+        {
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"update players set offense = offense + 4, deffense = deffense + 4, pass = pass + 4, gk = gk + 4, potential = potential + 2 where (potential - overall) > 0", connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
+        public static Dictionary<string, int> GetStats(int overall, string position)
+        {
+            Dictionary<string, int> stats = new Dictionary<string, int>();
+            Random rnd = new Random();
+
+            if (position.Equals("Defender"))
+            {
+                stats.Add("atk", (int)(0.3 * overall + rnd.Next(0, 10)));
+                stats.Add("def", (int)(0.9 * overall + rnd.Next(0, 10)));
+                stats.Add("pas", (int)(0.5 * overall + rnd.Next(0, 10)));
+                stats.Add("kep", rnd.Next(3, 10));
+            }
+            else if (position.Equals("Midfielder"))
+            {
+                stats.Add("atk", (int)(0.7 * overall + rnd.Next(0, 10)));
+                stats.Add("def", (int)(0.7 * overall + rnd.Next(0, 10)));
+                stats.Add("pas", (int)(0.9 * overall + rnd.Next(0, 10)));
+                stats.Add("kep", rnd.Next(3, 10));
+            }
+            else if (position.Equals("Striker"))
+            {
+                stats.Add("atk", (int)(0.9 * overall + rnd.Next(0, 10)));
+                stats.Add("def", (int)(0.3 * overall + rnd.Next(0, 10)));
+                stats.Add("pas", (int)(0.5 * overall + rnd.Next(0, 10)));
+                stats.Add("kep", rnd.Next(3, 10));
+            }
+            else if (position.Equals("Goalkeeper"))
+            {
+                stats.Add("atk", rnd.Next(3, 10));
+                stats.Add("def", rnd.Next(3, 10));
+                stats.Add("pas", rnd.Next(3, 10));
+                stats.Add("kep", overall);
+            }
+
+            return stats;
+        }
+
+        public static int GetValue(DateTime birth, int overall, int potential, string position)
+        {
+            var date = ClubStatus.CurrentDate;
+            int age = date.Year - birth.Year;
+
+            if ((birth.Month > date.Month) || (birth.Month == date.Month && birth.Day > DateTime.Now.Day))
+                age--;
+
+            int potDif = potential - overall + 1;
+            double val = ((overall - 50) * 100_000 * (overall - 50) / (age * 0.1) * (potDif > 5 && potDif < 11 ? 2 : potDif > 10 && potDif < 21 ? 3 : potDif > 20 ? 5 : 1) * (position.Equals("Striker") ? 1.1 : position.Equals("Goalkeeper") ? 0.8 : 0.9));
+            val = val < 1_000_000 ? Math.Round(val / 10_000) * 10_000 : val < 10_000_000 ? Math.Round(val / 100_000) * 100_000 : Math.Round(val / 1_000_000) * 1_000_000;
+            return (int)val;
+        }
+
+        public static void UpdateVal()
+        {
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand read = new SQLiteCommand($"select * from players", connection);
+                connection.Open();
+                var reader = read.ExecuteReader();
+                while (reader.Read())
+                {
+                    int value = Calculation.GetValue(Convert.ToDateTime(reader["dateofbirth"].ToString()), Convert.ToInt32(reader["overall"].ToString()), Convert.ToInt32(reader["potential"].ToString()), reader["position"].ToString());
+                    SQLiteCommand update = new SQLiteCommand($"update players set value = {value} where id = {reader["id"].ToString()}", connection);
+                    update.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+        }
+
+        public static void UpdateOve()
+        {
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand read = new SQLiteCommand($"select * from players where isRetiring = 1", connection);
+                connection.Open();
+                var reader = read.ExecuteReader();
+                while (reader.Read())
+                {
+                    var stats = Calculation.GetStats(Convert.ToInt32(reader["overall"].ToString()), reader["position"].ToString());
+                    SQLiteCommand update = new SQLiteCommand($"update players set offense = {stats["atk"]}, defence = {stats["def"]}, pass = {stats["pas"]}, gk ={stats["kep"]} where id = {Convert.ToInt32(reader["id"].ToString())}", connection);
+                    update.ExecuteNonQuery();
+                }
+
+                connection.Close();
+            }
+        }
     }
 }

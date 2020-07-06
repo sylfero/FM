@@ -106,9 +106,9 @@ namespace FM.ViewModel
                 if (load == null)
                 {
                     load = new RelayCommand(x => {
-                        DAL.DBConnection.Instance.SetDatabase($@"Saves\{currentSave}\FMDatabase.db");  
-                        mainViewModel.SwapPage("game");
+                        DAL.DBConnection.Instance.SetDatabase($@"Saves\{currentSave}\FMDatabase.db");
                         ClubStatus.LoadSave($@"Saves\{currentSave}\Properties.txt");
+                        mainViewModel.SwapPage("game");
                     }, x => !string.IsNullOrEmpty(CurrentSave));
                 }
                 return load;

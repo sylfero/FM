@@ -17,6 +17,13 @@ namespace FM.ViewModel
     {
         private MainViewModel mainViewModel = new MainViewModel();
 
+        public MainGameViewModel()
+        {
+
+            if (ClubStatus.Round == 39)
+                SeasonEnd = true;
+        }
+
         private bool scorePop;
         public bool ScorePop
         {
@@ -147,12 +154,14 @@ namespace FM.ViewModel
                     play = new RelayCommand(x =>
                     {
                         Simulation.Simulate();
-                        (string, string, int, int) score = ScheduleRepo.GetScore(ClubStatus.ClubId, ClubStatus.Round - 1);
+                        /*(string, string, int, int) score = ScheduleRepo.GetScore(ClubStatus.ClubId, ClubStatus.Round - 1);
                         Host = score.Item1;
                         Visitor = score.Item2;
                         HostGoals = score.Item3;
                         VisitorGoals = score.Item4;
-                        ScorePop = true;
+                        ScorePop = true;*/
+                        if (ClubStatus.Round == 39)
+                            SeasonEnd = true;
                     }, x => ClubStatus.Round < 39);
                 }
                 return play;
@@ -179,7 +188,10 @@ namespace FM.ViewModel
             {
                 if (nextSeason == null)
                 {
-                    nextSeason = new RelayCommand(x => { });
+                    nextSeason = new RelayCommand(x => {
+                        Simulation.NextSeason();
+                        SeasonEnd = false;
+                    });
                 }
                 return nextSeason;
             }
