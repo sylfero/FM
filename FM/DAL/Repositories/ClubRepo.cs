@@ -178,5 +178,16 @@ namespace FM.DAL.Repositories
                 connection.Close();
             }
         }
+
+        public static void UpdateTable(int id, int teamGoals, int oponentGoals)
+        {
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"UPDATE club set points = points + {(teamGoals == oponentGoals ? "1" : teamGoals > oponentGoals ? "3" : "0")}, played = played + 1, scored_goals = scored_goals + {teamGoals}, lost_goals = lost_goals + {oponentGoals}, wins = wins + {(oponentGoals < teamGoals ? 1 : 0)}, loses = loses + {(oponentGoals > teamGoals ? 1 : 0)}, draws = draws + {(oponentGoals == teamGoals ? 1 : 0)} where id = {id}", connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
     }
 }

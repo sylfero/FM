@@ -75,5 +75,84 @@ namespace FM.Model
                 connection.Close();
             }
         }
+<<<<<<< HEAD
+=======
+
+        public static Dictionary<string, double> GetBotSquad(int id)
+        {
+            Dictionary<string, double> squad = new Dictionary<string, double>();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand($"select avg(defence) as defence from (select defence from players where club = {id} and position = \"Defender\" order by defence desc limit 4)", connection);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    squad.Add("def", double.Parse(reader["defence"].ToString()));
+                }
+
+                command = new SQLiteCommand($"select avg(offense) as offense from (select offense from players where club = {id} and position = \"Striker\" order by offense desc limit 3)", connection);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    squad.Add("st", double.Parse(reader["offense"].ToString()));
+                }
+
+                command = new SQLiteCommand($"select avg(pass) as pass from (select pass from players where club = {id} and position = \"Midfielder\" order by pass desc limit 3)", connection);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    squad.Add("mid", double.Parse(reader["pass"].ToString()));
+                }
+
+                command = new SQLiteCommand($"select gk from players where club = {id} and position = \"Goalkeeper\" order by gk desc limit 1", connection);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    squad.Add("gk", double.Parse(reader["gk"].ToString()));
+                }
+                connection.Close();
+            }
+            return squad;
+        }
+
+        public static Dictionary<string, double> GetSquad()
+        {
+            Dictionary<string, double> squad = new Dictionary<string, double>();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand($"select avg(defence) as defence from (select defence from players where club = {ClubStatus.ClubId} and currPosition = \"Defender\")", connection);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    squad.Add("def", double.Parse(reader["defence"].ToString()));
+                }
+
+                command = new SQLiteCommand($"select avg(offense) as offense from (select offense from players where club = {ClubStatus.ClubId} and currPosition = \"Striker\")", connection);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    squad.Add("st", double.Parse(reader["offense"].ToString()));
+                }
+
+                command = new SQLiteCommand($"select avg(pass) as pass from (select pass from players where club = {ClubStatus.ClubId} and currPosition = \"Midfielder\")", connection);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    squad.Add("mid", double.Parse(reader["pass"].ToString()));
+                }
+
+                command = new SQLiteCommand($"select gk from players where club = {ClubStatus.ClubId} and currPosition = \"Goalkeeper\"", connection);
+                reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    squad.Add("gk", double.Parse(reader["gk"].ToString()));
+                }
+                connection.Close();
+            }
+            return squad;
+        }
+>>>>>>> 1d530f0c28602f836d646a7ce44059498b1f1062
     }
 }

@@ -221,27 +221,6 @@ namespace FM.ViewModel
             }
         }
 
-        private ICommand addToSquad = null;
-        public ICommand AddToSquad
-        {
-            get
-            {
-                if(addToSquad == null)
-                {
-                    addToSquad = new RelayCommand(
-                        arg => {
-                            ClubStatus.ClubFirstSquad.Add(Players[SelectedPlayerIndex]);
-                            Visibility = Visibility.Hidden;
-                            SelectedPlayerIndex = -1;
-                            SelectedPlayer = null;
-                        }
-                        );
-                }
-
-                return addToSquad;
-            }
-        }
-
         private ICommand swap;
         public ICommand Swap
         {

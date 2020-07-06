@@ -37,6 +37,7 @@ namespace FM.Model
             CurrentDate = Convert.ToDateTime(lines[5]);
             SeasonStart = Convert.ToDateTime(lines[6]);
             SeasonEnd = Convert.ToDateTime(lines[7]);
+            Round = int.Parse(lines[8]);
             Path = path;
         }
 
@@ -52,6 +53,7 @@ namespace FM.Model
                 writer.WriteLine(CurrentDate);
                 writer.WriteLine(SeasonStart);
                 writer.WriteLine(SeasonEnd);
+                writer.WriteLine(Round);
             }
         }
     }
