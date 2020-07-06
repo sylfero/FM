@@ -68,10 +68,6 @@ namespace FM.ViewModel
                     Page = new Pages.Team();
                     CanGoBack = true;
                     break;
-                case "messages":
-                    Page = new Pages.Messages();
-                    CanGoBack = true;
-                    break;
                 case "transfers":
                     Page = new Pages.Market();
                     CanGoBack = true;

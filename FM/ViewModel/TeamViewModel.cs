@@ -24,12 +24,10 @@ namespace FM.ViewModel
     {
         public TeamViewModel()
         {
-            Players = ClubStatus.ClubFirstSquad;
             CurrentClub = ClubRepo.GetYourClub(ClubStatus.ClubName);
         }
 
         private Player selectedPlayer;
-        private ObservableCollection<Player> players;
         private Visibility visibility = Visibility.Hidden;
         private System.Windows.Media.Brush bkgColor;
         private bool isOpen = false;
@@ -38,6 +36,7 @@ namespace FM.ViewModel
         private int selectedTeam;
         private int selectedPlayerIndex;
         private Club currentClub;
+        private bool swaping = false;
 
         public Club CurrentClub
         {
@@ -101,14 +100,11 @@ namespace FM.ViewModel
             }
         }
 
+        public ObservableCollection<Player> players = PlayerRepo.GetPlayersFromClub(ClubStatus.ClubId);
         public ObservableCollection<Player> Players
         {
             get => players;
-            set
-            {
-                players = value;
-                OnPropertyChanged(nameof(Players));
-            }
+            set => SetProperty(ref players, value);
         }
 
         public Player SelectedPlayer
@@ -116,8 +112,30 @@ namespace FM.ViewModel
             get => selectedPlayer;
             set
             {
-                selectedPlayer = value;
-                OnPropertyChanged(nameof(SelectedPlayer));
+                if (swaping)
+                {
+                    swaping = false;
+                    PlayerRepo.SwapPosition(selectedPlayer.Id, selectedPlayer.CurrPosition, value.Id, value.CurrPosition);
+                    Players = PlayerRepo.GetPlayersFromClub(ClubStatus.ClubId);
+                    Visibility = Visibility.Hidden;
+                    SetProperty(ref selectedPlayer, null);
+                }
+                else
+                {
+                    SetProperty(ref selectedPlayer, value);
+                    if (Visibility == Visibility.Hidden)
+                        Visibility = Visibility.Visible;
+                    if (selectedPlayer != null)
+                    {
+                        if (selectedPlayer.Overall >= 75)
+                            BkgColor = new SolidColorBrush(Colors.Gold);
+                        else if (selectedPlayer.Overall >= 65)
+                            BkgColor = new SolidColorBrush(Colors.Silver);
+                        else
+                            BkgColor = new SolidColorBrush(Colors.SandyBrown);
+                    }
+                }
+                IsOpen = false;
             }
         }
 
@@ -138,36 +156,6 @@ namespace FM.ViewModel
             {
                 bkgColor = value;
                 OnPropertyChanged(nameof(BkgColor));
-            }
-        }
-
-        private ICommand playerChanged = null;
-        public ICommand PlayerChanged
-        {
-            get
-            {
-                if(playerChanged == null)
-                {
-                    playerChanged = new RelayCommand(
-                        arg =>
-                        {
-                            if (Visibility == Visibility.Hidden)
-                                Visibility = Visibility.Visible;
-                            if(selectedPlayer != null)
-                            {
-                                if (selectedPlayer.Overall >= 75)
-                                    BkgColor = new SolidColorBrush(Colors.Gold);
-                                else if (selectedPlayer.Overall >= 65)
-                                    BkgColor = new SolidColorBrush(Colors.Silver);
-                                else
-                                    BkgColor = new SolidColorBrush(Colors.SandyBrown);
-                            }
-                        },
-                        arg => true
-                        );
-                }
-
-                return playerChanged;
             }
         }
 
@@ -200,7 +188,6 @@ namespace FM.ViewModel
                             PlayerRepo.PlayerNewContract(selectedPlayer.Id, ContractValue, ContractLength);
                             CurrentClub = ClubRepo.GetYourClub(ClubStatus.ClubName);
                             IsOpen = false;
-                            Players = ClubStatus.ClubFirstSquad;
                             Visibility = Visibility.Hidden;
                             SelectedPlayer = null;
                             SelectedTeam = 0;
@@ -224,7 +211,6 @@ namespace FM.ViewModel
                         arg => {
                             SelectedPlayer = null;
                             Visibility = Visibility.Hidden;
-                            Players = ClubStatus.ClubFirstSquad;
                             SelectedTeam = 0;
                         },
                         arg => SelectedPlayer != null
@@ -232,30 +218,6 @@ namespace FM.ViewModel
                 }
 
                 return clear;
-            }
-        }
-
-        private ICommand teamChanged = null;
-        public ICommand TeamChanged 
-        {
-            get
-            {
-                if(teamChanged == null)
-                {
-                    teamChanged = new RelayCommand(
-                        arg => {
-                            if (SelectedTeam == 0)
-                                Players = ClubStatus.ClubFirstSquad;
-                            else if (SelectedTeam == 1)
-                                Players = PlayerRepo.GetPlayersFromClub(ClubStatus.ClubName);
-                            Visibility = Visibility.Hidden;
-                            SelectedPlayer = null;
-                        },
-                        arg => true
-                        );
-                }
-
-                return teamChanged;
             }
         }
 
@@ -272,8 +234,7 @@ namespace FM.ViewModel
                             Visibility = Visibility.Hidden;
                             SelectedPlayerIndex = -1;
                             SelectedPlayer = null;
-                        },
-                        arg => SelectedPlayerIndex != -1 && SelectedTeam != 0 && ClubStatus.ClubFirstSquad.Count < 11 && ClubStatus.ClubFirstSquad.Any(item => item.Id == SelectedPlayer.Id) != true
+                        }
                         );
                 }
 
@@ -281,48 +242,17 @@ namespace FM.ViewModel
             }
         }
 
-        private ICommand removeFromSquad = null;
-        public ICommand RemoveFromSquad
+        private ICommand swap;
+        public ICommand Swap
         {
             get
             {
-                if(removeFromSquad == null)
+                if (swap == null)
                 {
-                    removeFromSquad = new RelayCommand(
-                        arg =>
-                        {
-                            ClubStatus.ClubFirstSquad.RemoveAt(SelectedPlayerIndex);
-                            Visibility = Visibility.Hidden;
-                            SelectedPlayerIndex = -1;
-                            SelectedPlayer = null;
-                        },
-                        arg => SelectedPlayerIndex != -1 && SelectedTeam != 1 && ClubStatus.ClubFirstSquad.Count > 0
-                        );
+                    swap = new RelayCommand(x => swaping = true, x => SelectedPlayer != null);
                 }
 
-                return removeFromSquad;
-            }
-        }
-
-        private ICommand saveSquad = null;
-        public ICommand SaveSquad
-        {
-            get
-            {
-                if (saveSquad == null)
-                {
-                    saveSquad = new RelayCommand(
-                        arg => {
-                            XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<Player>));
-                            TextWriter textWriter = new StreamWriter(ClubStatus.ClubPath);
-                            serializer.Serialize(textWriter, ClubStatus.ClubFirstSquad);
-                            textWriter.Close();
-                        },
-                        arg => ClubStatus.ClubFirstSquad.Count == 11
-                        );
-                }
-
-                return saveSquad;
+                return swap;
             }
         }
     }

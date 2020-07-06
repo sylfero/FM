@@ -1,4 +1,5 @@
-﻿using FM.DAL.Entity;
+﻿using FM.DAL;
+using FM.DAL.Entity;
 using FM.DAL.Repositories;
 using FM.Model;
 using FM.Pages;
@@ -193,7 +194,15 @@ namespace FM.ViewModel
                             writer.WriteLine(CurrentClub.Id);
                             writer.WriteLine(CurrentLeague.Name);
                             writer.WriteLine(CurrentClub.Name);
+                            writer.WriteLine("2019-07-19");
+                            writer.WriteLine("2019-07-01");
+                            writer.WriteLine("2020-06-30");
+                            writer.WriteLine(CurrentLeague.Id == 1 ? 1 : 5);
                         }
+                        DBConnection.Instance.SetDatabase($@"Saves\{NewSave}\FMDataBase.db");
+                        ClubRepo.SetManager(CurrentClub.Id, Manager);
+                        Calculation.SetSquad(CurrentClub.Id);
+                        DBConnection.Instance.SetDefault();
                         NewSave = null;
                         CurrentLeague = null;
                         Manager = null;

@@ -9,7 +9,8 @@
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Market">
+      Title="Market"
+      Style="{StaticResource BackgroundImage}">
 
     <Page.DataContext>
         <mvm:MarketViewModel/>
@@ -21,13 +22,13 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" >
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0" Style="{StaticResource GridStyle}">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
@@ -47,6 +48,7 @@
 
                     <Label Grid.Column="0"
                            Content="{Binding Source ={x:Static resx:Market.Name}}"
+                           Style="{StaticResource LabelStyle}"
                            />
 
                     <TextBox Grid.Column="1"
@@ -62,6 +64,7 @@
 
                     <Label Grid.Column="0"
                            Content="{Binding Source ={x:Static resx:Market.Surname}}"
+                           Style="{StaticResource LabelStyle}"
                            />
 
                     <TextBox Grid.Column="1"
@@ -77,6 +80,7 @@
 
                     <Label Grid.Column="0"
                            Content="{Binding Source ={x:Static resx:Market.Position}}"
+                           Style="{StaticResource LabelStyle}"
                            />
 
                     <ComboBox Grid.Column="1"
@@ -92,7 +96,8 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Content="{Binding Source ={x:Static resx:Market.League}}"/>
+                           Content="{Binding Source ={x:Static resx:Market.League}}"
+                           Style="{StaticResource LabelStyle}"/>
 
                     <ComboBox Grid.Column="1"
                               ItemsSource="{Binding Path=Leagues}"
@@ -113,7 +118,8 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Content="{Binding Source ={x:Static resx:Market.Club}}"/>
+                           Content="{Binding Source ={x:Static resx:Market.Club}}"
+                           Style="{StaticResource LabelStyle}"/>
 
                     <ComboBox Grid.Column="1"
                               ItemsSource="{Binding Path=Clubs}"
@@ -128,7 +134,8 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Content="{Binding Source ={x:Static resx:Market.Nationality}}"/>
+                           Content="{Binding Source ={x:Static resx:Market.Nationality}}"
+                           Style="{StaticResource LabelStyle}"/>
 
                     <ComboBox Grid.Column="1" 
                               ItemsSource="{Binding Path=Countries}"
@@ -143,7 +150,8 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Content="{Binding Source ={x:Static resx:Market.MaxValue}}"/>
+                           Content="{Binding Source ={x:Static resx:Market.MaxValue}}"
+                           Style="{StaticResource LabelStyle}"/>
 
                     <TextBox Grid.Column="1"
                              Text="{Binding Path=MaxValue}"
@@ -158,7 +166,8 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Content="{Binding Source ={x:Static resx:Market.MaxAge}}"/>
+                           Content="{Binding Source ={x:Static resx:Market.MaxAge}}"
+                           Style="{StaticResource LabelStyle}"/>
 
                     <ComboBox Grid.Column="1"
                               ItemsSource="{Binding Path=AgeList}"
@@ -207,7 +216,7 @@
 
             <Grid Grid.Row="1"
                   Visibility="{Binding Path=Visibility}"
-                  
+                  Style="{StaticResource GridStyle}"
                   >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"/>
@@ -221,11 +230,12 @@
                     </Grid.ColumnDefinitions>
 
                     <Label 
-                        HorizontalContentAlignment="Center"
-                        VerticalContentAlignment="Center"
-                        FontSize="40"
+                        Style="{StaticResource LabelStyle}"
+                        FontWeight="Bold"
+                        Height="150"
+                        FontSize="60"
                         Content="{Binding Path=PlayerOverall}"
-                        Background="{Binding Path=BkgColor}"
+                        Foreground="{Binding Path=BkgColor}"
                         />
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
@@ -241,8 +251,8 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="{Binding Source ={x:Static resx:Market.Potential}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Path=PlayerPotential}" />
+                            <Label Content="{Binding Source ={x:Static resx:Market.Potential}}" Style="{StaticResource LabelStyle}"/>
+                            <Label Grid.Column="1" Content="{Binding Path=PlayerPotential}" Style="{StaticResource LabelStyle}"/>
                         </Grid>
 
                         <Grid Grid.Row="1">
@@ -250,8 +260,8 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="{Binding Source ={x:Static resx:Market.Defence}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Path=PlayerDefence}" />
+                            <Label Content="{Binding Source ={x:Static resx:Market.Defence}}" Style="{StaticResource LabelStyle}"/>
+                            <Label Grid.Column="1" Content="{Binding Path=PlayerDefence}" Style="{StaticResource LabelStyle}"/>
                         </Grid>
 
                         <Grid Grid.Row="2">
@@ -259,8 +269,8 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="{Binding Source ={x:Static resx:Market.Offence}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Path=PlayerOffence}" />
+                            <Label Content="{Binding Source ={x:Static resx:Market.Offence}}" Style="{StaticResource LabelStyle}"/>
+                            <Label Grid.Column="1" Content="{Binding Path=PlayerOffence}" Style="{StaticResource LabelStyle}"/>
                         </Grid>
 
                         <Grid Grid.Row="3">
@@ -268,8 +278,8 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="{Binding Source ={x:Static resx:Market.Passing}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Passing}" />
+                            <Label Content="{Binding Source ={x:Static resx:Market.Passing}}" Style="{StaticResource LabelStyle}"/>
+                            <Label Grid.Column="1" Content="{Binding Passing}" Style="{StaticResource LabelStyle}"/>
                         </Grid>
 
                         <Grid Grid.Row="4">
@@ -277,8 +287,8 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="{Binding Source ={x:Static resx:Market.Goalkeeping}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Gk}" />
+                            <Label Content="{Binding Source ={x:Static resx:Market.Goalkeeping}}" Style="{StaticResource LabelStyle}"/>
+                            <Label Grid.Column="1" Content="{Binding Gk}" Style="{StaticResource LabelStyle}"/>
                         </Grid>
 
                     </Grid>
@@ -304,12 +314,10 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Market.Name}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="1" Content="{Binding Path=PlayerName}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
@@ -319,12 +327,10 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Market.Surname}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="1" Content="{Binding Path=PlayerSurname}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                              Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
@@ -334,12 +340,10 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Market.Club}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="1" Content="{Binding Path=PlayerClub}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
@@ -349,12 +353,10 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Market.Nationality}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="1" Content="{Binding Path=PlayerNationality}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
@@ -365,12 +367,10 @@
                             <ColumnDefinition Width="25*" />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Market.DOB}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center" Grid.ColumnSpan="2"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="2" Content="{Binding Path=PlayerAge}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
@@ -380,12 +380,10 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Market.Contract}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="1" Content="{Binding Path=PlayerContract}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
@@ -395,12 +393,10 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Market.Value}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="1" Content="{Binding Path=PlayerValue}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
@@ -410,12 +406,10 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Market.Salary}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="1" Content="{Binding Path=PlayerSalary}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
@@ -435,8 +429,7 @@
                             <Label
                                 Grid.Row="0"
                                 Content="{Binding Source ={x:Static resx:Market.TValue}}"
-                                HorizontalContentAlignment="Center"
-                                VerticalContentAlignment="Center"
+                                Style="{StaticResource LabelStyle}"
                                 />
                             <TextBox
                                 Grid.Row="1"
@@ -451,8 +444,7 @@
                             </Grid.RowDefinitions>
                             <Label
                                 Grid.Row="0"
-                                HorizontalContentAlignment="Center"
-                                VerticalContentAlignment="Center"
+                                Style="{StaticResource LabelStyle}"
                                 Content="{Binding Source ={x:Static resx:Market.Salary}}"
                                 />
                             <TextBox
@@ -467,7 +459,8 @@
                                 <RowDefinition />
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
-                                   FontSize="8"
+                                   FontSize="5"
+                                   Style="{StaticResource LabelStyle}"
                                 Content="{Binding Source ={x:Static resx:Market.CLength}}"
                                 />
                             <TextBox Grid.Row="1"
@@ -478,6 +471,7 @@
                         <Button Grid.Column="3"
                             Content="{Binding Source ={x:Static resx:Market.Buy}}"
                             Command="{Binding Path=PlayerTransfer}"
+                                Style="{StaticResource ButtonStyle3}"
                             />
                     </Grid>
                     
@@ -498,6 +492,7 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Command="{Binding Path=ClearFiltres}"
+                        Style="{StaticResource ButtonStyle3}"
                     />
 
                 <Button Grid.Column="1"
@@ -507,6 +502,7 @@
                     HorizontalContentAlignment="Center"
                     VerticalContentAlignment="Center"
                     Command="{Binding Path=Search}"
+                        Style="{StaticResource ButtonStyle3}"
                     />
 
             </Grid>

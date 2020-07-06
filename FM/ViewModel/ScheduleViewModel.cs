@@ -92,6 +92,7 @@ namespace FM.ViewModel
                             Visibility = Visibility.Visible;
                             Schedule = ScheduleRepo.GetLeagueSchedule(selectedLeague.Name);
                             MatchdayNumber = ScheduleRepo.GetNumberOfMatchdays(selectedLeague.Name);
+                            SelectedMatchday = null;
                         },
                         arg => SelectedLeague != null
                         );

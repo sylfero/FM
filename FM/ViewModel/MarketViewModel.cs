@@ -262,7 +262,7 @@ namespace FM.ViewModel
 
         private List<Player> GetPlayersFiltres()
         {
-            string command1 = $"select p.id as id, p.name as name, surname, dateofbirth, n.name as nationality, position, c.name as club, value, salary, contract_terminates, p.overall as overall, offense, defence, potential from players p, country n, club c, league l where p.club = c.id and p.nationality = n.iso3 and c.league = l.id and p.club != {ClubStatus.ClubId}";
+            string command1 = $"select p.id as id, p.name as name, surname, dateofbirth, n.name as nationality, position, c.name as club, value, salary, contract_terminates, p.overall as overall, offense, defence, potential, pass, gk, isJunior, isRetiring, currPosition from players p, country n, club c, league l where p.club = c.id and p.nationality = n.id and c.league = l.id and p.club != {ClubStatus.ClubId}";
             if (name != null)
                 command1 += $" and p.name like \"%{name}%\"";
             if (surname != null)
@@ -276,7 +276,7 @@ namespace FM.ViewModel
             if (position != null)
                 command1 += $" and position like \"%{position}%\"";
             if (age != null)
-                command1 += $" and Year(Now()) - Year(dateofbirth) <= {age}";
+                command1 += $" and (strftime(\"{ClubStatus.CurrentDate:yyyy-MM-dd}\") - strftime(dateofbirth)) <= {age}";
             if (maxValue != null)
                 command1 += $" and p.value <= {maxValue}";
 
@@ -311,12 +311,26 @@ namespace FM.ViewModel
         private int playerOverall;
         private int playerDefence;
         private int playerOffence;
-        private int playerPotential;
+        private string playerPotential;
         private string playerPosition;
         private DateTime playerAge;
         private DateTime playerContract;
         private int playerValue;
         private int playerSalary;
+        private int passing;
+        private int gk;
+
+        public int Passing
+        {
+            get => passing;
+            set => SetProperty(ref passing, value);
+        }
+
+        public int Gk
+        {
+            get => gk;
+            set => SetProperty(ref gk, value);
+        }
 
         public System.Windows.Media.Brush BkgColor
         {
@@ -426,7 +440,7 @@ namespace FM.ViewModel
             }
         }
 
-        public int PlayerPotential
+        public string PlayerPotential
         {
             get => playerPotential;
             set
@@ -499,6 +513,8 @@ namespace FM.ViewModel
                             PlayerSalary = SelectedPlayer.Salary;
                             PlayerSurname = SelectedPlayer.Surname;
                             PlayerValue = SelectedPlayer.Value;
+                            Gk = SelectedPlayer.Gk;
+                            Passing = SelectedPlayer.Passing;
                             Visibility = System.Windows.Visibility.Visible;
                             if (PlayerOverall >= 75)
                                 BkgColor = new SolidColorBrush(Colors.Gold);

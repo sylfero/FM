@@ -3,12 +3,323 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:resx ="clr-namespace:FM.Pages.Resources"
+      xmlns:vm="clr-namespace:FM.ViewModel"
       xmlns:local="clr-namespace:FM.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Juniors">
+      Title="Juniors"
+      Style="{StaticResource BackgroundImage}"
+      >
 
+    <Page.DataContext>
+        <vm:JuniorsViewModel/>
+    </Page.DataContext>
+    
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Juniors.Country}}"
+                       Style="{StaticResource LabelStyle}" Foreground="#85A68E" FontWeight="Bold"
+                       />
+
+                <ComboBox Grid.Column="1" ItemsSource="{Binding Countries}" SelectedItem="{Binding CurrentCountry}"/>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Juniors.Number}}"
+                       Style="{StaticResource LabelStyle}" Foreground="#85A68E" FontWeight="Bold"
+                       />
+
+                <ComboBox Grid.Column="1" ItemsSource="{Binding Number}" SelectedItem="{Binding SelectedNumber}"/>
+            </Grid>
+
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Juniors.Price}}"/>
+
+                <Label Grid.Column="1" Content="{Binding Price}"/>
+            </Grid>
+
+            <Grid Grid.Row="7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="1" Content="{Binding Source ={x:Static resx:Juniors.Send}}" Command="{Binding Send}"
+                        Style="{StaticResource ButtonStyle2}"
+                        />
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1" Style="{StaticResource GridStyle}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="7*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="7*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        FontSize="60"
+                        FontWeight="Bold"
+                        Height="109"
+                        Style="{StaticResource LabelStyle}"
+                        Content="{Binding CurrentPlayer.Overall}"
+                        Background="{Binding Path=BkgColor}"
+                        />
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="POTENTIAL" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                   Style="{StaticResource LabelStyle}"/>
+                            <Label Grid.Column="1" Content="{Binding CurrentPlayer.Potential}" 
+                                   Style="{StaticResource LabelStyle}"/>
+                        </Grid>
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="DEFENCE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                   Style="{StaticResource LabelStyle}"/>
+                            <Label Grid.Column="1" Content="{Binding CurrentPlayer.Defence}" 
+                                   Style="{StaticResource LabelStyle}"/>
+                        </Grid>
+
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="OFFENCE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                   Style="{StaticResource LabelStyle}"/>
+                            <Label Grid.Column="1" Content="{Binding CurrentPlayer.Offense}" Style="{StaticResource LabelStyle}" />
+                        </Grid>
+
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="PASSING" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                                   Style="{StaticResource LabelStyle}"/>
+                            <Label Grid.Column="1" Content="{Binding CurrentPlayer.Passing}" 
+                                   Style="{StaticResource LabelStyle}"/>
+                        </Grid>
+
+                        <Grid Grid.Row="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="GOALKEEPING" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{StaticResource LabelStyle}"/>
+                            <Label Grid.Column="1" Content="{Binding CurrentPlayer.Offense}" Style="{StaticResource LabelStyle}"/>
+                        </Grid>
+
+                    </Grid>
+
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Name" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
+                               />
+                        <Label Grid.Column="1" Content="{Binding Path=CurrentPlayer.Name}" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
+                               />
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Surname" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
+                               />
+                        <Label Grid.Column="1" Content="{Binding Path=CurrentPlayer.Surname}" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
+                               />
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Nationality" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
+                               />
+                        <Label Grid.Column="1" Content="{Binding Path=CurrentPlayer.Nationality}" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
+                               />
+                    </Grid>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="16*" />
+                            <ColumnDefinition Width="9*"/>
+                            <ColumnDefinition Width="25*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Date of birth" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center" Grid.ColumnSpan="2"
+                               Style="{StaticResource LabelStyle}"
+                               />
+                        <Label Grid.Column="2" Content="{Binding Path=CurrentPlayer.Age}" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
+                               />
+                    </Grid>
+
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Value" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
+                               />
+                        <Label Grid.Column="1" Content="{Binding Path=CurrentPlayer.Value}" 
+                               HorizontalContentAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
+                               />
+                    </Grid>
+
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="1" Content="{Binding Source ={x:Static resx:Juniors.Contract}}" Command="{Binding Contract}"
+                                Style="{StaticResource ButtonStyle3}"
+                                FontSize="12"
+                                />
+
+                    </Grid>
+
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <DataGrid 
+                Grid.Column="2"
+                AutoGenerateColumns="False"
+                AlternatingRowBackground="Lavender"
+                GridLinesVisibility="None"
+                IsReadOnly="True"
+                BorderBrush="Transparent"
+                Background="Transparent"
+                HorizontalScrollBarVisibility="Hidden"
+                VerticalScrollBarVisibility="Hidden"
+                RowHeaderWidth="0"
+                CanUserSortColumns="False"
+                CanUserResizeColumns="False"
+                CanUserResizeRows="False"
+                Margin="0 75 0 0"
+                ItemsSource="{Binding Players}"
+                SelectedItem="{Binding CurrentPlayer}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{Binding Source ={x:Static resx:Juniors.Name}}" Binding="{Binding Name}" Width="1*"/>
+                <DataGridTextColumn Header="{Binding Source ={x:Static resx:Juniors.Surname}}" Binding="{Binding Surname}" Width="1*"/>
+                <DataGridTextColumn Header="{Binding Source ={x:Static resx:Juniors.Age}}" Binding="{Binding Age}" Width="1*"/>
+                <DataGridTextColumn Header="{Binding Source ={x:Static resx:Juniors.Position}}" Binding="{Binding Position}" Width="1*"/>
+                <DataGridTextColumn Header="{Binding Source ={x:Static resx:Juniors.Overall}}" Binding="{Binding Overall}" Width="1*"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
     </Grid>
 </Page>

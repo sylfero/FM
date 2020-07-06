@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:FM.ViewModel"
         xmlns:local="clr-namespace:FM"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="CanMinimize" WindowState="Maximized" WindowStyle="None">
 
     <Window.DataContext>
         <vm:MainViewModel/>

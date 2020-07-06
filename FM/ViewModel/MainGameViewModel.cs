@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace FM.ViewModel
@@ -25,16 +26,16 @@ namespace FM.ViewModel
             }
         }
 
-        private ICommand messages;
-        public ICommand Messages
+        private ICommand exit;
+        public ICommand Exit
         {
             get
             {
-                if (messages == null)
+                if (exit == null)
                 {
-                    messages = new RelayCommand(x => mainViewModel.SwapPage("messages"));
+                    exit = new RelayCommand(x => Application.Current.MainWindow.Close());
                 }
-                return messages;
+                return exit;
             }
         }
 

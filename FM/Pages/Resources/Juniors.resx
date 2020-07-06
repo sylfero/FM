@@ -117,25 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Exit" xml:space="preserve">
-    <value>Exit</value>
+  <data name="Age" xml:space="preserve">
+    <value>Age</value>
   </data>
-  <data name="Juniors" xml:space="preserve">
-    <value>Juniors</value>
+  <data name="Contract" xml:space="preserve">
+    <value>Contract player</value>
   </data>
-  <data name="Play" xml:space="preserve">
-    <value>Next Game</value>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
   </data>
-  <data name="Schedule" xml:space="preserve">
-    <value>Schedule</value>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
   </data>
-  <data name="Tables" xml:space="preserve">
-    <value>Tables</value>
+  <data name="Number" xml:space="preserve">
+    <value>Juniors to find</value>
   </data>
-  <data name="Team" xml:space="preserve">
-    <value>Team</value>
+  <data name="Overall" xml:space="preserve">
+    <value>Overall</value>
   </data>
-  <data name="Transfers" xml:space="preserve">
-    <value>Transfers</value>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send scout</value>
+  </data>
+  <data name="Surname" xml:space="preserve">
+    <value>Surname</value>
   </data>
 </root>

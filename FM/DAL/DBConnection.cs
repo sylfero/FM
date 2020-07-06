@@ -35,5 +35,10 @@ namespace FM.DAL
         {
             stringBuilder.DataSource = path;
         }
+
+        public void SetDefault()
+        {
+            stringBuilder.DataSource = Properties.Settings.Default.path;
+        }
     }
 }
