@@ -1,4 +1,5 @@
-﻿using FM.ViewModel.BaseClasses;
+﻿using FM.Model;
+using FM.ViewModel.BaseClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,6 +89,19 @@ namespace FM.ViewModel
                     schedule = new RelayCommand(x => mainViewModel.SwapPage("schedule"));
                 }
                 return schedule;
+            }
+        }
+
+        private ICommand play;
+        public ICommand Play
+        {
+            get
+            {
+                if (play == null)
+                {
+                    play = new RelayCommand(x => Simulation.Simulate());
+                }
+                return play;
             }
         }
     }

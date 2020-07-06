@@ -83,6 +83,7 @@
                       Background="Transparent"
                       HorizontalScrollBarVisibility="Hidden"
                       VerticalScrollBarVisibility="Auto"
+                      CanUserResizeColumns="False"
                       RowHeaderWidth="0"
                       ItemsSource="{Binding Path=Schedule}">
                       <DataGrid.Columns>

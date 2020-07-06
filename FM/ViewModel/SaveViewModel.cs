@@ -202,6 +202,13 @@ namespace FM.ViewModel
                         DBConnection.Instance.SetDatabase($@"Saves\{NewSave}\FMDataBase.db");
                         ClubRepo.SetManager(CurrentClub.Id, Manager);
                         Calculation.SetSquad(CurrentClub.Id);
+                        if (CurrentLeague.Id == 2)
+                        {
+                            for (int i = 1; i < 5; i++)
+                            {
+                                Simulation.SimulateRound(i);
+                            }
+                        }
                         DBConnection.Instance.SetDefault();
                         NewSave = null;
                         CurrentLeague = null;

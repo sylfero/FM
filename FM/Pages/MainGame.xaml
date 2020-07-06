@@ -30,7 +30,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="1" Content="{Binding Source ={x:Static resx:MainGame.Play}}"/>
+            <Button Grid.Row="1" Content="{Binding Source ={x:Static resx:MainGame.Play}}" Command="{Binding Play}"/>
 
             <Grid Grid.Row="3">
                 <Grid.RowDefinitions>

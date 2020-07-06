@@ -134,6 +134,7 @@
     <Compile Include="Model\Calculation.cs" />
     <Compile Include="Model\ClubStatus.cs" />
     <Compile Include="Model\Scout.cs" />
+    <Compile Include="Model\Simulation.cs" />
     <Compile Include="Pages\Market.xaml.cs">
       <DependentUpon>Market.xaml</DependentUpon>
     </Compile>

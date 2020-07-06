@@ -169,5 +169,34 @@ namespace FM.DAL.Repositories
                 return number;
             }
         }
+
+        public static List<(int, int, int)> GetRound(int round)
+        {
+            List<(int, int, int)> matches = new List<(int, int, int)>();
+
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"select id, host, visitor from schedule where matchday = {round}", connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                   matches.Add((int.Parse(reader["id"].ToString()), int.Parse(reader["host"].ToString()), int.Parse(reader["visitor"].ToString())));
+                }
+                connection.Close();
+            }
+            return matches;
+        }
+
+        public static void UpdateGame(int id, int hostGoals, int visitorGoals)
+        {
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"update schedule set host_goals = {hostGoals}, visitor_goals = {visitorGoals} where id = {id}", connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
     }
 }

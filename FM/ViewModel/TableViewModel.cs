@@ -27,6 +27,10 @@ namespace FM.ViewModel
             {
                 SetProperty(ref currentLeague, value);
                 Clubs = LeagueTableRepo.GetTableFor(currentLeague.Id);
+                for (int i = 0; i < Clubs.Count; i++)
+                {
+                    Clubs[i].Position = (i + 1).ToString() + ".";
+                }
             }
         }
 
@@ -36,5 +40,6 @@ namespace FM.ViewModel
             get => clubs;
             set => SetProperty(ref clubs, value);
         }
+
     }
 }

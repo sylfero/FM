@@ -19,7 +19,6 @@ namespace FM.ViewModel
     class ScheduleViewModel : ViewModelBase
     {
         private List<Schedule> schedule = ScheduleRepo.GetYourClubSchedule();
-        private List<League> leagues = LeagueRepo.GetAllLeagues();
         private List<int> matchdayNumber = new List<int>();
         private League selectedLeague;
         private int? selectedMatchday;
@@ -50,8 +49,7 @@ namespace FM.ViewModel
             get => selectedMatchday;
             set
             {
-                selectedMatchday = value;
-                OnPropertyChanged(nameof(SelectedMatchday));
+                SetProperty(ref selectedMatchday, SelectedLeague.Id == 2 ? value + 4 : value);
             }
         }
 
@@ -65,10 +63,7 @@ namespace FM.ViewModel
             }
         }
 
-        public List<League> Leagues
-        {
-            get => leagues;
-        }
+        public List<League> Leagues => LeagueRepo.GetAllLeagues();
 
         public List<int> MatchdayNumber
         {
