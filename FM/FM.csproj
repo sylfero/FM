@@ -166,6 +166,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+	<Compile Include="Pages\Resources\Market.Designer.cs">
+      <DependentUpon>Market.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+	<Compile Include="Pages\Resources\Team.Designer.cs">
+      <DependentUpon>Team.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ViewModel\BaseClasses\RelayCommand.cs" />
     <Compile Include="ViewModel\BaseClasses\ViewModelBase.cs" />
     <Compile Include="ViewModel\JuniorsViewModel.cs" />
@@ -280,6 +290,14 @@
     <EmbeddedResource Include="Pages\Resources\Menu.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Menu.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+	<EmbeddedResource Include="Pages\Resources\Market.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Market.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+	<EmbeddedResource Include="Pages\Resources\Team.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Team.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
