@@ -4,16 +4,17 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:vm="clr-namespace:FM.ViewModel"
+      xmlns:resx ="clr-namespace:FM.Pages.Resources"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:local="clr-namespace:FM.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Team">
 
-    <Page.Resources>
-        <vm:TeamViewModel x:Key="teamViewModel" />
-    </Page.Resources>
-    
+    <Page.DataContext>
+        <vm:TeamViewModel/>
+    </Page.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -31,21 +32,9 @@
                 <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
 
-            <ComboBox Grid.Row="0" 
-                      SelectedIndex="{Binding Source={StaticResource teamViewModel}, Path=SelectedTeam}"
-            >
-                <ComboBoxItem Content="First squad" />
-                <ComboBoxItem Content="All players" />
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding Source={StaticResource teamViewModel}, Path=TeamChanged}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </ComboBox>
-
             <Grid Grid.Row="1">
                 <Label 
-                       Content="{Binding Source={StaticResource teamViewModel}, Path=CurrentClub.Name}"
+                       Content="{Binding Path=CurrentClub.Name}"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                        />
 
@@ -58,12 +47,12 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0"
-                       Content="Manager"
+                       Content="{Binding Source ={x:Static resx:Team.Manager}}"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                        />
 
                 <Label Grid.Column="1"
-                       Content="{Binding Source={StaticResource teamViewModel}, Path=CurrentClub.Coach}"
+                       Content="{Binding Path=CurrentClub.Coach}"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                        />
 
@@ -76,11 +65,11 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0"
-                       Content="Overall"
+                       Content="{Binding Source ={x:Static resx:Team.Overall}}"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                        />
                 <Label Grid.Column="1"
-                       Content="{Binding Source={StaticResource teamViewModel}, Path=CurrentClub.Overall}"
+                       Content="{Binding Path=CurrentClub.Overall}"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                        />
 
@@ -93,12 +82,12 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0"
-                       Content="Club Budget"
+                       Content="{Binding Source ={x:Static resx:Team.CBudget}}"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                        />
 
                 <Label Grid.Column="1"
-                       Content="{Binding Source={StaticResource teamViewModel}, Path=CurrentClub.Budget}"
+                       Content="{Binding Path=CurrentClub.Budget}"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                        />
 
@@ -111,18 +100,18 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0"
-                       Content="Club Salary Budget"
+                       Content="{Binding Source ={x:Static resx:Team.CSBudget}}"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                        />
 
                 <Label Grid.Column="1"
-                       Content="{Binding Source={StaticResource teamViewModel}, Path=CurrentClub.SalaryBudget}"
+                       Content="{Binding Path=CurrentClub.SalaryBudget}"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                        />
 
             </Grid>
 
-            
+
         </Grid>
 
         <Grid Grid.Column="1">
@@ -133,7 +122,7 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="1"          
-                  Visibility="{Binding Source={StaticResource teamViewModel}, Path=Visibility}"
+                  Visibility="{Binding Path=Visibility}"
                   >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*"/>
@@ -150,11 +139,13 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontSize="40"
-                        Content="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayer.Overall}"
-                        Background="{Binding Source={StaticResource teamViewModel}, Path=BkgColor}"
+                        Content="{Binding Path=SelectedPlayer.Overall}"
+                        Background="{Binding Path=BkgColor}"
                         />
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
@@ -165,8 +156,9 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="POTENTIAL" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayer.Potential}" />
+                            <Label Content="{Binding Source ={x:Static resx:Team.Potential}}" 
+                                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Potential}" />
                         </Grid>
 
                         <Grid Grid.Row="1">
@@ -174,8 +166,8 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="DEFENCE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayer.Defence}" />
+                            <Label Content="{Binding Source ={x:Static resx:Team.Deffence}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Defence}" />
                         </Grid>
 
                         <Grid Grid.Row="2">
@@ -183,8 +175,26 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="OFFENCE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayer.Offense}" />
+                            <Label Content="{Binding Source ={x:Static resx:Team.Offence}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Offense}" />
+                        </Grid>
+
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="{Binding Source ={x:Static resx:Team.Passing}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Passing}" />
+                        </Grid>
+
+                        <Grid Grid.Row="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="{Binding Source ={x:Static resx:Team.Goalkeeping}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Gk}" />
                         </Grid>
 
                     </Grid>
@@ -208,11 +218,11 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Name" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.Name}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
-                        <Label Grid.Column="1" Content="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayer.Name}" 
+                        <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Name}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -223,11 +233,11 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Surname" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.Surname}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
-                        <Label Grid.Column="1" Content="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayer.Surname}" 
+                        <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Surname}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -238,11 +248,11 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Club" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.Club}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
-                        <Label Grid.Column="1" Content="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayer.Club}" 
+                        <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Club}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -253,11 +263,11 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Nationality" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.Nationality}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
-                        <Label Grid.Column="1" Content="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayer.Nationality}" 
+                        <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Nationality}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -269,11 +279,11 @@
                             <ColumnDefinition Width="9*"/>
                             <ColumnDefinition Width="25*" />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Date of birth" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.DOB}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center" Grid.ColumnSpan="2"
                                />
-                        <Label Grid.Column="2" Content="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayer.DateOfBirth}" 
+                        <Label Grid.Column="2" Content="{Binding Path=SelectedPlayer.DateOfBirth}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -281,14 +291,15 @@
 
                     <Grid Grid.Row="5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
+                            <ColumnDefinition Width="9*" />
+                            <ColumnDefinition Width="16*"/>
+                            <ColumnDefinition Width="25*" />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Contract Terminates" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.Contract}}" 
                                HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               VerticalContentAlignment="Center" Grid.ColumnSpan="2"
                                />
-                        <Label Grid.Column="1" Content="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayer.ContractTerminates}" 
+                        <Label Grid.Column="2" Content="{Binding Path=SelectedPlayer.ContractTerminates}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -299,11 +310,11 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Value" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.Value}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
-                        <Label Grid.Column="1" Content="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayer.Value}" 
+                        <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Value}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -314,11 +325,11 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Salary" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.Salary}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
-                        <Label Grid.Column="1" Content="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayer.Salary}" 
+                        <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Salary}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -328,17 +339,17 @@
             </Grid>
 
             <Grid Grid.Row="2"
-                  Visibility="{Binding Source={StaticResource teamViewModel}, Path=Visibility}">
+                  Visibility="{Binding Path=Visibility}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="8*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0"
-                    Content="EXTEND CONTRACT"
-                    Command="{Binding Source={StaticResource teamViewModel}, Path=OpenPopUp}"
+                    Content="{Binding Source ={x:Static resx:Team.Extend}}"
+                    Command="{Binding Path=OpenPopUp}"
                     />
 
-                <Popup IsOpen="{Binding Source={StaticResource teamViewModel}, Path=IsOpen}"
+                <Popup IsOpen="{Binding Path=IsOpen}"
                        Width="200" Height="200"
                        PopupAnimation="Slide" Placement="Center"
                 >
@@ -368,7 +379,7 @@
                             </Label>
                             <TextBox 
                                 Grid.Column="1"
-                                Text="{Binding Source={StaticResource teamViewModel}, Path=ContractLength}"/>
+                                Text="{Binding Path=ContractLength}"/>
                         </Grid>
 
                         <Grid Grid.Row="1">
@@ -376,27 +387,27 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="Contract Value"
+                            <Label Content="{Binding Source ={x:Static resx:Team.CValue}}"
                                    HorizontalContentAlignment="Center"
                                    VerticalContentAlignment="Center"
                                    Grid.Column="0"
                                    Foreground="Black"
                                    />
                             <TextBox Grid.Column="1"
-                                Text="{Binding Source={StaticResource teamViewModel}, Path=ContractValue}"/>
+                                Text="{Binding Path=ContractValue}"/>
                         </Grid>
 
                         <Button Grid.Row="2"
                                 Content="NEGOTIATE CONTRACT"
-                                Command="{Binding Source={StaticResource teamViewModel}, Path=NewContract}"
+                                Command="{Binding Path=NewContract}"
                                 />
 
                     </Grid>
                 </Popup>
-                
+
                 <Button Grid.Column="1" 
-                        Content="CLEAR"
-                        Command="{Binding Source={StaticResource teamViewModel}, Path=Clear}"
+                        Content="{Binding Source ={x:Static resx:Team.Clear}}"
+                        Command="{Binding Path=Clear}"
                         />
             </Grid>
         </Grid>
@@ -408,43 +419,39 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Button 
-                Grid.Row="0"
-                Content="SAVE SQUAD"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Width="100"
-                Command="{Binding Source={StaticResource teamViewModel}, Path=SaveSquad}"
-                />
+            <DataGrid 
+                Grid.Row="1"
+                AutoGenerateColumns="False"
+                AlternatingRowBackground="Lavender"
+                GridLinesVisibility="None"
+                IsReadOnly="True"
+                BorderBrush="Transparent"
+                Background="Transparent"
+                HorizontalScrollBarVisibility="Hidden"
+                VerticalScrollBarVisibility="Hidden"
+                RowHeaderWidth="0"
+                CanUserSortColumns="False"
+                CanUserResizeColumns="False"
+                CanUserResizeRows="False"
+                ItemsSource="{Binding Players}"
+                SelectedItem="{Binding SelectedPlayer}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Team.Name}}" Binding="{Binding Name}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Team.Surname}}" Binding="{Binding Surname}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Team.Position}}" Binding="{Binding Position}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Team.Overall}}" Binding="{Binding Overall}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Team.Starting11}}" Binding="{Binding CurrPosition}" Width="1*"/>
+                </DataGrid.Columns>
 
-            <ListBox Grid.Row="1"
-                 ItemsSource="{Binding Source={StaticResource teamViewModel}, Path=Players}"
-                 SelectedValue="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayer}"
-                 SelectedIndex="{Binding Source={StaticResource teamViewModel}, Path=SelectedPlayerIndex}"
-            >
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding Source={StaticResource teamViewModel}, Path=PlayerChanged}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </ListBox>
+            </DataGrid>
 
             <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="0"
-                    Content="ADD TO FIRST 11"
-                    Command="{Binding Source={StaticResource teamViewModel}, Path=AddToSquad}"
-                    />
                 <Button Grid.Column="1"
-                        Content="REMOVE FROM FIRST 11" 
-                        Command="{Binding Source={StaticResource teamViewModel}, Path=RemoveFromSquad}"
+                        Content="{Binding Source ={x:Static resx:Team.Swap}}" 
+                        Command="{Binding Swap}"
                         />
             </Grid>
         </Grid>
-        
+
     </Grid>
 </Page>
