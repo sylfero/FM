@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:vm="clr-namespace:FM.ViewModel"
+      xmlns:resx ="clr-namespace:FM.Pages.Resources"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:local="clr-namespace:FM.Pages"
       mc:Ignorable="d" 
@@ -46,7 +47,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0"
-                       Content="Manager"
+                       Content="{Binding Source ={x:Static resx:Team.Manager}}"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                        />
 
@@ -64,7 +65,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0"
-                       Content="Overall"
+                       Content="{Binding Source ={x:Static resx:Team.Overall}}"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                        />
                 <Label Grid.Column="1"
@@ -81,7 +82,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0"
-                       Content="Club Budget"
+                       Content="{Binding Source ={x:Static resx:Team.CBudget}}"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                        />
 
@@ -99,7 +100,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0"
-                       Content="Club Salary Budget"
+                       Content="{Binding Source ={x:Static resx:Team.CSBudget}}"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                        />
 
@@ -155,7 +156,8 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="POTENTIAL" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Content="{Binding Source ={x:Static resx:Team.Potential}}" 
+                                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Potential}" />
                         </Grid>
 
@@ -164,7 +166,7 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="DEFENCE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Content="{Binding Source ={x:Static resx:Team.Deffence}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Defence}" />
                         </Grid>
 
@@ -173,7 +175,7 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="OFFENCE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Content="{Binding Source ={x:Static resx:Team.Offence}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Offense}" />
                         </Grid>
 
@@ -182,7 +184,7 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="PASSING" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Content="{Binding Source ={x:Static resx:Team.Passing}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Passing}" />
                         </Grid>
 
@@ -191,7 +193,7 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="GOALKEEPING" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Content="{Binding Source ={x:Static resx:Team.Goalkeeping}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Gk}" />
                         </Grid>
 
@@ -216,7 +218,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Name" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.Name}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -231,7 +233,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Surname" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.Surname}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -246,7 +248,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Club" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.Club}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -261,7 +263,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Nationality" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.Nationality}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -277,7 +279,7 @@
                             <ColumnDefinition Width="9*"/>
                             <ColumnDefinition Width="25*" />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Date of birth" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.DOB}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center" Grid.ColumnSpan="2"
                                />
@@ -293,7 +295,7 @@
                             <ColumnDefinition Width="16*"/>
                             <ColumnDefinition Width="25*" />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Contract Terminates" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.Contract}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center" Grid.ColumnSpan="2"
                                />
@@ -308,7 +310,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Value" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.Value}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -323,7 +325,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Salary" 
+                        <Label Content="{Binding Source ={x:Static resx:Team.Salary}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -343,7 +345,7 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0"
-                    Content="EXTEND CONTRACT"
+                    Content="{Binding Source ={x:Static resx:Team.Extend}}"
                     Command="{Binding Path=OpenPopUp}"
                     />
 
@@ -385,7 +387,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="Contract Value"
+                            <Label Content="{Binding Source ={x:Static resx:Team.CValue}}"
                                    HorizontalContentAlignment="Center"
                                    VerticalContentAlignment="Center"
                                    Grid.Column="0"
@@ -404,7 +406,7 @@
                 </Popup>
 
                 <Button Grid.Column="1" 
-                        Content="CLEAR"
+                        Content="{Binding Source ={x:Static resx:Team.Clear}}"
                         Command="{Binding Path=Clear}"
                         />
             </Grid>
@@ -434,18 +436,18 @@
                 ItemsSource="{Binding Players}"
                 SelectedItem="{Binding SelectedPlayer}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1*"/>
-                    <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="1*"/>
-                    <DataGridTextColumn Header="Position" Binding="{Binding Position}" Width="1*"/>
-                    <DataGridTextColumn Header="Overall" Binding="{Binding Overall}" Width="1*"/>
-                    <DataGridTextColumn Header="Starting elven" Binding="{Binding CurrPosition}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Team.Name}}" Binding="{Binding Name}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Team.Surname}}" Binding="{Binding Surname}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Team.Position}}" Binding="{Binding Position}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Team.Overall}}" Binding="{Binding Overall}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Team.Starting11}}" Binding="{Binding CurrPosition}" Width="1*"/>
                 </DataGrid.Columns>
 
             </DataGrid>
 
             <Grid Grid.Row="2">
                 <Button Grid.Column="1"
-                        Content="SWAP" 
+                        Content="{Binding Source ={x:Static resx:Team.Swap}}" 
                         Command="{Binding Swap}"
                         />
             </Grid>

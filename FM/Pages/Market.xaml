@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FM.Pages"
       xmlns:mvm="clr-namespace:FM.ViewModel"
+      xmlns:resx="clr-namespace:FM.Pages.Resources"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -45,7 +46,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Content="Name"
+                           Content="{Binding Source ={x:Static resx:Market.Name}}"
                            />
 
                     <TextBox Grid.Column="1"
@@ -60,7 +61,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Content="Surname"
+                           Content="{Binding Source ={x:Static resx:Market.Surname}}"
                            />
 
                     <TextBox Grid.Column="1"
@@ -75,7 +76,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Content="Position"
+                           Content="{Binding Source ={x:Static resx:Market.Position}}"
                            />
 
                     <ComboBox Grid.Column="1"
@@ -91,7 +92,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Content="League"/>
+                           Content="{Binding Source ={x:Static resx:Market.League}}"/>
 
                     <ComboBox Grid.Column="1"
                               ItemsSource="{Binding Path=Leagues}"
@@ -112,7 +113,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Content="Club"/>
+                           Content="{Binding Source ={x:Static resx:Market.Club}}"/>
 
                     <ComboBox Grid.Column="1"
                               ItemsSource="{Binding Path=Clubs}"
@@ -127,7 +128,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Content="Nationality"/>
+                           Content="{Binding Source ={x:Static resx:Market.Nationality}}"/>
 
                     <ComboBox Grid.Column="1" 
                               ItemsSource="{Binding Path=Countries}"
@@ -142,7 +143,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Content="Max Value"/>
+                           Content="{Binding Source ={x:Static resx:Market.MaxValue}}"/>
 
                     <TextBox Grid.Column="1"
                              Text="{Binding Path=MaxValue}"
@@ -157,7 +158,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Content="Max age"/>
+                           Content="{Binding Source ={x:Static resx:Market.MaxAge}}"/>
 
                     <ComboBox Grid.Column="1"
                               ItemsSource="{Binding Path=AgeList}"
@@ -184,10 +185,10 @@
                 ItemsSource="{Binding SearchedPlayers}"
                 SelectedItem="{Binding SelectedPlayer}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1*"/>
-                    <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="1*"/>
-                    <DataGridTextColumn Header="Position" Binding="{Binding Position}" Width="1*"/>
-                    <DataGridTextColumn Header="Overall" Binding="{Binding Overall}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Market.Name}}" Binding="{Binding Name}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Market.Surname}}" Binding="{Binding Surname}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Market.Position}}" Binding="{Binding Position}" Width="1*"/>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Market.Overall}}" Binding="{Binding Overall}" Width="1*"/>
                 </DataGrid.Columns>
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
@@ -240,7 +241,7 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="POTENTIAL" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Content="{Binding Source ={x:Static resx:Market.Potential}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             <Label Grid.Column="1" Content="{Binding Path=PlayerPotential}" />
                         </Grid>
 
@@ -249,7 +250,7 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="DEFENCE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Content="{Binding Source ={x:Static resx:Market.Defence}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             <Label Grid.Column="1" Content="{Binding Path=PlayerDefence}" />
                         </Grid>
 
@@ -258,7 +259,7 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="OFFENCE" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Content="{Binding Source ={x:Static resx:Market.Offence}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             <Label Grid.Column="1" Content="{Binding Path=PlayerOffence}" />
                         </Grid>
 
@@ -267,7 +268,7 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="PASSING" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Content="{Binding Source ={x:Static resx:Market.Passing}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             <Label Grid.Column="1" Content="{Binding Passing}" />
                         </Grid>
 
@@ -276,7 +277,7 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="GOALKEEPING" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <Label Content="{Binding Source ={x:Static resx:Market.Goalkeeping}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                             <Label Grid.Column="1" Content="{Binding Gk}" />
                         </Grid>
 
@@ -302,7 +303,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Name" 
+                        <Label Content="{Binding Source ={x:Static resx:Market.Name}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -317,7 +318,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Surname" 
+                        <Label Content="{Binding Source ={x:Static resx:Market.Surname}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -332,7 +333,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Club" 
+                        <Label Content="{Binding Source ={x:Static resx:Market.Club}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -347,7 +348,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Nationality" 
+                        <Label Content="{Binding Source ={x:Static resx:Market.Nationality}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -363,7 +364,7 @@
                             <ColumnDefinition Width="9*"/>
                             <ColumnDefinition Width="25*" />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Date of birth" 
+                        <Label Content="{Binding Source ={x:Static resx:Market.DOB}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center" Grid.ColumnSpan="2"
                                />
@@ -378,7 +379,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Contract Terminates" 
+                        <Label Content="{Binding Source ={x:Static resx:Market.Contract}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -393,7 +394,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Value" 
+                        <Label Content="{Binding Source ={x:Static resx:Market.Value}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -408,7 +409,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Label Content="Salary" 
+                        <Label Content="{Binding Source ={x:Static resx:Market.Salary}}" 
                                HorizontalContentAlignment="Center"
                                VerticalContentAlignment="Center"
                                />
@@ -433,7 +434,7 @@
                             </Grid.RowDefinitions>
                             <Label
                                 Grid.Row="0"
-                                Content="Transfer Value"
+                                Content="{Binding Source ={x:Static resx:Market.TValue}}"
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"
                                 />
@@ -452,7 +453,7 @@
                                 Grid.Row="0"
                                 HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"
-                                Content="Salary"
+                                Content="{Binding Source ={x:Static resx:Market.Salary}}"
                                 />
                             <TextBox
                                 Grid.Row="1"
@@ -467,7 +468,7 @@
                             </Grid.RowDefinitions>
                             <Label Grid.Row="0"
                                    FontSize="8"
-                                Content="Contract Length YYYY-MM-DD"
+                                Content="{Binding Source ={x:Static resx:Market.CLength}}"
                                 />
                             <TextBox Grid.Row="1"
                                 Text="{Binding Path=TransferContract}"
@@ -475,7 +476,7 @@
                         </Grid>
 
                         <Button Grid.Column="3"
-                            Content="BUY PLAYER"
+                            Content="{Binding Source ={x:Static resx:Market.Buy}}"
                             Command="{Binding Path=PlayerTransfer}"
                             />
                     </Grid>
@@ -493,7 +494,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0" 
-                        Content="CLEAR"
+                        Content="{Binding Source ={x:Static resx:Market.Clear}}"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Command="{Binding Path=ClearFiltres}"
@@ -501,7 +502,7 @@
 
                 <Button Grid.Column="1"
                     
-                    Content="SEARCH"
+                    Content="{Binding Source ={x:Static resx:Market.Search}}"
                     FontSize="25"
                     HorizontalContentAlignment="Center"
                     VerticalContentAlignment="Center"
