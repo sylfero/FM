@@ -25,8 +25,8 @@ namespace FM.DAL.Entity
             Visitor = visitor;
             HostGoals = hostGoals;
             VisitorGoals = visitorGoals;
-            Matchday = matchday;
             League = league;
+            Matchday = League.Equals("Bundesliga") ? matchday - 4 : matchday;
             Date = date;
         }
 
@@ -37,8 +37,8 @@ namespace FM.DAL.Entity
             Visitor = reader["visitor"].ToString();
             HostGoals = Convert.ToInt32(reader["host_goals"] == DBNull.Value ? null : reader["host_goals"].ToString());
             VisitorGoals = Convert.ToInt32(reader["visitor_goals"] == DBNull.Value ? null : reader["visitor_goals"].ToString());
-            Matchday = Convert.ToInt32(reader["matchday"].ToString());
             League = reader["league"].ToString();
+            Matchday = League.Equals("Bundesliga") ? Convert.ToInt32(reader["matchday"].ToString()) - 4 : Convert.ToInt32(reader["matchday"].ToString());
             Date = Convert.ToDateTime(reader["date"].ToString());
         }
     }

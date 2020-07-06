@@ -49,7 +49,8 @@ namespace FM.ViewModel
             get => selectedMatchday;
             set
             {
-                SetProperty(ref selectedMatchday, SelectedLeague.Id == 2 ? value + 4 : value);
+                if(SelectedLeague != null)
+                    SetProperty(ref selectedMatchday, SelectedLeague.Id == 2 ? value + 4 : value);
             }
         }
 

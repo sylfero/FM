@@ -75,8 +75,6 @@ namespace FM.Model
                 connection.Close();
             }
         }
-<<<<<<< HEAD
-=======
 
         public static Dictionary<string, double> GetBotSquad(int id)
         {
@@ -153,6 +151,5 @@ namespace FM.Model
             }
             return squad;
         }
->>>>>>> 1d530f0c28602f836d646a7ce44059498b1f1062
     }
 }

@@ -134,6 +134,7 @@
     <Compile Include="Model\Calculation.cs" />
     <Compile Include="Model\ClubStatus.cs" />
     <Compile Include="Model\Scout.cs" />
+    <Compile Include="Model\Simulation.cs" />
     <Compile Include="Pages\Market.xaml.cs">
       <DependentUpon>Market.xaml</DependentUpon>
     </Compile>
@@ -150,7 +151,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Pages\Resources\Market.Designer.cs" />
     <Compile Include="Pages\Resources\Table.Designer.cs">
       <DependentUpon>Table.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -166,7 +166,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Pages\Resources\Team.Designer.cs" />
+    <Compile Include="Pages\Resources\Market.Designer.cs">
+      <DependentUpon>Market.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Pages\Resources\Team.Designer.cs">
+      <DependentUpon>Team.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ViewModel\BaseClasses\RelayCommand.cs" />
     <Compile Include="ViewModel\BaseClasses\ViewModelBase.cs" />
     <Compile Include="ViewModel\JuniorsViewModel.cs" />
@@ -226,9 +235,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ResourcesDictonaries\Style.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="ResourcesDictionaries\Style.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -274,7 +283,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Juniors.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Resources\Market.resx" />
     <EmbeddedResource Include="Pages\Resources\Table.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Table.Designer.cs</LastGenOutput>
@@ -287,7 +295,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Menu.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Resources\Team.resx" />
+    <EmbeddedResource Include="Pages\Resources\Market.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Market.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Resources\Team.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Team.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -302,10 +317,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="ResourcesDictonaries\Images\stadium.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ResourcesDictonaries\Images\logofm.png" />
+    <Resource Include="ResourcesDictionaries\Images\logofm.png" />
+    <Resource Include="ResourcesDictionaries\Images\stadium.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
