@@ -23,6 +23,9 @@ namespace FM.Model
         public static DateTime SeasonEnd { get; set; }
         public static int Round { get; set; }
         private static string Path;
+        public static int RoundsToJunior { get; set; }
+        public static int Junior { get; set; }
+        public static int JuniorCountry { get; set; }
 
         public static ObservableCollection<Player> ClubFirstSquad {get; set;}
         
@@ -38,6 +41,9 @@ namespace FM.Model
             SeasonStart = Convert.ToDateTime(lines[6]);
             SeasonEnd = Convert.ToDateTime(lines[7]);
             Round = int.Parse(lines[8]);
+            RoundsToJunior = int.Parse(lines[9]);
+            Junior = int.Parse(lines[10]);
+            JuniorCountry = int.Parse(lines[11]);
             Path = path;
         }
 
@@ -50,10 +56,13 @@ namespace FM.Model
                 writer.WriteLine(ClubId);
                 writer.WriteLine(LeagueName);
                 writer.WriteLine(ClubName);
-                writer.WriteLine(CurrentDate);
-                writer.WriteLine(SeasonStart);
-                writer.WriteLine(SeasonEnd);
+                writer.WriteLine(CurrentDate.ToString("yyyy-MM-dd"));
+                writer.WriteLine(SeasonStart.ToString("yyyy-MM-dd"));
+                writer.WriteLine(SeasonEnd.ToString("yyyy-MM-dd"));
                 writer.WriteLine(Round);
+                writer.WriteLine(RoundsToJunior);
+                writer.WriteLine(Junior);
+                writer.WriteLine(JuniorCountry);
             }
         }
     }

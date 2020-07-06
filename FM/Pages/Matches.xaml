@@ -16,6 +16,10 @@
         <vm:ScheduleViewModel/>
     </Page.DataContext>
 
+    <Page.Resources>
+        <vm:IntToString x:Key="converter" />
+    </Page.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -84,6 +88,8 @@
                       IsReadOnly="True"
                       BorderBrush="Transparent"
                       Background="Transparent"
+                      CanUserSortColumns="False"
+                      CanUserResizeRows="False"
                       HorizontalScrollBarVisibility="Hidden"
                       VerticalScrollBarVisibility="Auto"
                       CanUserResizeColumns="False"
@@ -91,8 +97,8 @@
                       ItemsSource="{Binding Path=Schedule}">
                       <DataGrid.Columns>
                         <DataGridTextColumn Header="Host" Binding="{Binding Host}" Width="2*"/>
-                        <DataGridTextColumn Header="Host Goals" Binding="{Binding HostGoals}" Width="1*"/>
-                        <DataGridTextColumn Header="Visitor Goals" Binding="{Binding VisitorGoals}" Width="1*"/>
+                        <DataGridTextColumn Header="Host Goals" Binding="{Binding HostGoals, Converter={StaticResource converter}, Mode=OneWay}" Width="1*"/>
+                        <DataGridTextColumn Header="Visitor Goals" Binding="{Binding VisitorGoals, Converter={StaticResource converter}, Mode=OneWay}" Width="1*"/>
                         <DataGridTextColumn Header="Visitor" Binding="{Binding Visitor}" Width="2*"/>
                         <DataGridTextColumn Header="Matchday" Binding="{Binding Matchday}" Width="1*"/>
                     <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="2*"/>

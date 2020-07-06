@@ -262,7 +262,7 @@ namespace FM.ViewModel
 
         private List<Player> GetPlayersFiltres()
         {
-            string command1 = $"select p.id as id, p.name as name, surname, dateofbirth, n.name as nationality, position, c.name as club, value, salary, contract_terminates, p.overall as overall, offense, defence, potential, pass, gk, isJunior, isRetiring, currPosition from players p, country n, club c, league l where p.club = c.id and p.nationality = n.id and c.league = l.id and p.club != {ClubStatus.ClubId}";
+            string command1 = $"select p.id as id, p.club as clubId, p.name as name, surname, dateofbirth, n.name as nationality, position, c.name as club, value, salary, contract_terminates, p.overall as overall, offense, defence, potential, pass, gk, isJunior, isRetiring, currPosition from players p, country n, club c, league l where p.club = c.id and p.nationality = n.id and c.league = l.id and p.club != {ClubStatus.ClubId}";
             if (name != null)
                 command1 += $" and p.name like \"%{name}%\"";
             if (surname != null)
@@ -535,11 +535,11 @@ namespace FM.ViewModel
 
         #region Transfery
 
-        private string transferValue;
-        private string transferSalary;
+        private int? transferValue;
+        private int? transferSalary;
         private string transferContract;
 
-        public string TransferValue
+        public int? TransferValue
         {
             get => transferValue;
             set
@@ -549,7 +549,7 @@ namespace FM.ViewModel
             }
         }
 
-        public string TransferSalary
+        public int? TransferSalary
         {
             get => transferSalary;
             set
@@ -578,7 +578,7 @@ namespace FM.ViewModel
                 {
                     playerTransfer = new RelayCommand(
                         arg => {
-                            ClubRepo.TransferToClub(SelectedPlayer.Id, SelectedPlayer.Club, Convert.ToInt32(transferValue), Convert.ToInt32(transferSalary), transferContract, selectedPlayer.Value, selectedPlayer.Salary);
+                            ClubRepo.TransferToClub(SelectedPlayer.Id, SelectedPlayer.Club, (int)transferValue, (int)transferSalary, transferContract, selectedPlayer.Value, selectedPlayer.Salary, SelectedPlayer.Position, SelectedPlayer.ClubId);
                             SearchedPlayers = GetPlayersFiltres();
                             Visibility = System.Windows.Visibility.Hidden;
                             SelectedPlayer = null;
@@ -586,7 +586,7 @@ namespace FM.ViewModel
                             TransferSalary = null;
                             TransferValue = null;
                         },
-                        arg => TransferContract != null && TransferSalary != null && TransferValue != null
+                        arg => TransferContract != null && TransferSalary != null && TransferValue != null && TransferValue <= ClubRepo.GetBudget(ClubStatus.ClubId) && TransferSalary <= ClubRepo.GetSalary(ClubStatus.ClubId)
                         );
                 }
 

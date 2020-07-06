@@ -74,7 +74,7 @@ namespace FM.ViewModel
             {
                 if (send == null)
                 {
-                    send = new RelayCommand(x => { Scout.Send((int)SelectedNumber, CurrentCountry); Players = PlayerRepo.GetJuniors(); },x => SelectedNumber != null && CurrentCountry != null );
+                    send = new RelayCommand(x => { ClubStatus.RoundsToJunior = 4; ClubStatus.Junior = (int)SelectedNumber; ClubStatus.JuniorCountry = CurrentCountry.Id; } ,x => SelectedNumber != null && CurrentCountry != null && ClubStatus.RoundsToJunior == -1);
                 }
                 return send;
             }

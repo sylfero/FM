@@ -433,7 +433,7 @@
                                 />
                             <TextBox
                                 Grid.Row="1"
-                                Text="{Binding Path=TransferValue}"
+                                Text="{Binding Path=TransferValue, UpdateSourceTrigger=PropertyChanged}"
                                 />
                         </Grid>
 
@@ -449,7 +449,7 @@
                                 />
                             <TextBox
                                 Grid.Row="1"
-                                Text="{Binding Path=TransferSalary}"
+                                Text="{Binding Path=TransferSalary, UpdateSourceTrigger=PropertyChanged}"
                                 />
                         </Grid>
 
@@ -464,7 +464,7 @@
                                 Content="{Binding Source ={x:Static resx:Market.CLength}}"
                                 />
                             <TextBox Grid.Row="1"
-                                Text="{Binding Path=TransferContract}"
+                                Text="{Binding Path=TransferContract, UpdateSourceTrigger=PropertyChanged}"
                                 />
                         </Grid>
 

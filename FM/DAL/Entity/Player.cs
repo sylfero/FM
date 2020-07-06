@@ -30,6 +30,7 @@ namespace FM.DAL.Entity
         public bool IsRetiring { get; set; }
         public int Age { get; set; }
         public string CurrPosition { get; set; }
+        public int ClubId { get; set; }
 
 
         public Player() { }
@@ -41,6 +42,7 @@ namespace FM.DAL.Entity
             Surname = reader["surname"].ToString();
             DateOfBirth = Convert.ToDateTime(reader["dateofbirth"].ToString());
             Nationality = reader["nationality"].ToString();
+            ClubId = int.Parse(reader["clubId"].ToString());
             Club = reader["club"].ToString();
             ContractTerminates = Convert.ToDateTime(reader["contract_terminates"].ToString());
             Offense = Convert.ToInt32(reader["offense"].ToString());

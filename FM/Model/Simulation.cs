@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FM.Model
@@ -13,6 +14,18 @@ namespace FM.Model
         {
             SimulateRound(ClubStatus.Round);
             ClubStatus.Round++;
+            if (ClubStatus.Round < 39)
+                ClubStatus.CurrentDate = Convert.ToDateTime(ScheduleRepo.GetDate(ClubStatus.Round));
+            else
+                ClubStatus.CurrentDate = ClubStatus.SeasonEnd;
+
+            if (ClubStatus.RoundsToJunior == 0)
+            {
+                Scout.Send(ClubStatus.Junior, CountryRepo.GetCountry(ClubStatus.JuniorCountry));
+                ClubStatus.RoundsToJunior--;
+            }
+            else if (ClubStatus.RoundsToJunior > 0)
+                ClubStatus.RoundsToJunior--;
             ClubStatus.SerializeSave();
         }
 

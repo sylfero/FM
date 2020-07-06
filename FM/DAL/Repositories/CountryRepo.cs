@@ -45,5 +45,20 @@ namespace FM.DAL.Repositories
 
             return countries;
         }
+
+        public static Country GetCountry(int id)
+        {
+            Country country;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"SELECT * FROM country where id = {id}", connection);
+                connection.Open();
+                var reader = command.ExecuteReader();
+                reader.Read();
+                country = new Country(reader);
+                connection.Close();
+            }
+            return country;
+        }
     }
 }

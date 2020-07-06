@@ -109,6 +109,9 @@ namespace FM.Model
                 {
                     squad.Add("gk", double.Parse(reader["gk"].ToString()));
                 }
+                command.Cancel();
+                command.Dispose();
+                reader.Close();
                 connection.Close();
             }
             return squad;
@@ -147,6 +150,9 @@ namespace FM.Model
                 {
                     squad.Add("gk", double.Parse(reader["gk"].ToString()));
                 }
+                command.Cancel();
+                command.Dispose();
+                reader.Close();
                 connection.Close();
             }
             return squad;

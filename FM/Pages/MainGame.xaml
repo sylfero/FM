@@ -93,5 +93,58 @@
                 </Grid>
             </Grid>
         </Grid>
+
+        <Popup IsOpen="{Binding ScorePop}" Width="600" Height="600" PopupAnimation="Fade" Placement="Center">
+            <Grid Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Content="{Binding Host}"/>
+
+                    <Label Grid.Column="2" Content="-"/>
+
+                    <Label Grid.Column="4"  Content="{Binding Visitor}"/>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0" Content="{Binding HostGoals}"/>
+
+                    <Label Grid.Column="2" Content=":"/>
+
+                    <Label Grid.Column="4" Content="{Binding VisitorGoals}"/>
+                </Grid>
+                
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="1" Content="{Binding Source ={x:Static resx:MainGame.Ok}}" Command="{Binding ClosePop}"/>
+
+                </Grid>
+            </Grid>
+        </Popup>
     </Grid>
 </Page>

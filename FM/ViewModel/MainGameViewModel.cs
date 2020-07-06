@@ -1,9 +1,12 @@
-﻿using FM.Model;
+﻿using FM.DAL.Entity;
+using FM.DAL.Repositories;
+using FM.Model;
 using FM.ViewModel.BaseClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -13,6 +16,48 @@ namespace FM.ViewModel
     class MainGameViewModel : ViewModelBase
     {
         private MainViewModel mainViewModel = new MainViewModel();
+
+        private bool scorePop;
+        public bool ScorePop
+        {
+            get => scorePop;
+            set => SetProperty(ref scorePop, value);
+        }
+
+        private bool seasonEnd;
+        public bool SeasonEnd
+        {
+            get => seasonEnd;
+            set => SetProperty(ref seasonEnd, value);
+        }
+
+        private string host;
+        public string Host
+        {
+            get => host;
+            set => SetProperty(ref host, value);
+        }
+
+        private string visitor;
+        public string Visitor
+        {
+            get => visitor;
+            set => SetProperty(ref visitor, value);
+        }
+
+        private int hostGoals;
+        public int HostGoals
+        {
+            get => hostGoals;
+            set => SetProperty(ref hostGoals, value);
+        }
+
+        private int visitorGoals;
+        public int VisitorGoals
+        {
+            get => visitorGoals;
+            set => SetProperty(ref visitorGoals, value);
+        }
 
         private ICommand team;
         public ICommand Team
@@ -99,9 +144,44 @@ namespace FM.ViewModel
             {
                 if (play == null)
                 {
-                    play = new RelayCommand(x => Simulation.Simulate());
+                    play = new RelayCommand(x =>
+                    {
+                        Simulation.Simulate();
+                        (string, string, int, int) score = ScheduleRepo.GetScore(ClubStatus.ClubId, ClubStatus.Round - 1);
+                        Host = score.Item1;
+                        Visitor = score.Item2;
+                        HostGoals = score.Item3;
+                        VisitorGoals = score.Item4;
+                        ScorePop = true;
+                    }, x => ClubStatus.Round < 39);
                 }
                 return play;
+            }
+        }
+
+        private ICommand closePop;
+        public ICommand ClosePop
+        {
+            get
+            {
+                if (closePop == null)
+                {
+                    closePop = new RelayCommand(x => ScorePop = false);
+                }
+                return closePop;
+            }
+        }
+
+        private ICommand nextSeason;
+        public ICommand NextSeason
+        {
+            get
+            {
+                if (nextSeason == null)
+                {
+                    nextSeason = new RelayCommand(x => { });
+                }
+                return nextSeason;
             }
         }
     }
