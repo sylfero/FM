@@ -166,12 +166,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-	<Compile Include="Pages\Resources\Market.Designer.cs">
+	  <Compile Include="Pages\Resources\Market.Designer.cs">
       <DependentUpon>Market.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-	<Compile Include="Pages\Resources\Team.Designer.cs">
+    <Compile Include="Pages\Resources\Team.Designer.cs">
       <DependentUpon>Team.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -235,6 +235,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ResourcesDictionaries\Style.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\Juniors.xaml.cs">
@@ -291,11 +295,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Menu.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-	<EmbeddedResource Include="Pages\Resources\Market.resx">
+    <EmbeddedResource Include="Pages\Resources\Market.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Market.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-	<EmbeddedResource Include="Pages\Resources\Team.resx">
+    <EmbeddedResource Include="Pages\Resources\Team.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Team.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -311,6 +315,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ResourcesDictionaries\Images\logofm.png" />
+    <Resource Include="ResourcesDictionaries\Images\stadium.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

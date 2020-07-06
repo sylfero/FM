@@ -9,7 +9,9 @@
       xmlns:local="clr-namespace:FM.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Team">
+      Title="Team"
+      Style="{StaticResource BackgroundImage}"
+      >
 
     <Page.DataContext>
         <vm:TeamViewModel/>
@@ -24,7 +26,7 @@
 
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.65*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="3* "/>
@@ -32,15 +34,16 @@
                 <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Style="{StaticResource GridStyle}">
                 <Label 
                        Content="{Binding Path=CurrentClub.Name}"
                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                        Style="{StaticResource LabelStyle}"
                        />
 
             </Grid>
 
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="2" Style="{StaticResource GridStyle}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -48,17 +51,17 @@
 
                 <Label Grid.Column="0"
                        Content="{Binding Source ={x:Static resx:Team.Manager}}"
-                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       Style="{StaticResource LabelStyle}"
                        />
 
                 <Label Grid.Column="1"
                        Content="{Binding Path=CurrentClub.Coach}"
-                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       Style="{StaticResource LabelStyle}"
                        />
 
             </Grid>
 
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="3" Style="{StaticResource GridStyle}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -66,16 +69,16 @@
 
                 <Label Grid.Column="0"
                        Content="{Binding Source ={x:Static resx:Team.Overall}}"
-                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       Style="{StaticResource LabelStyle}"
                        />
                 <Label Grid.Column="1"
                        Content="{Binding Path=CurrentClub.Overall}"
-                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       Style="{StaticResource LabelStyle}"
                        />
 
             </Grid>
 
-            <Grid Grid.Row="4">
+            <Grid Grid.Row="4" Style="{StaticResource GridStyle}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -83,17 +86,18 @@
 
                 <Label Grid.Column="0"
                        Content="{Binding Source ={x:Static resx:Team.CBudget}}"
-                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       Style="{StaticResource LabelStyle}"
+                       FontSize="10"
                        />
 
                 <Label Grid.Column="1"
                        Content="{Binding Path=CurrentClub.Budget}"
-                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       Style="{StaticResource LabelStyle}"
                        />
 
             </Grid>
 
-            <Grid Grid.Row="5">
+            <Grid Grid.Row="5" Style="{StaticResource GridStyle}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
@@ -101,12 +105,13 @@
 
                 <Label Grid.Column="0"
                        Content="{Binding Source ={x:Static resx:Team.CSBudget}}"
-                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       Style="{StaticResource LabelStyle}"
+                       FontSize="6"
                        />
 
                 <Label Grid.Column="1"
                        Content="{Binding Path=CurrentClub.SalaryBudget}"
-                       HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                       Style="{StaticResource LabelStyle}"
                        />
 
             </Grid>
@@ -121,7 +126,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1"          
+            <Grid Grid.Row="1"   
+                  Style="{StaticResource GridStyle}"
                   Visibility="{Binding Path=Visibility}"
                   >
                 <Grid.RowDefinitions>
@@ -131,18 +137,20 @@
 
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="60*"/>
+                        <ColumnDefinition Width="127*"/>
+                        <ColumnDefinition Width="13*"/>
                     </Grid.ColumnDefinitions>
 
                     <Label 
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
-                        FontSize="40"
                         Content="{Binding Path=SelectedPlayer.Overall}"
-                        Background="{Binding Path=BkgColor}"
+                        Style="{StaticResource LabelStyle}"
+                        Foreground="{Binding Path=BkgColor}"
+                        FontSize="55" Height="150" FontWeight="Bold"
                         />
-                    <Grid Grid.Column="1">
+                    <Grid Grid.Column="1" Grid.ColumnSpan="2">
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition />
@@ -157,8 +165,9 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <Label Content="{Binding Source ={x:Static resx:Team.Potential}}" 
-                                   HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Potential}" />
+                                   Style="{StaticResource LabelStyle}"/>
+                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Potential}"
+                                   Style="{StaticResource LabelStyle}"/>
                         </Grid>
 
                         <Grid Grid.Row="1">
@@ -166,8 +175,12 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="{Binding Source ={x:Static resx:Team.Deffence}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Defence}" />
+                            <Label Content="{Binding Source ={x:Static resx:Team.Deffence}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                   Style="{StaticResource LabelStyle}"
+                                   />
+                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Defence}" 
+                                   Style="{StaticResource LabelStyle}"
+                                   />
                         </Grid>
 
                         <Grid Grid.Row="2">
@@ -175,8 +188,8 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="{Binding Source ={x:Static resx:Team.Offence}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Offense}" />
+                            <Label Content="{Binding Source ={x:Static resx:Team.Offence}}" Style="{StaticResource LabelStyle}"/>
+                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Offense}" Style="{StaticResource LabelStyle}"/>
                         </Grid>
 
                         <Grid Grid.Row="3">
@@ -184,8 +197,8 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="{Binding Source ={x:Static resx:Team.Passing}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Passing}" />
+                            <Label Content="{Binding Source ={x:Static resx:Team.Passing}}" Style="{StaticResource LabelStyle}"/>
+                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Passing}" Style="{StaticResource LabelStyle}"/>
                         </Grid>
 
                         <Grid Grid.Row="4">
@@ -193,8 +206,8 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="{Binding Source ={x:Static resx:Team.Goalkeeping}}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Gk}" />
+                            <Label Content="{Binding Source ={x:Static resx:Team.Goalkeeping}}" Style="{StaticResource LabelStyle}"/>
+                            <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Gk}" Style="{StaticResource LabelStyle}"/>
                         </Grid>
 
                     </Grid>
@@ -219,12 +232,10 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Team.Name}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Name}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
@@ -234,12 +245,10 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Team.Surname}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Surname}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
@@ -249,12 +258,10 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Team.Club}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Club}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
@@ -264,12 +271,10 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Team.Nationality}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Nationality}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
@@ -280,28 +285,23 @@
                             <ColumnDefinition Width="25*" />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Team.DOB}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center" Grid.ColumnSpan="2"
+                               Style="{StaticResource LabelStyle}" Grid.ColumnSpan="2"
                                />
                         <Label Grid.Column="2" Content="{Binding Path=SelectedPlayer.DateOfBirth}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
                     <Grid Grid.Row="5">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="9*" />
-                            <ColumnDefinition Width="16*"/>
+                            <ColumnDefinition Width="25*" />
                             <ColumnDefinition Width="25*" />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Team.Contract}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center" Grid.ColumnSpan="2"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="2" Content="{Binding Path=SelectedPlayer.ContractTerminates}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
@@ -311,12 +311,10 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Team.Value}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Value}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
 
@@ -326,12 +324,10 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Source ={x:Static resx:Team.Salary}}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                         <Label Grid.Column="1" Content="{Binding Path=SelectedPlayer.Salary}" 
-                               HorizontalContentAlignment="Center"
-                               VerticalContentAlignment="Center"
+                               Style="{StaticResource LabelStyle}"
                                />
                     </Grid>
                 </Grid>
@@ -347,10 +343,11 @@
                 <Button Grid.Column="0"
                     Content="{Binding Source ={x:Static resx:Team.Extend}}"
                     Command="{Binding Path=OpenPopUp}"
+                    Style="{StaticResource ButtonStyle3}"
                     />
 
                 <Popup IsOpen="{Binding Path=IsOpen}"
-                       Width="200" Height="200"
+                       Width="350" Height="200"
                        PopupAnimation="Slide" Placement="Center"
                 >
                     <Grid
@@ -400,6 +397,7 @@
                         <Button Grid.Row="2"
                                 Content="NEGOTIATE CONTRACT"
                                 Command="{Binding Path=NewContract}"
+                                Style="{StaticResource ButtonStyle3}"
                                 />
 
                     </Grid>
@@ -408,6 +406,7 @@
                 <Button Grid.Column="1" 
                         Content="{Binding Source ={x:Static resx:Team.Clear}}"
                         Command="{Binding Path=Clear}"
+                        Style="{StaticResource ButtonStyle3}"
                         />
             </Grid>
         </Grid>
@@ -449,6 +448,7 @@
                 <Button Grid.Column="1"
                         Content="{Binding Source ={x:Static resx:Team.Swap}}" 
                         Command="{Binding Swap}"
+                        Style="{StaticResource ButtonStyle3}"
                         />
             </Grid>
         </Grid>
