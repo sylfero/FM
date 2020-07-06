@@ -10,9 +10,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Matches">
 
-    <Page.Resources>
-        <vm:ScheduleViewModel x:Key="scheduleViewModel" />
-    </Page.Resources>
+    <Page.DataContext>
+        <vm:ScheduleViewModel/>
+    </Page.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -39,31 +39,36 @@
 
                 <ComboBox Grid.Column="0"
                           Margin="10 0 10 0"
-                          ItemsSource="{Binding Source={StaticResource scheduleViewModel}, Path=Leagues}"
-                          SelectedValue="{Binding Source={StaticResource scheduleViewModel}, Path=SelectedLeague}"
+                          ItemsSource="{Binding Path=Leagues}"
+                          SelectedValue="{Binding Path=SelectedLeague}"
                 >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding Source={StaticResource scheduleViewModel}, Path=LeagueChanged}"/>
+                            <i:InvokeCommandAction Command="{Binding Path=LeagueChanged}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
                 <ComboBox Grid.Column="1" 
                           Margin="10 0 10 0"
-                          Visibility="{Binding Source={StaticResource scheduleViewModel}, Path=Visibility}"
-                          ItemsSource="{Binding Source={StaticResource scheduleViewModel}, Path=MatchdayNumber}"
-                          SelectedValue="{Binding Source={StaticResource scheduleViewModel}, Path=SelectedMatchday}"
+                          Visibility="{Binding Path=Visibility}"
+                          ItemsSource="{Binding Path=MatchdayNumber}"
+                          SelectedValue="{Binding Path=SelectedMatchday}"
                 >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
-                            <i:InvokeCommandAction Command="{Binding Source={StaticResource scheduleViewModel}, Path=MatchdayChanged}"/>
+                            <i:InvokeCommandAction Command="{Binding Path=MatchdayChanged}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ComboBox>
                 <Button Grid.Column="2" 
                         Margin="10 0 10 0"
                         Content="CLEAR"
-                        Command="{Binding Source={StaticResource scheduleViewModel}, Path=Clear}"
+                        Command="{Binding Path=Clear}"
                         />
             </Grid>
             
@@ -78,8 +83,9 @@
                       Background="Transparent"
                       HorizontalScrollBarVisibility="Hidden"
                       VerticalScrollBarVisibility="Auto"
+                      CanUserResizeColumns="False"
                       RowHeaderWidth="0"
-                      ItemsSource="{Binding Source={StaticResource scheduleViewModel}, Path=Schedule}">
+                      ItemsSource="{Binding Path=Schedule}">
                       <DataGrid.Columns>
                         <DataGridTextColumn Header="Host" Binding="{Binding Host}" Width="2*"/>
                         <DataGridTextColumn Header="Host Goals" Binding="{Binding HostGoals}" Width="1*"/>

@@ -13,7 +13,7 @@
     <Page.DataContext>
         <vm:TableViewModel/>
     </Page.DataContext>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25*"/>
@@ -56,21 +56,85 @@
                         IsReadOnly="True"
                 BorderBrush="Transparent"
                 Background="Transparent"
-                IsHitTestVisible="False"
+                CanUserResizeColumns="False"
+                CanUserResizeRows="False"
+                CanUserSortColumns="False"
                 HorizontalScrollBarVisibility="Hidden"
                 VerticalScrollBarVisibility="Hidden"
                 RowHeaderWidth="0"
+                HorizontalContentAlignment="Center"
                 ItemsSource="{Binding Clubs}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Club}}" Binding="{Binding Name}" Width="4*"/>
-                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Played}}" Binding="{Binding Played}" Width="1*"/>
-                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Won}}" Binding="{Binding Wins}" Width="1*"/>
-                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Drawn}}" Binding="{Binding Draws}" Width="1*"/>
-                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Lost}}" Binding="{Binding Lost}" Width="1*"/>
-                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.GoalS}}" Binding="{Binding ScoredGoals}" Width="1*"/>
-                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.GoalL}}" Binding="{Binding LostGoals}" Width="1*"/>
-                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Balance}}" Binding="{Binding Balance}" Width="1*"/>
-                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Points}}" Binding="{Binding Points}" Width="1*"/>
+                    <DataGridTextColumn Binding="{Binding Position}" Width="4*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Club}}" Binding="{Binding Name}" Width="35*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                 <Setter Property="HorizontalAlignment" Value="Left" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Played}}" Binding="{Binding Played}" Width="10*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Won}}" Binding="{Binding Wins}" Width="10*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Drawn}}" Binding="{Binding Draws}" Width="10*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Lost}}" Binding="{Binding Lost}" Width="10*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.GoalS}}" Binding="{Binding ScoredGoals}" Width="10*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.GoalL}}" Binding="{Binding LostGoals}" Width="10*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Balance}}" Binding="{Binding Balance}" Width="10*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="{Binding Source ={x:Static resx:Table.Points}}" Binding="{Binding Points}" Width="10*">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
 
             </DataGrid>

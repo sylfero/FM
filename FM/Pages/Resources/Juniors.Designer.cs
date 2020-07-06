@@ -22,14 +22,14 @@ namespace FM.Pages.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MainGame {
+    public class Juniors {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainGame() {
+        internal Juniors() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace FM.Pages.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FM.Pages.Resources.MainGame", typeof(MainGame).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FM.Pages.Resources.Juniors", typeof(Juniors).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,92 @@ namespace FM.Pages.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exit.
+        ///   Looks up a localized string similar to Age.
         /// </summary>
-        public static string Exit {
+        public static string Age {
             get {
-                return ResourceManager.GetString("Exit", resourceCulture);
+                return ResourceManager.GetString("Age", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Juniors.
+        ///   Looks up a localized string similar to Contract player.
         /// </summary>
-        public static string Juniors {
+        public static string Contract {
             get {
-                return ResourceManager.GetString("Juniors", resourceCulture);
+                return ResourceManager.GetString("Contract", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Next Game.
+        ///   Looks up a localized string similar to Country.
         /// </summary>
-        public static string Play {
+        public static string Country {
             get {
-                return ResourceManager.GetString("Play", resourceCulture);
+                return ResourceManager.GetString("Country", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Schedule.
+        ///   Looks up a localized string similar to Name.
         /// </summary>
-        public static string Schedule {
+        public static string Name {
             get {
-                return ResourceManager.GetString("Schedule", resourceCulture);
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tables.
+        ///   Looks up a localized string similar to Juniors to find.
         /// </summary>
-        public static string Tables {
+        public static string Number {
             get {
-                return ResourceManager.GetString("Tables", resourceCulture);
+                return ResourceManager.GetString("Number", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Team.
+        ///   Looks up a localized string similar to Overall.
         /// </summary>
-        public static string Team {
+        public static string Overall {
             get {
-                return ResourceManager.GetString("Team", resourceCulture);
+                return ResourceManager.GetString("Overall", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Transfers.
+        ///   Looks up a localized string similar to Position.
         /// </summary>
-        public static string Transfers {
+        public static string Position {
             get {
-                return ResourceManager.GetString("Transfers", resourceCulture);
+                return ResourceManager.GetString("Position", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price.
+        /// </summary>
+        public static string Price {
+            get {
+                return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send scout.
+        /// </summary>
+        public static string Send {
+            get {
+                return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surname.
+        /// </summary>
+        public static string Surname {
+            get {
+                return ResourceManager.GetString("Surname", resourceCulture);
             }
         }
     }

@@ -19,6 +19,7 @@ namespace FM.DAL.Entity
         public int Lost { get; set; }
         public int Draws { get; set; }
         public int Balance { get; set; }
+        public string Position { get; set; }
 
         public LeagueTable(SQLiteDataReader reader)
         {

@@ -131,7 +131,10 @@
     <Compile Include="DAL\Repositories\LeagueTableRepo.cs" />
     <Compile Include="DAL\Repositories\PlayerRepo.cs" />
     <Compile Include="DAL\Repositories\ScheduleRepo.cs" />
+    <Compile Include="Model\Calculation.cs" />
     <Compile Include="Model\ClubStatus.cs" />
+    <Compile Include="Model\Scout.cs" />
+    <Compile Include="Model\Simulation.cs" />
     <Compile Include="Pages\Market.xaml.cs">
       <DependentUpon>Market.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,11 @@
     </Compile>
     <Compile Include="Pages\Resources\MainGame.Designer.cs">
       <DependentUpon>MainGame.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Pages\Resources\Juniors.Designer.cs">
+      <DependentUpon>Juniors.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -160,12 +168,15 @@
     </Compile>
     <Compile Include="ViewModel\BaseClasses\RelayCommand.cs" />
     <Compile Include="ViewModel\BaseClasses\ViewModelBase.cs" />
+    <Compile Include="ViewModel\JuniorsViewModel.cs" />
     <Compile Include="ViewModel\MainGameViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MarketViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\SaveViewModel.cs" />
+    <Compile Include="ViewModel\ScheduleViewModel.cs" />
     <Compile Include="ViewModel\TableViewModel.cs" />
+    <Compile Include="ViewModel\TeamViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -198,10 +209,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Messages.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\Options.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -228,9 +235,6 @@
     </Compile>
     <Compile Include="Pages\Matches.xaml.cs">
       <DependentUpon>Matches.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Messages.xaml.cs">
-      <DependentUpon>Messages.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Options.xaml.cs">
       <DependentUpon>Options.xaml</DependentUpon>
@@ -260,6 +264,10 @@
     <EmbeddedResource Include="Pages\Resources\MainGame.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MainGame.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Resources\Juniors.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Juniors.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Resources\Table.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
