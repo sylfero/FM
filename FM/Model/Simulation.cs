@@ -25,7 +25,8 @@ namespace FM.Model
 
             if (ClubStatus.RoundsToJunior == 0)
             {
-                Scout.Send(ClubStatus.Junior, CountryRepo.GetCountry(ClubStatus.JuniorCountry));
+                var country = CountryRepo.GetCountry(ClubStatus.JuniorCountry);
+                Scout.Send(ClubStatus.Junior, country);
                 ClubStatus.RoundsToJunior--;
             }
             else if (ClubStatus.RoundsToJunior > 0)

@@ -114,17 +114,21 @@ namespace FM.DAL.Repositories
             {
                 SQLiteCommand command = new SQLiteCommand($"select budget, salaryBudget from club where id = \"{ClubStatus.ClubId}\"", connection);
                 connection.Open();
-                var reader = command.ExecuteReader();
                 double clubBudget = 0;
                 double clubSalaryBudget = 0;
-                while(reader.Read())
+                using (var reader = command.ExecuteReader())
                 {
-                    clubBudget = Convert.ToDouble(reader["budget"].ToString());
-                    clubSalaryBudget = Convert.ToDouble(reader["salaryBudget"].ToString());
+                    
+                    while (reader.Read())
+                    {
+                        clubBudget = Convert.ToDouble(reader["budget"].ToString());
+                        clubSalaryBudget = Convert.ToDouble(reader["salaryBudget"].ToString());
+                    }
+                    reader.Close();
                 }
-                reader.Close();
 
-                if (transferCost <= clubBudget && playerSalary <= clubSalaryBudget && PositionCheck(id, position)) 
+                var pos = PositionCheck(id, position);
+                if (transferCost <= clubBudget && playerSalary <= clubSalaryBudget && pos) 
                 { 
                     var r = new Random();
                     int szansa = r.Next(1, 100);
@@ -197,10 +201,13 @@ namespace FM.DAL.Repositories
             {
                 SQLiteCommand command = new SQLiteCommand($"select budget from club where id = {id}", connection);
                 connection.Open();
-                var reader = command.ExecuteReader();
-                reader.Read();
-                budget = int.Parse(reader["budget"].ToString());
-                connection.Close();
+                using (var reader = command.ExecuteReader())
+                {
+                    reader.Read();
+                    budget = int.Parse(reader["budget"].ToString());
+                    reader.Close();
+                    connection.Close();
+                }
             }
 
             return budget;
@@ -213,10 +220,12 @@ namespace FM.DAL.Repositories
             {
                 SQLiteCommand command = new SQLiteCommand($"select salaryBudget from club where id = {id}", connection);
                 connection.Open();
-                var reader = command.ExecuteReader();
-                reader.Read();
-                budget = int.Parse(reader["salaryBudget"].ToString());
-                connection.Close();
+                using (var reader = command.ExecuteReader())
+                { reader.Read();
+                    budget = int.Parse(reader["salaryBudget"].ToString());
+                    reader.Close();
+                    connection.Close();
+                }
             }
 
             return budget;
@@ -229,10 +238,13 @@ namespace FM.DAL.Repositories
             {
                 SQLiteCommand command = new SQLiteCommand($"select count(position) as count from players where club = {id} and position = \"{position}\"", connection);
                 connection.Open();
-                var reader = command.ExecuteReader();
-                reader.Read();
-                count = int.Parse(reader["count"].ToString());
-                connection.Close();
+                using (var reader = command.ExecuteReader())
+                {
+                    reader.Read();
+                    count = int.Parse(reader["count"].ToString());
+                    reader.Close();
+                    connection.Close();
+                }
             }
 
             if (position.Equals("Midfielder") && count >= 3)

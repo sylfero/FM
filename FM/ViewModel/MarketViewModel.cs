@@ -290,12 +290,16 @@ namespace FM.ViewModel
             {
                 SQLiteCommand command = new SQLiteCommand(command1, connection);
                 connection.Open();
-                var reader = command.ExecuteReader();
-                while (reader.Read())
+                using (var reader = command.ExecuteReader())
                 {
-                    players.Add(new Player(reader));
+                    while (reader.Read())
+                    {
+                        players.Add(new Player(reader));
+                    }
+                    reader.Close();
+                    connection.Close();
+                    
                 }
-                connection.Close();
             }
 
             return players;
@@ -582,7 +586,7 @@ namespace FM.ViewModel
                 {
                     playerTransfer = new RelayCommand(
                         arg => {
-                            ClubRepo.TransferToClub(SelectedPlayer.Id, SelectedPlayer.Club, (int)transferValue, (int)transferSalary, transferContract, selectedPlayer.Value, selectedPlayer.Salary, SelectedPlayer.Position, SelectedPlayer.ClubId);
+                            ClubRepo.TransferToClub(SelectedPlayer.Id, SelectedPlayer.Club, Convert.ToInt32(transferValue), Convert.ToInt32(transferSalary), transferContract, selectedPlayer.Value, selectedPlayer.Salary, SelectedPlayer.Position, SelectedPlayer.ClubId);
                             SearchedPlayers = GetPlayersFiltres();
                             Visibility = System.Windows.Visibility.Hidden;
                             SelectedPlayer = null;
@@ -590,7 +594,9 @@ namespace FM.ViewModel
                             TransferSalary = null;
                             TransferValue = null;
                         },
-                        arg => TransferContract != null && TransferSalary != null && TransferValue != null && TransferValue <= ClubRepo.GetBudget(ClubStatus.ClubId) && TransferSalary <= ClubRepo.GetSalary(ClubStatus.ClubId)
+                        arg => {
+                            var check = TransferValue <= ClubRepo.GetBudget(ClubStatus.ClubId) && TransferSalary <= ClubRepo.GetSalary(ClubStatus.ClubId);
+                            return (TransferContract != null && TransferSalary != null && TransferValue != null && check); /*&& TransferValue <= ClubRepo.GetBudget(ClubStatus.ClubId) && TransferSalary <= ClubRepo.GetSalary(ClubStatus.ClubId)*/}
                         );
                 }
 
