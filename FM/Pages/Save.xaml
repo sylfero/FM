@@ -25,16 +25,17 @@
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
 
             <ListBox Grid.Row="1" ItemsSource="{Binding Saves}" SelectedItem="{Binding CurrentSave}"
-                    Style="{StaticResource ListBoxStyle}"
-            />
+                    Style="{StaticResource ListBoxStyle}" ItemContainerStyle="{StaticResource ListBoxItemStyle}"
+            >
+            </ListBox>
 
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
@@ -59,7 +60,7 @@
             </Grid>
         </Grid>
         
-        <Popup IsOpen="{Binding RemovePop}" Width="100" Height="100" PopupAnimation="Fade" Placement="Center">
+        <Popup IsOpen="{Binding RemovePop}" Width="300" Height="150" PopupAnimation="Fade" Placement="Center">
             <Grid Background="White">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -88,8 +89,8 @@
             </Grid>
         </Popup>
 
-        <Popup IsOpen="{Binding AddPop}" Width="200" Height="300" PopupAnimation="Scroll" Placement="Center">
-            <Grid Background="White">
+        <Popup IsOpen="{Binding AddPop}" Width="400" Height="200" PopupAnimation="Scroll" Placement="Center">
+            <Grid Background="LightGray" >
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -103,10 +104,10 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    
-                    <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Save.League}}"/>
 
-                    <ComboBox Grid.Column="1" ItemsSource="{Binding Leagues}" SelectedItem="{Binding CurrentLeague}">
+                    <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Save.League}}" VerticalContentAlignment="Center" BorderThickness="0 0 0 1" BorderBrush="Black"/>
+
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding Leagues}" SelectedItem="{Binding CurrentLeague}" VerticalContentAlignment="Center">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}"/>
@@ -121,9 +122,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Save.Team}}"/>
+                    <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Save.Team}}" VerticalContentAlignment="Center" BorderThickness="0 0 0 1" BorderBrush="Black"/>
 
-                    <ComboBox Grid.Column="1" ItemsSource="{Binding Clubs}" SelectedItem="{Binding CurrentClub}">
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding Clubs}" SelectedItem="{Binding CurrentClub}" VerticalContentAlignment="Center">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}"/>
@@ -138,9 +139,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Save.Manager}}"/>
+                    <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Save.Manager}}" VerticalContentAlignment="Center" BorderThickness="0 0 0 1" BorderBrush="Black"/>
 
-                    <TextBox Grid.Column="1" Text="{Binding Manager, UpdateSourceTrigger=PropertyChanged}" MaxLength="50"/>
+                    <TextBox Grid.Column="1" Text="{Binding Manager, UpdateSourceTrigger=PropertyChanged}" MaxLength="50" VerticalContentAlignment="Center"/>
                 </Grid>
 
                 <Grid Grid.Row="3">
@@ -149,9 +150,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Save.Name}}"/>
+                    <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Save.Name}}" VerticalContentAlignment="Center" BorderThickness="0 0 0 1" BorderBrush="Black"/>
 
-                    <TextBox Grid.Column="1" Text="{Binding NewSave, UpdateSourceTrigger=PropertyChanged}" MaxLength="15"/>
+                    <TextBox Grid.Column="1" Text="{Binding NewSave, UpdateSourceTrigger=PropertyChanged}" MaxLength="15" VerticalContentAlignment="Center"/>
                 </Grid>
 
                 <Grid Grid.Row="4">
@@ -161,7 +162,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="1" Content="{Binding Source ={x:Static resx:Save.Ok}}" Command="{Binding ConfirmAdd}"/>
+                    <Button Grid.Column="1" Content="{Binding Source ={x:Static resx:Save.Ok}}" Command="{Binding ConfirmAdd}" Style="{StaticResource ButtonStyle2}"/>
                 </Grid>
             </Grid>
         </Popup>

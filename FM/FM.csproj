@@ -220,10 +220,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Options.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\Save.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -250,9 +246,6 @@
     </Compile>
     <Compile Include="Pages\Matches.xaml.cs">
       <DependentUpon>Matches.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Options.xaml.cs">
-      <DependentUpon>Options.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Save.xaml.cs">
       <DependentUpon>Save.xaml</DependentUpon>

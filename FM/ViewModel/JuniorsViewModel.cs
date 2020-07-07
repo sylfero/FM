@@ -74,7 +74,7 @@ namespace FM.ViewModel
             {
                 if (send == null)
                 {
-                    send = new RelayCommand(x => { ClubStatus.RoundsToJunior = 4; ClubStatus.Junior = (int)SelectedNumber; ClubStatus.JuniorCountry = CurrentCountry.Id; } ,x => SelectedNumber != null && CurrentCountry != null && ClubStatus.RoundsToJunior == -1);
+                    send = new RelayCommand(x => { ClubStatus.RoundsToJunior = 4; ClubStatus.Junior = (int)SelectedNumber; ClubStatus.JuniorCountry = CurrentCountry.Id; /*ClubRepo.UpdateBudget(ClubStatus.ClubId, (int)selecteNumber * 100_000);*/ } ,x => SelectedNumber != null && CurrentCountry != null && ClubStatus.RoundsToJunior == -1 && ClubRepo.GetBudget(ClubStatus.ClubId) >= selecteNumber * 100_000);
                 }
                 return send;
             }
@@ -87,7 +87,7 @@ namespace FM.ViewModel
             {
                 if (contract == null)
                 {
-                    contract = new RelayCommand(x => { PlayerRepo.SignJunior(CurrentPlayer.Id); Players = PlayerRepo.GetJuniors(); }, x => CurrentPlayer != null);
+                    contract = new RelayCommand(x => { PlayerRepo.SignJunior(CurrentPlayer.Id); Players = PlayerRepo.GetJuniors(); /*ClubRepo.UpdateSalary(ClubStatus.ClubId, 500);*/ }, x => CurrentPlayer != null && ClubRepo.GetSalary(ClubStatus.ClubId) >= 500);
                 }
                 return contract;
             }

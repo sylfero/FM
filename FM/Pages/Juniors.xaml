@@ -23,31 +23,34 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" Margin="50 0 0 0">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="20*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Juniors.Country}}"
-                       Style="{StaticResource LabelStyle}" Foreground="#85A68E" FontWeight="Bold"
+                <Grid Grid.Column="0" Background="#85A68E">
+                    <Label  Content="{Binding Source ={x:Static resx:Juniors.Country}}"
+                       Style="{StaticResource LabelStyle}"  FontWeight="Bold"
                        />
+                </Grid>
 
-                <ComboBox Grid.Column="1" ItemsSource="{Binding Countries}" SelectedItem="{Binding CurrentCountry}"/>
+
+                <ComboBox Grid.Column="1" FontSize="15"  VerticalContentAlignment="Center" ItemsSource="{Binding Countries}" SelectedItem="{Binding CurrentCountry}"/>
             </Grid>
 
             <Grid Grid.Row="3">
@@ -56,33 +59,38 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-
-                <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Juniors.Number}}"
-                       Style="{StaticResource LabelStyle}" Foreground="#85A68E" FontWeight="Bold"
+                
+                <Grid Grid.Column="0" Background="#85A68E">
+                    <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Juniors.Number}}"
+                       Style="{StaticResource LabelStyle}"  FontWeight="Bold"
                        />
+                </Grid>
 
-                <ComboBox Grid.Column="1" ItemsSource="{Binding Number}" SelectedItem="{Binding SelectedNumber}"/>
+                <ComboBox Grid.Column="1" FontSize="16"  VerticalContentAlignment="Center" ItemsSource="{Binding Number}" SelectedItem="{Binding SelectedNumber}"/>
             </Grid>
 
             <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Juniors.Price}}"/>
-
-                <Label Grid.Column="1" Content="{Binding Price}"/>
+                <Border Grid.Column="0" Background="#85A68E" BorderBrush="Black" BorderThickness="1 0 1 1">
+                    <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Juniors.Price}}" VerticalAlignment="Center" FontSize="14"/>
+                </Border>
+                <Border Grid.Column="1" Background="#85A68E" BorderBrush="Black" BorderThickness="1 0 1 1">
+                    <Label Content="{Binding Price}" VerticalAlignment="Center" FontSize="14"/>
+                </Border>
             </Grid>
 
             <Grid Grid.Row="7">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="1" Content="{Binding Source ={x:Static resx:Juniors.Send}}" Command="{Binding Send}"
+                <Button Grid.Column="0" Content="{Binding Source ={x:Static resx:Juniors.Send}}" Command="{Binding Send}"
                         Style="{StaticResource ButtonStyle2}"
                         />
             </Grid>
@@ -91,7 +99,7 @@
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="8*"/>
+                <RowDefinition Height="6*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
@@ -103,11 +111,12 @@
 
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="6*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <Label
                         FontSize="60"
                         FontWeight="Bold"
                         Height="109"
@@ -115,6 +124,7 @@
                         Content="{Binding CurrentPlayer.Overall}"
                         Background="{Binding Path=BkgColor}"
                         />
+                    </Border>
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -188,7 +198,6 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
@@ -309,7 +318,7 @@
                 CanUserSortColumns="False"
                 CanUserResizeColumns="False"
                 CanUserResizeRows="False"
-                Margin="0 75 0 0"
+                Margin="0 113 0 0"
                 ItemsSource="{Binding Players}"
                 SelectedItem="{Binding CurrentPlayer}">
             <DataGrid.Columns>

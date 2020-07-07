@@ -47,6 +47,9 @@
                           Margin="10 0 10 0"
                           ItemsSource="{Binding Path=Leagues}"
                           SelectedValue="{Binding Path=SelectedLeague}"
+                          VerticalContentAlignment="Center"
+                          FontSize="15"
+                          FontWeight="SemiBold"
                 >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
@@ -64,6 +67,9 @@
                           Visibility="{Binding Path=Visibility}"
                           ItemsSource="{Binding Path=MatchdayNumber}"
                           SelectedValue="{Binding Path=SelectedMatchday}"
+                          VerticalContentAlignment="Center"
+                          FontSize="15"
+                          FontWeight="SemiBold"
                 >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">

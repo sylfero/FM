@@ -46,13 +46,16 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0"
+                    <Border BorderBrush="Black" BorderThickness="0 0 1 1">
+                        <Label Grid.Column="0"
                            Content="{Binding Source ={x:Static resx:Market.Name}}"
                            Style="{StaticResource LabelStyle}"
                            />
-
+                    </Border>
                     <TextBox Grid.Column="1"
-                        Text="{Binding Path=Name}"         
+                        Text="{Binding Path=Name}" 
+                             VerticalContentAlignment="Center"
+                             FontSize="14"
                     />
                 </Grid>
 
@@ -62,14 +65,17 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
+                    <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                     <Label Grid.Column="0"
                            Content="{Binding Source ={x:Static resx:Market.Surname}}"
                            Style="{StaticResource LabelStyle}"
                            />
-
+                    </Border>
                     <TextBox Grid.Column="1"
-                             Text="{Binding Path=Surname}"
+                             Text="{Binding Path=Surname}" VerticalContentAlignment="Center"
+                             FontSize="14"
                              />
+                        
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -78,14 +84,17 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
+                    <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                     <Label Grid.Column="0"
                            Content="{Binding Source ={x:Static resx:Market.Position}}"
                            Style="{StaticResource LabelStyle}"
                            />
-
+                    </Border>
                     <ComboBox Grid.Column="1"
                               ItemsSource="{Binding Path=Positions}"
                               SelectedItem="{Binding Path=Position}"
+                              VerticalContentAlignment="Center"
+                             FontSize="14"
                     />
                 </Grid>
 
@@ -95,13 +104,16 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
+                    <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                     <Label Grid.Column="0"
                            Content="{Binding Source ={x:Static resx:Market.League}}"
                            Style="{StaticResource LabelStyle}"/>
-
+                    </Border>
                     <ComboBox Grid.Column="1"
                               ItemsSource="{Binding Path=Leagues}"
                               SelectedItem="{Binding Path=League}"
+                              VerticalContentAlignment="Center"
+                             FontSize="14"
                     >
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="SelectionChanged">
@@ -117,13 +129,16 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
+                    <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                     <Label Grid.Column="0"
                            Content="{Binding Source ={x:Static resx:Market.Club}}"
                            Style="{StaticResource LabelStyle}"/>
-
+                    </Border>
                     <ComboBox Grid.Column="1"
                               ItemsSource="{Binding Path=Clubs}"
                               SelectedItem="{Binding Path=Club}"
+                              VerticalContentAlignment="Center"
+                             FontSize="14"
                               />
                 </Grid>
 
@@ -133,13 +148,16 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
+                    <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                     <Label Grid.Column="0"
                            Content="{Binding Source ={x:Static resx:Market.Nationality}}"
                            Style="{StaticResource LabelStyle}"/>
-
+                    </Border>
                     <ComboBox Grid.Column="1" 
                               ItemsSource="{Binding Path=Countries}"
                               SelectedItem="{Binding Path=Nationality}"
+                              VerticalContentAlignment="Center"
+                             FontSize="14"
                               />
                 </Grid>
 
@@ -149,12 +167,15 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
+                    <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                     <Label Grid.Column="0"
                            Content="{Binding Source ={x:Static resx:Market.MaxValue}}"
                            Style="{StaticResource LabelStyle}"/>
-
+                    </Border>
                     <TextBox Grid.Column="1"
                              Text="{Binding Path=MaxValue}"
+                             VerticalContentAlignment="Center"
+                             FontSize="14"
                              />
 
                 </Grid>
@@ -165,13 +186,16 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0"
+                    <Border BorderBrush="Black" BorderThickness="0 0 1 1">
+                        <Label Grid.Column="0"
                            Content="{Binding Source ={x:Static resx:Market.MaxAge}}"
                            Style="{StaticResource LabelStyle}"/>
-
+                    </Border>
                     <ComboBox Grid.Column="1"
                               ItemsSource="{Binding Path=AgeList}"
                               SelectedItem="{Binding Path=Age}"
+                              VerticalContentAlignment="Center"
+                             FontSize="14"
                         />
 
                 </Grid>
@@ -229,6 +253,7 @@
                         <ColumnDefinition Width="7*"/>
                     </Grid.ColumnDefinitions>
 
+                    <Border BorderBrush="Black" BorderThickness="1">
                     <Label 
                         Style="{StaticResource LabelStyle}"
                         FontWeight="Bold"
@@ -237,6 +262,7 @@
                         Content="{Binding Path=PlayerOverall}"
                         Foreground="{Binding Path=BkgColor}"
                         />
+                    </Border>
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -251,8 +277,12 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Label Content="{Binding Source ={x:Static resx:Market.Potential}}" Style="{StaticResource LabelStyle}"/>
-                            <Label Grid.Column="1" Content="{Binding Path=PlayerPotential}" Style="{StaticResource LabelStyle}"/>
+                            <Border BorderBrush="Black" BorderThickness="0 0 1 1">
+                                <Label Content="{Binding Source ={x:Static resx:Market.Potential}}" Style="{StaticResource LabelStyle}"/>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 1 1">
+                                <Label Grid.Column="1" Content="{Binding Path=PlayerPotential}" Style="{StaticResource LabelStyle}"/>
+                            </Border>
                         </Grid>
 
                         <Grid Grid.Row="1">
@@ -260,8 +290,12 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
+                            <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                             <Label Content="{Binding Source ={x:Static resx:Market.Defence}}" Style="{StaticResource LabelStyle}"/>
-                            <Label Grid.Column="1" Content="{Binding Path=PlayerDefence}" Style="{StaticResource LabelStyle}"/>
+                            </Border>
+                            <Border  Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 1 1">
+                                <Label Grid.Column="1" Content="{Binding Path=PlayerDefence}" Style="{StaticResource LabelStyle}"/>
+                            </Border>
                         </Grid>
 
                         <Grid Grid.Row="2">
@@ -269,8 +303,12 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
+                            <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                             <Label Content="{Binding Source ={x:Static resx:Market.Offence}}" Style="{StaticResource LabelStyle}"/>
-                            <Label Grid.Column="1" Content="{Binding Path=PlayerOffence}" Style="{StaticResource LabelStyle}"/>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 1 1">
+                                <Label Grid.Column="1" Content="{Binding Path=PlayerOffence}" Style="{StaticResource LabelStyle}"/>
+                            </Border>
                         </Grid>
 
                         <Grid Grid.Row="3">
@@ -278,8 +316,12 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
+                            <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                             <Label Content="{Binding Source ={x:Static resx:Market.Passing}}" Style="{StaticResource LabelStyle}"/>
-                            <Label Grid.Column="1" Content="{Binding Passing}" Style="{StaticResource LabelStyle}"/>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 1 1">
+                                <Label Grid.Column="1" Content="{Binding Passing}" Style="{StaticResource LabelStyle}"/>
+                            </Border>
                         </Grid>
 
                         <Grid Grid.Row="4">
@@ -287,8 +329,12 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
+                            <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                             <Label Content="{Binding Source ={x:Static resx:Market.Goalkeeping}}" Style="{StaticResource LabelStyle}"/>
-                            <Label Grid.Column="1" Content="{Binding Gk}" Style="{StaticResource LabelStyle}"/>
+                            </Border>
+                            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 1 1">
+                                <Label Grid.Column="1" Content="{Binding Gk}" Style="{StaticResource LabelStyle}"/>
+                            </Border>
                         </Grid>
 
                     </Grid>
@@ -313,12 +359,16 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
+                        <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                         <Label Content="{Binding Source ={x:Static resx:Market.Name}}" 
                                Style="{StaticResource LabelStyle}"
                                />
-                        <Label Grid.Column="1" Content="{Binding Path=PlayerName}" 
+                        </Border>
+                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 1 1">
+                            <Label Grid.Column="1" Content="{Binding Path=PlayerName}" 
                                Style="{StaticResource LabelStyle}"
                                />
+                        </Border>
                     </Grid>
 
                     <Grid Grid.Row="1">
@@ -326,12 +376,16 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
+                        <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                         <Label Content="{Binding Source ={x:Static resx:Market.Surname}}" 
                                Style="{StaticResource LabelStyle}"
                                />
-                        <Label Grid.Column="1" Content="{Binding Path=PlayerSurname}" 
+                        </Border>
+                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 1 1">
+                            <Label Grid.Column="1" Content="{Binding Path=PlayerSurname}" 
                               Style="{StaticResource LabelStyle}"
                                />
+                        </Border>
                     </Grid>
 
                     <Grid Grid.Row="2">
@@ -339,12 +393,16 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
+                        <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                         <Label Content="{Binding Source ={x:Static resx:Market.Club}}" 
                                Style="{StaticResource LabelStyle}"
                                />
-                        <Label Grid.Column="1" Content="{Binding Path=PlayerClub}" 
+                        </Border>
+                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 1 1">
+                            <Label Grid.Column="1" Content="{Binding Path=PlayerClub}" 
                                Style="{StaticResource LabelStyle}"
                                />
+                        </Border>
                     </Grid>
 
                     <Grid Grid.Row="3">
@@ -352,26 +410,33 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
+                        <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                         <Label Content="{Binding Source ={x:Static resx:Market.Nationality}}" 
                                Style="{StaticResource LabelStyle}"
                                />
-                        <Label Grid.Column="1" Content="{Binding Path=PlayerNationality}" 
+                        </Border>
+                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 1 1">
+                            <Label Grid.Column="1" Content="{Binding Path=PlayerNationality}" 
                                Style="{StaticResource LabelStyle}"
                                />
+                        </Border>
                     </Grid>
 
                     <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="16*" />
-                            <ColumnDefinition Width="9*"/>
-                            <ColumnDefinition Width="25*" />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
+                        <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                         <Label Content="{Binding Source ={x:Static resx:Market.DOB}}" 
                                Style="{StaticResource LabelStyle}"
                                />
-                        <Label Grid.Column="2" Content="{Binding Path=PlayerAge}" 
+                        </Border>
+                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 1 1">
+                            <Label Grid.Column="2" Content="{Binding Path=PlayerAge}" 
                                Style="{StaticResource LabelStyle}"
                                />
+                        </Border>
                     </Grid>
 
                     <Grid Grid.Row="5">
@@ -379,12 +444,16 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
+                        <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                         <Label Content="{Binding Source ={x:Static resx:Market.Contract}}" 
                                Style="{StaticResource LabelStyle}"
                                />
-                        <Label Grid.Column="1" Content="{Binding Path=PlayerContract}" 
+                        </Border>
+                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 1 1">
+                            <Label Grid.Column="1" Content="{Binding Path=PlayerContract}" 
                                Style="{StaticResource LabelStyle}"
                                />
+                        </Border>
                     </Grid>
 
                     <Grid Grid.Row="6">
@@ -392,12 +461,16 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
+                        <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                         <Label Content="{Binding Source ={x:Static resx:Market.Value}}" 
                                Style="{StaticResource LabelStyle}"
                                />
-                        <Label Grid.Column="1" Content="{Binding Path=PlayerValue}" 
+                        </Border>
+                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 1 1">
+                            <Label Grid.Column="1" Content="{Binding Path=PlayerValue}" 
                                Style="{StaticResource LabelStyle}"
                                />
+                        </Border>
                     </Grid>
 
                     <Grid Grid.Row="7">
@@ -405,12 +478,16 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
+                        <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                         <Label Content="{Binding Source ={x:Static resx:Market.Salary}}" 
                                Style="{StaticResource LabelStyle}"
                                />
-                        <Label Grid.Column="1" Content="{Binding Path=PlayerSalary}" 
+                        </Border>
+                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 1 1">
+                            <Label Grid.Column="1" Content="{Binding Path=PlayerSalary}" 
                                Style="{StaticResource LabelStyle}"
                                />
+                        </Border>
                     </Grid>
 
                     <Grid Grid.Row="8">
@@ -426,14 +503,16 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
+                            <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                             <Label
                                 Grid.Row="0"
                                 Content="{Binding Source ={x:Static resx:Market.TValue}}"
                                 Style="{StaticResource LabelStyle}"
                                 />
+                            </Border>
                             <TextBox
                                 Grid.Row="1"
-                                Text="{Binding Path=TransferValue, UpdateSourceTrigger=PropertyChanged}"
+                                Text="{Binding Path=TransferValue, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" FontSize="13"
                                 />
                         </Grid>
 
@@ -442,14 +521,16 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
+                            <Border BorderBrush="Black" BorderThickness="0 0 1 1">
                             <Label
                                 Grid.Row="0"
                                 Style="{StaticResource LabelStyle}"
-                                Content="{Binding Source ={x:Static resx:Market.Salary}}"
+                                Content="{Binding Source ={x:Static resx:Market.Salary}}" 
                                 />
+                             </Border>
                             <TextBox
                                 Grid.Row="1"
-                                Text="{Binding Path=TransferSalary, UpdateSourceTrigger=PropertyChanged}"
+                                Text="{Binding Path=TransferSalary, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" FontSize="13"
                                 />
                         </Grid>
 
@@ -458,13 +539,15 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0"
-                                   FontSize="5"
+                            <Border BorderBrush="Black" BorderThickness="0 0 1 1">
+                                <Label Grid.Row="0"
+                                   FontSize="12"
                                    Style="{StaticResource LabelStyle}"
-                                Content="{Binding Source ={x:Static resx:Market.CLength}}"
+                                Content="{Binding Source ={x:Static resx:Market.CLength}}" 
                                 />
+                            </Border>
                             <TextBox Grid.Row="1"
-                                Text="{Binding Path=TransferContract, UpdateSourceTrigger=PropertyChanged}"
+                                Text="{Binding Path=TransferContract, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" FontSize="13"
                                 />
                         </Grid>
 

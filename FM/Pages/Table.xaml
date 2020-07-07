@@ -39,12 +39,16 @@
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Table.League}}" VerticalAlignment="Center"
-                       Foreground="#85A68E" FontWeight="Bold"
+                <Border Background="#85A68E" BorderBrush="Black" BorderThickness="1">
+                    <Label Grid.Column="0" Content="{Binding Source ={x:Static resx:Table.League}}" VerticalAlignment="Center" HorizontalContentAlignment="Left"
+                        FontWeight="Bold"
                        Style="{StaticResource LabelStyle}"
                        />
-                
-                <ComboBox Grid.Column="1" ItemsSource="{Binding Leagues}" SelectedItem="{Binding CurrentLeague}">
+                </Border>
+
+                <ComboBox Grid.Column="1" ItemsSource="{Binding Leagues}" SelectedItem="{Binding CurrentLeague}" FontWeight="SemiBold"
+                       VerticalContentAlignment="Center"
+                          FontSize="13">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>

@@ -257,5 +257,27 @@ namespace FM.DAL.Repositories
                 connection.Close();
             }
         }
+
+        public static void UpdateBudget(int id, int money)
+        {
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"update club set budget = budget - {money} where id = {id}", connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
+
+        public static void UpdateSalary(int id, int money)
+        {
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                SQLiteCommand command = new SQLiteCommand($"Update club set salaryBudget = budget - {money} where id = {id}", connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+        }
     }
 }

@@ -23,10 +23,11 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
+            
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -48,23 +49,17 @@
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
 
                 <Button Grid.Row="0" Content="{Binding Source ={x:Static resx:Menu.Play}}" Command="{Binding Open}"
                         Style="{StaticResource ButtonStyle}"
                         />
 
-                <Button Grid.Row="2" Content="{Binding Source ={x:Static resx:Menu.Options}}" Command="{Binding Options}"
-                        Style="{StaticResource ButtonStyle}"
-                        />
-
-                <Button Grid.Row="4" Content="{Binding Source ={x:Static resx:Menu.Exit}}" Command="{Binding Exit}"
+                <Button Grid.Row="2" Content="{Binding Source ={x:Static resx:Menu.Exit}}" Command="{Binding Exit}"
                         Style="{StaticResource ButtonStyle}"
                         />
             </Grid>

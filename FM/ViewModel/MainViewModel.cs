@@ -88,10 +88,6 @@ namespace FM.ViewModel
                     Page = new Pages.Save();
                     CanGoBack = true;
                     break;
-                case "options":
-                    Page = new Pages.Options();
-                    CanGoBack = true;
-                    break;
                 default:
                     break;
             }
