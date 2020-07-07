@@ -251,6 +251,10 @@ namespace FM.ViewModel
                     search = new RelayCommand(
                         arg => {
                             SearchedPlayers = GetPlayersFiltres();
+                            TransferSalary = null;
+                            TransferValue = null;
+                            TransferContract = null;
+                            Visibility = System.Windows.Visibility.Hidden;
                         },
                         arg => true
                         );

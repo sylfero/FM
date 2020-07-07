@@ -133,8 +133,8 @@ namespace FM.DAL.Repositories
                         szansa = r.Next(1, 100);
                         if((szansa <= 90 && playerSalary >= 1.5 * playerActuallSalary) || (szansa <= 55 && playerSalary >= 1.1 * playerActuallSalary) || (szansa <= 20 && playerSalary < 1.1 * playerActuallSalary))
                         {
-                            TransferFromClub(oldClub, transferCost, playerSalary);
-                            PlayerRepo.PlayerTransfer(playerId, playerSalary, playerContract);
+                            command = new SQLiteCommand($"UPDATE players set salary = {playerSalary}, contract_terminates = \"{playerContract}\", club = {ClubStatus.ClubId} where id = {playerId}", connection);
+                            command.ExecuteNonQuery();
                             SQLiteCommand command2 = new SQLiteCommand($"UPDATE club set budget = budget - {transferCost}, salaryBudget = salaryBudget - {playerSalary} where id = {ClubStatus.ClubId}", connection);
                             command2.ExecuteNonQuery();
                             MessageBox.Show("Congratulations, You bought this player!!!");
